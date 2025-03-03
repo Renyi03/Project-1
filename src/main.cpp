@@ -6,6 +6,12 @@ int main(void)
     InitWindow(800, 800, "El mejor juego de proyecto 1: An indescribable emptiness");
     SetTargetFPS(60);
 
+    while (WindowShouldClose() == false) {
+
+       
+
+        
+    }
 
     CloseWindow();
     
