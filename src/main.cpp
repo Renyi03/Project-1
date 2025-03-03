@@ -10,7 +10,11 @@ int main(void)
 
        
 
+        BeginDrawing();
         
+
+        EndDrawing();
+
     }
 
     CloseWindow();
