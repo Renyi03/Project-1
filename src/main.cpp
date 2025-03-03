@@ -32,11 +32,19 @@ int main(void)
 
 
         // 3. Drawing
+
         BeginDrawing();
         ClearBackground(BLACK);
+
+        DrawRectangleLines(88, 40, 624, 720, BLUE);
+
         DrawCircle(ballX, ballY, 20, RED);
 
         EndDrawing();
+
+        // 4. Collisions
+
+
     }
 
     CloseWindow();
