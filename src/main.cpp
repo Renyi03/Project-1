@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "Pengo.hpp"
 
 int main(void)
 {
@@ -7,6 +8,7 @@ int main(void)
     InitWindow(800, 800, "El mejor juego de proyecto 1: An indescribable emptiness");
     SetTargetFPS(60);
 
+    Pengo pengo;
     //Game Loop
 
     while (WindowShouldClose() == false) {
@@ -38,7 +40,7 @@ int main(void)
 
         DrawRectangleLines(88, 40, 624, 720, BLUE);
 
-        DrawCircle(ballX, ballY, 20, RED);
+        pengo.Draw();
 
         EndDrawing();
 
