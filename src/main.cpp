@@ -31,7 +31,7 @@ int main(void)
         // 2. Update positions
 
 
-        // 3. Drawing
+        // 3. Drawingggggg
 
         BeginDrawing();
         ClearBackground(BLACK);
