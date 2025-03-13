@@ -3,48 +3,37 @@
 
 int main(void)
 {
-    int ballX = 400;
-    int ballY = 400;
     InitWindow(800, 800, "El mejor juego de proyecto 1: An indescribable emptiness");
     SetTargetFPS(60);
 
-    Pengo pengo;
+    
+    Rectangle borderTop = Rectangle{ 88, 30, 624, 10 };
+    Rectangle borderBottom = Rectangle{ 88, 760, 624, 10 };
+    Rectangle borderLeft = Rectangle{ 78, 40, 10, 720 };
+    Rectangle borderRight = Rectangle{ 712, 40, 10, 720 };
+    Rectangle border{88, 40, 624, 720};
+    Pengo pengo{border};
+
     //Game Loop
 
     while (WindowShouldClose() == false) {
 
-        // 1. Event handling
-        if (IsKeyDown(KEY_RIGHT)) {
-            ballX += 3;
-        }
-
-        else if (IsKeyDown(KEY_LEFT)) {
-            ballX -= 3;
-        }
-
-        else if (IsKeyDown(KEY_UP)) {
-            ballY -= 3;
-        }
-
-        else if (IsKeyDown(KEY_DOWN)) {
-            ballY += 3;
-        }
-
-        // 2. Update positions
-
-
-        // 3. Drawingggggg
-
+        pengo.Update();
+        bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
         BeginDrawing();
         ClearBackground(BLACK);
 
-        DrawRectangleLines(88, 40, 624, 720, BLUE);
+        DrawRectangleLinesEx(borderTop, 10, BLUE);
+        DrawRectangleLinesEx(borderBottom, 10, BLUE);
+        DrawRectangleLinesEx(borderLeft, 10, BLUE);
+        DrawRectangleLinesEx(borderRight, 10, BLUE);
 
         pengo.Draw();
+        
+        pengo.DrawHitbox(isColliding);
+        
 
         EndDrawing();
-
-        // 4. Collisions
 
 
     }
