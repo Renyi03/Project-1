@@ -1,21 +1,20 @@
 #pragma once
 #include <raylib.h>
+#include <vector>
 
 
-
-class Pengo {
+class Map {
 
 public:
-	Pengo(Rectangle screenBorder);
-	~Pengo();
+	Map();
+	~Map();
 	void Draw();
-	void Update();
-	Rectangle GetRect();
-	void DrawHitbox(bool isColliding);
+
 private:
 	Texture2D image;
 	Vector2 position;
 	int speed;
 	Rectangle border;
+	std::vector<int> matrix;
 };
 

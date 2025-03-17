@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "Pengo.hpp"
+#include "Map.hpp"
 
 int main(void)
 {
@@ -13,6 +14,7 @@ int main(void)
     Rectangle borderRight = Rectangle{ 712, 40, 10, 720 };
     Rectangle border{88, 40, 624, 720};
     Pengo pengo{border};
+    Map map{};
 
     //Game Loop
 
