@@ -14,7 +14,7 @@ public:
 	void DrawHitbox(bool isColliding);
 private:
 	Texture2D image;
-	Vector2 position;
+	Vector2 position, target_position;
 	int speed;
 	Rectangle border;
 };

@@ -11,8 +11,7 @@ public:
 	void Draw();
 
 private:
-	Texture2D image;
-	Vector2 position;
+	Texture2D ice_block;
 	int speed;
 	Rectangle border;
 	std::vector<int> matrix;

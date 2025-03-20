@@ -31,7 +31,7 @@ int main(void)
         DrawRectangleLinesEx(borderRight, 10, BLUE);
 
         pengo.Draw();
-        
+        map.Draw();
         pengo.DrawHitbox(isColliding);
         
 
