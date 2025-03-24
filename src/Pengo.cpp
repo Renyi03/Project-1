@@ -1,6 +1,7 @@
 #include "Pengo.hpp"
 #include<raylib.h>
 #include <algorithm>
+#include <raymath.h>
 
 
 Pengo::Pengo(Rectangle screenBorder)
@@ -8,7 +9,8 @@ Pengo::Pengo(Rectangle screenBorder)
     image = LoadTexture("resources/Graphics/Pengo front.png");
     position.x = 376;
     position.y = 328;
-    speed = 96;
+    target_position = position;
+    speed = 2;
     border = screenBorder;
 }
 
@@ -22,12 +24,14 @@ void Pengo::Draw() {
 }
 
 void Pengo::Update() {
-    float s = speed * GetFrameTime();
+    
     
     if (position.x == target_position.x && position.y == target_position.y) {
         if (IsKeyDown(KEY_RIGHT)) {
             target_position.x = position.x + 48;
             target_position.y = position.y;
+            start_position = position;
+            amount = 0;
             if (position.x + image.width > border.x + border.width) {
                 position.x = border.x + border.width - image.width;
             }
@@ -36,29 +40,41 @@ void Pengo::Update() {
         else if (IsKeyDown(KEY_LEFT)) {
             target_position.x = position.x - 48;
             target_position.y = position.y;
+            start_position = position;
+            amount = 0;
             if (position.x < border.x) {
                 position.x = border.x;
             }
         }
 
         else if (IsKeyDown(KEY_UP)) {
-            target_position.y = position.y + 48;
+            target_position.y = position.y - 48;
             target_position.x = position.x;
+            start_position = position;
+            amount = 0;
             if (position.y < border.y) {
                 position.y = border.y;
             }
         }
 
         else if (IsKeyDown(KEY_DOWN)) {
-            target_position.y = position.y - 48;
+            target_position.y = position.y + 48;
             target_position.x = position.x;
+            start_position = position;
+            amount = 0;
             if (position.y + image.height > border.y + border.height) {
                 position.y = border.y + border.height - image.height;
             }
         }
     }
-    else {
 
+    else {
+        float s = speed * GetFrameTime();
+        amount += s;
+        position = Vector2Lerp(start_position, target_position, amount);
+        if (amount >= 1) {
+            position = target_position;
+        }
     }
 }
 
