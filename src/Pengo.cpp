@@ -32,9 +32,7 @@ void Pengo::Update() {
             target_position.y = position.y;
             start_position = position;
             amount = 0;
-            if (position.x + image.width > border.x + border.width) {
-                position.x = border.x + border.width - image.width;
-            }
+            
         }
 
         else if (IsKeyDown(KEY_LEFT)) {
@@ -42,9 +40,7 @@ void Pengo::Update() {
             target_position.y = position.y;
             start_position = position;
             amount = 0;
-            if (position.x < border.x) {
-                position.x = border.x;
-            }
+            
         }
 
         else if (IsKeyDown(KEY_UP)) {
@@ -52,9 +48,7 @@ void Pengo::Update() {
             target_position.x = position.x;
             start_position = position;
             amount = 0;
-            if (position.y < border.y) {
-                position.y = border.y;
-            }
+            
         }
 
         else if (IsKeyDown(KEY_DOWN)) {
@@ -62,9 +56,7 @@ void Pengo::Update() {
             target_position.x = position.x;
             start_position = position;
             amount = 0;
-            if (position.y + image.height > border.y + border.height) {
-                position.y = border.y + border.height - image.height;
-            }
+         
         }
     }
 
@@ -74,6 +66,22 @@ void Pengo::Update() {
         position = Vector2Lerp(start_position, target_position, amount);
         if (amount >= 1) {
             position = target_position;
+        }
+        if (position.y + image.height > border.y + border.height) {
+            position.y = border.y + border.height - image.height;
+            target_position.y = position.y;
+        }
+        if (position.y < border.y) {
+            position.y = border.y;
+            target_position.y = position.y;
+        }
+        if (position.x < border.x) {
+            position.x = border.x;
+            target_position.x = position.x;
+        }
+        if (position.x + image.width > border.x + border.width) {
+            position.x = border.x + border.width - image.width;
+            target_position.x = position.x;
         }
     }
 }
