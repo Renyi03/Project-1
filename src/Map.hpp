@@ -1,7 +1,7 @@
 #pragma once
 #include <raylib.h>
 #include <vector>
-
+#include <Block.hpp>
 
 class Map {
 
@@ -15,5 +15,6 @@ private:
 	int speed;
 	Rectangle border;
 	std::vector<int> matrix;
+	std::
 };
 
