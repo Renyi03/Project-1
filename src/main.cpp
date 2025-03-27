@@ -68,16 +68,20 @@ int main(void)
         case INITIAL:
         {
             // TODO: Draw LOGO screen here!
-            DrawText("PENGO PROTOTYPE", 20, 20, 40, LIGHTGRAY);
-            DrawText("WAIT for 2 SECONDS...", 290, 220, 20, GRAY);
+            DrawText("PENGO PROTOTYPE", 66, 50, 40, LIGHTGRAY);
+            DrawText("Project 1, Video game design and development, CITM", 125, 220, 20, GRAY);
+            DrawText("Team members: Sofia Barja, Clara Sanchez, Yin Ye", 133, 270, 20, GRAY);
+            DrawText("Github accounts: sofia-221b, Valkyn22, Renyi03", 150, 320, 20, GRAY);
+            DrawText("Tutors: Aleix Cots, Alejandro Paris", 205, 370, 20, GRAY);
+            
 
         } break;
         case TITLE:
         {
             // TODO: Draw TITLE screen here!
-            DrawRectangle(0, 0, 800, 800, GREEN);
-            DrawText("TITLE SCREEN", 20, 20, 40, DARKGREEN);
-            DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKGREEN);
+            DrawRectangle(0, 0, 800, 800, BLUE);
+            DrawText("TITLE SCREEN", 20, 20, 40, DARKBLUE);
+            DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKBLUE);
 
         } break;
         default: break;
