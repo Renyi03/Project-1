@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include "Pengo.hpp"
 #include "Map.hpp"
+#include "Block.hpp"
 
 typedef enum GameScreen { INITIAL, TITLE, GAMEPLAY, POINTS } GameScreen;
 
@@ -18,6 +19,7 @@ int main(void)
     Pengo pengo{border};
     Map map{};
 
+    Sound sound = LoadSound("resources/Music/Main BGM(Popcorn).wav");
     
     GameScreen currentScreen = INITIAL;
 
@@ -43,6 +45,7 @@ int main(void)
         } break;
         case GAMEPLAY:
         {
+            PlaySound(sound);
             pengo.Update();
             bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             BeginDrawing();

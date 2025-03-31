@@ -12,7 +12,7 @@ public:
 	void Update();
 	Rectangle GetRect();
 	void DrawHitbox(bool isColliding);
-private:
+protected:
 	Texture2D image;
 	Vector2 position, target_position, start_position;
 	float amount;

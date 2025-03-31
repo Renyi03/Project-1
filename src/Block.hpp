@@ -2,8 +2,9 @@
 #include <raylib.h>
 
 class Block {
-	Rectangle rect;
+	
 public:
+	Rectangle rect;
 	Block(Rectangle r) {
 		rect = r;
 	}
