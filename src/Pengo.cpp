@@ -4,7 +4,7 @@
 #include <raymath.h>
 
 
-Pengo::Pengo(Rectangle screenBorder)
+Pengo::Pengo(Rectangle screenBorder, Map* map)
 {
     image = LoadTexture("resources/Graphics/Pengo front.png");
     position.x = 376;
@@ -12,6 +12,7 @@ Pengo::Pengo(Rectangle screenBorder)
     target_position = position;
     speed = 2;
     border = screenBorder;
+    currentMap = map;
 }
 
 Pengo::~Pengo()
@@ -28,8 +29,22 @@ void Pengo::Update() {
     
     if (position.x == target_position.x && position.y == target_position.y) {
         if (IsKeyDown(KEY_RIGHT)) {
-            target_position.x = position.x + 48;
-            target_position.y = position.y;
+            bool isBlock{};
+            Vector2 v{ position.x + 48, position.y };
+            auto& blocks = currentMap->GetBlocks();
+            for (int i = 0; i < blocks.size(); ++i) {
+                auto& b = blocks[i];
+                if (b.rect.x == v.x && b.rect.y == v.y) {
+                    isBlock = true;
+                    break;
+                }
+            }
+
+            if (!isBlock) {
+                target_position.x = v.x;
+                target_position.y = v.y;
+            }
+
             start_position = position;
             amount = 0;
             if (position.x + image.width > border.x + border.width) {
