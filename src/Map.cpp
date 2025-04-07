@@ -34,7 +34,7 @@ Map::Map()
         case '1':
             matrix.push_back(1);
             
-            blocks.push_back(Block{ Rectangle{88 + col * 48, 50 + row * 48, 48, 48} });
+            blocks.push_back(Block{ Rectangle{88 + col * 24, 40 + row * 48, 48, 48} });
 
             /*DrawRectangleLinesEx(GetRectMap(), 3, BLUE);*/
                
@@ -78,6 +78,11 @@ void Map::Draw() {
     for (auto& b : blocks) {
         DrawRectangle(b.rect.x, b.rect.y, b.rect.width, b.rect.height, YELLOW);
     }
+}
+
+const std::vector<Block>& Map::GetBlocks()
+{
+    return blocks;
 }
 
 //Rectangle Map::GetRectMap()

@@ -16,8 +16,9 @@ int main(void)
     Rectangle borderLeft = Rectangle{ 78, 40, 10, 720 };
     Rectangle borderRight = Rectangle{ 712, 40, 10, 720 };
     Rectangle border{88, 40, 624, 720};
-    Pengo pengo{border};
     Map map{};
+    Pengo pengo{border, &map};
+    
 
     Sound sound = LoadSound("resources/Music/Main BGM(Popcorn).wav");
     

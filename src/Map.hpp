@@ -1,8 +1,7 @@
 #pragma once
 #include <raylib.h>
 #include <vector>
-#include <Block.hpp>
-#include <Pengo.hpp>
+#include "Block.hpp"
 
 class Map{
 
@@ -10,7 +9,7 @@ public:
 	Map();
 	~Map();
 	void Draw();
-	/*Rectangle GetRectMap();*/
+	const std::vector<Block>& GetBlocks();
 
 private:
 	Texture2D ice_block;
