@@ -8,6 +8,7 @@ typedef enum GameScreen { INITIAL, TITLE, GAMEPLAY, POINTS } GameScreen;
 int main(void)
 {
     InitWindow(800, 800, "El mejor juego de proyecto 1: An indescribable emptiness");
+    InitAudioDevice();
     SetTargetFPS(60);
 
     
@@ -18,11 +19,12 @@ int main(void)
     Rectangle border{88, 40, 624, 720};
     Map map{};
     Pengo pengo{border, &map};
-    
-
-    Sound sound = LoadSound("resources/Music/Main BGM(Popcorn).wav");
-    
+        
     GameScreen currentScreen = INITIAL;
+
+    Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
+
+    PlayMusicStream(Main_BGM);
 
     //Game Loop
 
@@ -46,7 +48,7 @@ int main(void)
         } break;
         case GAMEPLAY:
         {
-            PlaySound(sound);
+            UpdateMusicStream(Main_BGM);
             pengo.Update();
             bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             BeginDrawing();
@@ -90,15 +92,12 @@ int main(void)
         } break;
         default: break;
         }
-         
-
-        
-        
 
         EndDrawing();
-
-
     }
+
+    UnloadMusicStream(Main_BGM);
+    CloseAudioDevice();
 
     CloseWindow();
 

@@ -11,6 +11,7 @@ Pengo::Pengo(Rectangle screenBorder, Map* map)
     position.y = 328;
     target_position = position;
     speed = 2;
+    speed = 10;
     border = screenBorder;
     currentMap = map;
 }
@@ -29,6 +30,7 @@ void Pengo::Update() {
     
     if (position.x == target_position.x && position.y == target_position.y) {
         if (IsKeyDown(KEY_RIGHT)) {
+            
             bool isBlock{};
             Vector2 v{ position.x + 48, position.y };
             auto& blocks = currentMap->GetBlocks();
@@ -47,33 +49,107 @@ void Pengo::Update() {
 
             start_position = position;
             amount = 0;
+
             
+
+            if (position.x + image.width + 48 > border.x + border.width) {
+                position.x = border.x - image.width;
+                target_position = position;
+                
+            }
         }
 
         else if (IsKeyDown(KEY_LEFT)) {
-            target_position.x = position.x - 48;
             target_position.y = position.y;
+            bool isBlock{};
+            Vector2 v{ position.x - 48, position.y };
+            std::cout << v.x << " ; " << v.y << std::endl;
+            auto& blocks = currentMap->GetBlocks();
+            for (int i = 0; i < blocks.size(); ++i) {
+                auto& b = blocks[i];
+                if (i == blocks.size() - 2) {
+                    std::cout << b.rect.x << " ; " << b.rect.y << std::endl;
+                }
+                
+                if (b.rect.x == v.x && b.rect.y == v.y) {
+                    isBlock = true;
+                    break;
+                }
+            }
+
+            if (!isBlock) {
+                target_position.x = v.x;
+                target_position.y = v.y;
+            }
+
+            
             start_position = position;
             amount = 0;
+
             
+
+            if (position.x - 48 < border.x) {
+                position.x = border.x;
+                target_position = position;
+            }
         }
 
         else if (IsKeyDown(KEY_UP)) {
-            target_position.y = position.y - 48;
-            target_position.x = position.x;
+            Vector2 v{ position.x, position.y - 48 };
+            auto& blocks = currentMap->GetBlocks();
+            for (int i = 0; i < blocks.size(); ++i) {
+                auto& b = blocks[i];
+                if (b.rect.x == v.x && b.rect.y == v.y) {
+                    isBlock = true;
+                    break;
+                }
+            }
+
+            if (!isBlock) {
+                target_position.x = v.x;
+                target_position.y = v.y;
+            }
+
+           
             start_position = position;
             amount = 0;
-            
+
+            if (position.y < border.y) {
+                position.y = border.y;
+                target_position.y = position.y - 48;
+                target_position.x = position.x;
+            }
         }
 
         else if (IsKeyDown(KEY_DOWN)) {
-            target_position.y = position.y + 48;
-            target_position.x = position.x;
+            
+            bool isBlock{};
+            for (int i = 0; i < blocks.size(); ++i) {
+                auto& b = blocks[i];
+                if (b.rect.x == v.x && b.rect.y == v.y) {
+                    isBlock = true;
+                    break;
+                }
+            }
+
+            if (!isBlock) {
+                target_position.x = v.x;
+                target_position.y = v.y;
+            }
+
+            
             start_position = position;
             amount = 0;
-         
+
+            if (position.y + image.height > border.y + border.height + 48) {
+                position.y = border.y + border.height - image.height;
+                target_position.y = position.y + 48;
+                target_position.x = position.x;
+            }
         }
     }
+
+    
 
     else {
         float s = speed * GetFrameTime();
@@ -82,23 +158,8 @@ void Pengo::Update() {
         if (amount >= 1) {
             position = target_position;
         }
-        if (position.y + image.height > border.y + border.height) {
-            position.y = border.y + border.height - image.height;
-            target_position.y = position.y;
-        }
-        if (position.y < border.y) {
-            position.y = border.y;
-            target_position.y = position.y;
-        }
-        if (position.x < border.x) {
-            position.x = border.x;
-            target_position.x = position.x;
-        }
-        if (position.x + image.width > border.x + border.width) {
-            position.x = border.x + border.width - image.width;
-            target_position.x = position.x;
-        }
     }
+
 }
 
 Rectangle Pengo::GetRect()
