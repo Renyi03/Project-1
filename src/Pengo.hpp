@@ -18,6 +18,6 @@ protected:
 	Vector2 position, target_position, start_position;
 	float amount;
 	int speed;
-	Rectangle border, borderRight, borderLeft, borderTop, borderBottom;
+	Rectangle border;
 };
 

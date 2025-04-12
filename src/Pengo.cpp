@@ -6,10 +6,6 @@
 
 Pengo::Pengo(Rectangle screenBorder, Map* map)
 {
-    borderTop = Rectangle{ 88, 30, 624, 10 };
-    borderBottom = Rectangle{ 88, 760, 624, 10 };
-    borderLeft = Rectangle{ 78, 40, 10, 720 };
-    borderRight = Rectangle{ 712, 40, 10, 720 };
     image = LoadTexture("resources/Graphics/Pengo front.png");
     position.x = 376;
     position.y = 328;
@@ -53,16 +49,11 @@ void Pengo::Update() {
 
             start_position = position;
             amount = 0;
-<<<<<<< Updated upstream
 
             
 
             if (position.x + image.width + 48 > border.x + border.width) {
                 position.x = border.x - image.width;
-=======
-            if (position.x + image.width > borderRight.x - 48) {
-                position.x = borderRight.x - image.width;
->>>>>>> Stashed changes
                 target_position = position;
                 
             }
@@ -94,16 +85,11 @@ void Pengo::Update() {
             
             start_position = position;
             amount = 0;
-<<<<<<< Updated upstream
 
             
 
             if (position.x - 48 < border.x) {
                 position.x = border.x;
-=======
-            if (position.x - 48 < borderLeft.x + borderLeft.width) {
-                position.x = borderLeft.x + borderLeft.width;
->>>>>>> Stashed changes
                 target_position = position;
             }
         }
@@ -127,16 +113,10 @@ void Pengo::Update() {
            
             start_position = position;
             amount = 0;
-<<<<<<< Updated upstream
 
             if (position.y < border.y) {
                 position.y = border.y;
                 target_position.y = position.y - 48;
-=======
-            if (position.y <= borderTop.y - borderTop.height + 48) {
-                position.y = borderTop.y + borderTop.height;
-                target_position.y = position.y;
->>>>>>> Stashed changes
                 target_position.x = position.x;
             }
         }
@@ -160,16 +140,10 @@ void Pengo::Update() {
             
             start_position = position;
             amount = 0;
-<<<<<<< Updated upstream
 
             if (position.y + image.height > border.y + border.height + 48) {
                 position.y = border.y + border.height - image.height;
                 target_position.y = position.y + 48;
-=======
-            if (position.y + image.height >= borderBottom.y) {
-                position.y = borderBottom.y - image.height;
-                target_position.y = position.y;
->>>>>>> Stashed changes
                 target_position.x = position.x;
             }
         }

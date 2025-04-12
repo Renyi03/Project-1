@@ -11,11 +11,11 @@ int main(void)
     InitAudioDevice();
     SetTargetFPS(60);
 
+    
     Rectangle borderTop = Rectangle{ 88, 30, 624, 10 };
     Rectangle borderBottom = Rectangle{ 88, 760, 624, 10 };
     Rectangle borderLeft = Rectangle{ 78, 40, 10, 720 };
     Rectangle borderRight = Rectangle{ 712, 40, 10, 720 };
-    
     Rectangle border{88, 40, 624, 720};
     Map map{};
     Pengo pengo{border, &map};
