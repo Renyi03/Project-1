@@ -9,7 +9,7 @@ public:
 	Map();
 	~Map();
 	void Draw();
-	const std::vector<Block>& GetBlocks();
+	std::vector<Block>& GetBlocks();
 
 private:
 	Texture2D ice_block;

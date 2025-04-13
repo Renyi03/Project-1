@@ -41,8 +41,21 @@ void Pengo::Update() {
             auto& blocks = currentMap->GetBlocks();
             for (int i = 0; i < blocks.size(); ++i) {
                 auto& b = blocks[i];
-                if (b.rect.x == v.x && b.rect.y == v.y) {
+                if (b.isActive == true && b.rect.x == v.x && b.rect.y == v.y) {
                     isBlock = true;
+                    Vector2 v2{ position.x + 96, position.y };
+                    bool isBlockAdjacent{};
+                    for (int j = 0; j < blocks.size(); ++j) {
+                        auto& b2 = blocks[j];
+                        if (b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) {
+                            isBlockAdjacent = true;
+                            b.isActive = false;
+                            break;
+                        }                       
+                    }
+                    if (!isBlockAdjacent) {
+                        b.direction = Block::MovingDirection::right;
+                    }
                     break;
                 }
             }
