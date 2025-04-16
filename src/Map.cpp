@@ -85,7 +85,20 @@ void Map::Draw() {
                     blockTargetPosition.x += 48;
                     displacement.x += 3;
                     break;
+                case Block::MovingDirection::left:
+                    blockTargetPosition.x -= 48;
+                    displacement.x -= 3;
+                    break;
+                case Block::MovingDirection::up:
+                    blockTargetPosition.y -= 48;
+                    displacement.y -= 3;
+                    break;
+                case Block::MovingDirection::down:
+                    blockTargetPosition.y += 48;
+                    displacement.y += 3;
+                    break;
                 }
+
                 bool isBlock{};
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& b2 = blocks[i];

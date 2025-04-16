@@ -15,7 +15,7 @@ Pengo::Pengo(Rectangle screenBorder, Map* map)
     position.x = 376;
     position.y = 328;
     target_position = position;
-    speed = 10;
+    speed = 3;
     border = screenBorder;
     currentMap = map;
 
@@ -78,16 +78,24 @@ void Pengo::Update() {
 
             bool isBlock{};
             Vector2 v{ position.x - 48, position.y };
-            std::cout << v.x << " ; " << v.y << std::endl;
             auto& blocks = currentMap->GetBlocks();
             for (int i = 0; i < blocks.size(); ++i) {
                 auto& b = blocks[i];
-                if (i == blocks.size() - 2) {
-                    std::cout << b.rect.x << " ; " << b.rect.y << std::endl;
-                }
-
-                if (b.rect.x == v.x && b.rect.y == v.y) {
+                if (b.isActive == true && b.rect.x == v.x && b.rect.y == v.y) {
                     isBlock = true;
+                    Vector2 v2{ position.x - 96, position.y };
+                    bool isBlockAdjacent{};
+                    for (int j = 0; j < blocks.size(); ++j) {
+                        auto& b2 = blocks[j];
+                        if (b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) {
+                            isBlockAdjacent = true;
+                            b.isActive = false;
+                            break;
+                        }
+                    }
+                    if (!isBlockAdjacent) {
+                        b.direction = Block::MovingDirection::left;
+                    }
                     break;
                 }
             }
@@ -113,8 +121,21 @@ void Pengo::Update() {
             auto& blocks = currentMap->GetBlocks();
             for (int i = 0; i < blocks.size(); ++i) {
                 auto& b = blocks[i];
-                if (b.rect.x == v.x && b.rect.y == v.y) {
+                if (b.isActive == true && b.rect.x == v.x && b.rect.y == v.y) {
                     isBlock = true;
+                    Vector2 v2{ position.x, position.y - 96 };
+                    bool isBlockAdjacent{};
+                    for (int j = 0; j < blocks.size(); ++j) {
+                        auto& b2 = blocks[j];
+                        if (b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) {
+                            isBlockAdjacent = true;
+                            b.isActive = false;
+                            break;
+                        }
+                    }
+                    if (!isBlockAdjacent) {
+                        b.direction = Block::MovingDirection::up;
+                    }
                     break;
                 }
             }
@@ -141,8 +162,21 @@ void Pengo::Update() {
             auto& blocks = currentMap->GetBlocks();
             for (int i = 0; i < blocks.size(); ++i) {
                 auto& b = blocks[i];
-                if (b.rect.x == v.x && b.rect.y == v.y) {
+                if (b.isActive == true && b.rect.x == v.x && b.rect.y == v.y) {
                     isBlock = true;
+                    Vector2 v2{ position.x, position.y + 96};
+                    bool isBlockAdjacent{};
+                    for (int j = 0; j < blocks.size(); ++j) {
+                        auto& b2 = blocks[j];
+                        if (b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) {
+                            isBlockAdjacent = true;
+                            b.isActive = false;
+                            break;
+                        }
+                    }
+                    if (!isBlockAdjacent) {
+                        b.direction = Block::MovingDirection::down;
+                    }
                     break;
                 }
             }
