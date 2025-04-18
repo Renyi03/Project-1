@@ -19,12 +19,13 @@ int main(void)
     Rectangle border{88, 40, 624, 720};
     Map map{};
     Pengo pengo{border, &map};
+    map.pengo = &pengo;
         
     GameScreen currentScreen = INITIAL;
 
     Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
 
-    PlayMusicStream(Main_BGM);
+    //PlayMusicStream(Main_BGM);
 
     //Game Loop
 

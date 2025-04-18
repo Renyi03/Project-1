@@ -1,7 +1,6 @@
 #pragma once
 #include <raylib.h>
-#include <Map.hpp>
-
+class Map;
 
 class Pengo {
 
@@ -13,6 +12,10 @@ public:
 	Rectangle GetRect();
 	void DrawHitbox(bool isColliding);
 	Map *currentMap;
+	const Rectangle &GetBorderRight() const;
+	const Rectangle &GetBorderLeft() const;
+	const Rectangle &GetBorderTop() const;
+	const Rectangle &GetBorderBottom() const;
 protected:
 	Texture2D image;
 	Vector2 position, target_position, start_position;

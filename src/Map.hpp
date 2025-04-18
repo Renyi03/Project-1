@@ -1,7 +1,8 @@
 #pragma once
 #include <raylib.h>
 #include <vector>
-#include "Block.hpp"
+class Pengo;
+class Block;
 
 class Map{
 
@@ -10,7 +11,7 @@ public:
 	~Map();
 	void Draw();
 	std::vector<Block>& GetBlocks();
-
+	Pengo* pengo;
 private:
 	Texture2D ice_block;
 	int speed;

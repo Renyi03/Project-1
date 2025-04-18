@@ -5,7 +5,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include <Pengo.hpp>
+#include "Pengo.hpp"
+#include "Block.hpp"
 using namespace std;
 
 
@@ -75,31 +76,62 @@ void Map::Draw() {
         }
     }*/
 
+    /*if (b.rect.x + image.width > borderRight.x - 48) {
+        b.direction = Block::MovingDirection::none;
+        b.rect.x = borderRight.x - image.width;
+    }*/
+
     for (auto& b : blocks) { //iterates over each element inside the vector internally
         if (b.isActive) {
             if (b.direction != Block::MovingDirection::none) {
+                auto& borderRight = pengo->GetBorderRight();
+                auto& borderLeft = pengo->GetBorderLeft();
+                auto& borderTop = pengo->GetBorderTop();
+                auto& borderBottom = pengo->GetBorderBottom();
+
                 Vector2 blockTargetPosition{ b.rect.x, b.rect.y };
                 Vector2 displacement{ blockTargetPosition };
+                float step{ 3 }; //another way of declaring a variable
                 switch (b.direction) {
                 case Block::MovingDirection::right:
-                    blockTargetPosition.x += 48;
-                    displacement.x += 3;
+                    if (b.rect.x + b.rect.width <= borderRight.x - step) {
+                        blockTargetPosition.x += 48;
+                        displacement.x += step;
+                    }
+                    else {
+                        b.direction = Block::MovingDirection::none;
+                    }
                     break;
                 case Block::MovingDirection::left:
-                    blockTargetPosition.x -= 48;
-                    displacement.x -= 3;
+                    if (b.rect.x >= borderLeft.x + borderLeft.width + step) {
+                        blockTargetPosition.x -= 48;
+                        displacement.x -= step;
+                    }
+                    else {
+                        b.direction = Block::MovingDirection::none;
+                    }
                     break;
                 case Block::MovingDirection::up:
-                    blockTargetPosition.y -= 48;
-                    displacement.y -= 3;
+                    if (b.rect.y >= borderTop.y + borderTop.height + step) {
+                        blockTargetPosition.y -= 48;
+                        displacement.y -= 3;
+                    }
+                    else {
+                        b.direction = Block::MovingDirection::none;
+                    }                   
                     break;
                 case Block::MovingDirection::down:
-                    blockTargetPosition.y += 48;
-                    displacement.y += 3;
+                    if (b.rect.y + b.rect.height <= borderBottom.y - step) {
+                        blockTargetPosition.y += 48;
+                        displacement.y += 3;
+                    }
+                    else {
+                        b.direction = Block::MovingDirection::none;
+                    }                    
                     break;
                 }
-
                 bool isBlock{};
+
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& b2 = blocks[i];
                     if (b2.isActive == true && b2.rect.x == blockTargetPosition.x && b2.rect.y == blockTargetPosition.y) {
@@ -125,6 +157,8 @@ std::vector<Block>& Map::GetBlocks()
 {
     return blocks;
 }
+
+
 
 //Rectangle Map::GetRectMap()
 //{

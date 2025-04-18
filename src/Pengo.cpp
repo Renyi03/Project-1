@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <raymath.h>
 #include <iostream>
+#include "Map.hpp"
+#include "Block.hpp"
 using namespace std;
 
 Pengo::Pengo(Rectangle screenBorder, Map* map)
@@ -47,7 +49,7 @@ void Pengo::Update() {
                     bool isBlockAdjacent{};
                     for (int j = 0; j < blocks.size(); ++j) {
                         auto& b2 = blocks[j];
-                        if (b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) {
+                        if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x + image.width > borderRight.x - 48)) {
                             isBlockAdjacent = true;
                             b.isActive = false;
                             break;
@@ -56,6 +58,7 @@ void Pengo::Update() {
                     if (!isBlockAdjacent) {
                         b.direction = Block::MovingDirection::right;
                     }
+                    
                     break;
                 }
             }
@@ -72,6 +75,7 @@ void Pengo::Update() {
                 target_position = position;
 
             }
+            
         }
 
         else if (IsKeyDown(KEY_LEFT)) {
@@ -87,7 +91,7 @@ void Pengo::Update() {
                     bool isBlockAdjacent{};
                     for (int j = 0; j < blocks.size(); ++j) {
                         auto& b2 = blocks[j];
-                        if (b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) {
+                        if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x - 48 < borderLeft.x + borderLeft.width)) {
                             isBlockAdjacent = true;
                             b.isActive = false;
                             break;
@@ -127,7 +131,7 @@ void Pengo::Update() {
                     bool isBlockAdjacent{};
                     for (int j = 0; j < blocks.size(); ++j) {
                         auto& b2 = blocks[j];
-                        if (b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) {
+                        if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y <= borderTop.y - borderTop.height + 48)) {
                             isBlockAdjacent = true;
                             b.isActive = false;
                             break;
@@ -168,7 +172,7 @@ void Pengo::Update() {
                     bool isBlockAdjacent{};
                     for (int j = 0; j < blocks.size(); ++j) {
                         auto& b2 = blocks[j];
-                        if (b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) {
+                        if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y + image.height >= borderBottom.y)) {
                             isBlockAdjacent = true;
                             b.isActive = false;
                             break;
@@ -220,4 +224,24 @@ void Pengo::DrawHitbox(bool isColliding)
 {
     Color outlineColor = isColliding ? RED : WHITE;
     DrawRectangleLinesEx(GetRect(), 3, outlineColor);
+}
+
+const Rectangle& Pengo::GetBorderRight() const
+{
+    return borderRight;
+}
+
+const Rectangle& Pengo::GetBorderLeft() const
+{
+    return borderLeft;
+}
+
+const Rectangle& Pengo::GetBorderTop() const
+{
+    return borderTop;
+}
+
+const Rectangle& Pengo::GetBorderBottom() const
+{
+    return borderBottom;
 }
