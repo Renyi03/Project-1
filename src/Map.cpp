@@ -60,6 +60,8 @@ void Map::Draw() {
     map_iceblock_position.x = 88;
     map_iceblock_position.y = 40;
 
+    Music Push_Ice_Block = LoadMusicStream("resources/Pengo_Music/Push_Ice_Block.wav");
+
    /* for (int i = 0; i < matrix.size(); ++i) {
         auto ch = matrix[i];
         if (ch == 0) {
@@ -97,6 +99,8 @@ void Map::Draw() {
                     if (b.rect.x + b.rect.width <= borderRight.x - step) {
                         blockTargetPosition.x += 48;
                         displacement.x += step;
+                        PlayMusicStream(Push_Ice_Block);
+                        UpdateMusicStream(Push_Ice_Block);
                     }
                     else {
                         b.direction = Block::MovingDirection::none;
@@ -106,6 +110,8 @@ void Map::Draw() {
                     if (b.rect.x >= borderLeft.x + borderLeft.width + step) {
                         blockTargetPosition.x -= 48;
                         displacement.x -= step;
+                        PlayMusicStream(Push_Ice_Block);
+                        UpdateMusicStream(Push_Ice_Block);
                     }
                     else {
                         b.direction = Block::MovingDirection::none;
@@ -115,6 +121,8 @@ void Map::Draw() {
                     if (b.rect.y >= borderTop.y + borderTop.height + step) {
                         blockTargetPosition.y -= 48;
                         displacement.y -= 3;
+                        PlayMusicStream(Push_Ice_Block);
+                        UpdateMusicStream(Push_Ice_Block);
                     }
                     else {
                         b.direction = Block::MovingDirection::none;
@@ -124,6 +132,8 @@ void Map::Draw() {
                     if (b.rect.y + b.rect.height <= borderBottom.y - step) {
                         blockTargetPosition.y += 48;
                         displacement.y += 3;
+                        PlayMusicStream(Push_Ice_Block);
+                        UpdateMusicStream(Push_Ice_Block);
                     }
                     else {
                         b.direction = Block::MovingDirection::none;
