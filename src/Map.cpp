@@ -16,13 +16,12 @@ Map::Map()
 
     std::string map = LoadFileText("resources/Map_1.txt");
 
+
     float row{};
     float col{};
 
     for (int i = 0; i < map.size(); ++i) {
         auto ch = map[i];
-
-
         switch (ch) {
         case '0':
             matrix.push_back(0);
@@ -34,16 +33,8 @@ Map::Map()
             break;
         case '1':
             matrix.push_back(1);
-            
             blocks.push_back(Block{ Rectangle{88 + col * 24, 40 + row * 48, 48, 48} });
-
-            /*DrawRectangleLinesEx(GetRectMap(), 3, BLUE);*/
-               
-            
-            
             break;
-
-
         }
         ++col;
         std::cout << matrix[matrix.size() - 1];
@@ -60,7 +51,6 @@ void Map::Draw() {
     map_iceblock_position.x = 88;
     map_iceblock_position.y = 40;
 
-    Music Push_Ice_Block = LoadMusicStream("resources/Pengo_Music/Push_Ice_Block.wav");
 
    /* for (int i = 0; i < matrix.size(); ++i) {
         auto ch = matrix[i];
@@ -99,8 +89,6 @@ void Map::Draw() {
                     if (b.rect.x + b.rect.width <= borderRight.x - step) {
                         blockTargetPosition.x += 48;
                         displacement.x += step;
-                        PlayMusicStream(Push_Ice_Block);
-                        UpdateMusicStream(Push_Ice_Block);
                     }
                     else {
                         b.direction = Block::MovingDirection::none;
@@ -110,8 +98,6 @@ void Map::Draw() {
                     if (b.rect.x >= borderLeft.x + borderLeft.width + step) {
                         blockTargetPosition.x -= 48;
                         displacement.x -= step;
-                        PlayMusicStream(Push_Ice_Block);
-                        UpdateMusicStream(Push_Ice_Block);
                     }
                     else {
                         b.direction = Block::MovingDirection::none;
@@ -121,8 +107,6 @@ void Map::Draw() {
                     if (b.rect.y >= borderTop.y + borderTop.height + step) {
                         blockTargetPosition.y -= 48;
                         displacement.y -= 3;
-                        PlayMusicStream(Push_Ice_Block);
-                        UpdateMusicStream(Push_Ice_Block);
                     }
                     else {
                         b.direction = Block::MovingDirection::none;
@@ -132,8 +116,6 @@ void Map::Draw() {
                     if (b.rect.y + b.rect.height <= borderBottom.y - step) {
                         blockTargetPosition.y += 48;
                         displacement.y += 3;
-                        PlayMusicStream(Push_Ice_Block);
-                        UpdateMusicStream(Push_Ice_Block);
                     }
                     else {
                         b.direction = Block::MovingDirection::none;

@@ -32,7 +32,6 @@ void Pengo::Draw() {
 }
 
 void Pengo::Update() {
-    Music Ice_Block_Destroyed = LoadMusicStream("resources/Pengo_Music/Ice_Block_Destroyed.wav");
     
     if (position.x == target_position.x && position.y == target_position.y) {
         if (IsKeyDown(KEY_RIGHT)) {
@@ -51,13 +50,13 @@ void Pengo::Update() {
                         if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x + image.width > borderRight.x - 48)) {
                             isBlockAdjacent = true;
                             b.isActive = false;
-                            PlayMusicStream(Ice_Block_Destroyed);
-                            UpdateMusicStream(Ice_Block_Destroyed);
+                            PlaySound(b.Ice_Block_Destroyed);
                             break;
                         }                       
                     }
                     if (!isBlockAdjacent) {
                         b.direction = Block::MovingDirection::right;
+                        PlaySound(b.Push_Ice_Block);
                     }
                     
                     break;
@@ -95,13 +94,13 @@ void Pengo::Update() {
                         if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x - 48 < borderLeft.x + borderLeft.width)) {
                             isBlockAdjacent = true;
                             b.isActive = false;
-                            PlayMusicStream(Ice_Block_Destroyed);
-                            UpdateMusicStream(Ice_Block_Destroyed);
+                            PlaySound(b.Ice_Block_Destroyed);
                             break;
                         }
                     }
                     if (!isBlockAdjacent) {
                         b.direction = Block::MovingDirection::left;
+                        PlaySound(b.Push_Ice_Block);
                     }
                     break;
                 }
@@ -137,13 +136,13 @@ void Pengo::Update() {
                         if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y <= borderTop.y - borderTop.height + 48)) {
                             isBlockAdjacent = true;
                             b.isActive = false;
-                            PlayMusicStream(Ice_Block_Destroyed);
-                            UpdateMusicStream(Ice_Block_Destroyed);
+                            PlaySound(b.Ice_Block_Destroyed);
                             break;
                         }
                     }
                     if (!isBlockAdjacent) {
                         b.direction = Block::MovingDirection::up;
+                        PlaySound(b.Push_Ice_Block);
                     }
                     break;
                 }
@@ -180,13 +179,13 @@ void Pengo::Update() {
                         if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y + image.height >= borderBottom.y)) {
                             isBlockAdjacent = true;
                             b.isActive = false;
-                            PlayMusicStream(Ice_Block_Destroyed);
-                            UpdateMusicStream(Ice_Block_Destroyed);
+                            PlaySound(b.Ice_Block_Destroyed);
                             break;
                         }
                     }
                     if (!isBlockAdjacent) {
                         b.direction = Block::MovingDirection::down;
+                        PlaySound(b.Push_Ice_Block);
                     }
                     break;
                 }
