@@ -1,8 +1,5 @@
 #include "raylib.h"
-#include "Pengo.hpp"
 #include "Map.hpp"
-#include "Block.hpp"
-#include "SnoBee.hpp"
 #include <ctime>
 
 typedef enum GameScreen { INITIAL, TITLE, GAMEPLAY, POINTS } GameScreen;
@@ -19,11 +16,8 @@ int main(void)
     Rectangle borderLeft = Rectangle{ 78, 40, 10, 720 };
     Rectangle borderRight = Rectangle{ 712, 40, 10, 720 };
     Rectangle border{88, 40, 624, 720};
-    Map map{};
-    Pengo pengo{border, &map};
-    map.pengo = &pengo;
-    SnoBee snoBee{ border, &map };
-    map.snoBee = &snoBee;
+    Map map{border};
+    
 
     srand(time(NULL));
    
@@ -38,6 +32,8 @@ int main(void)
     //Game Loop
 
     while (WindowShouldClose() == false) {
+        BeginDrawing();
+        ClearBackground(BLACK);
 
         switch (currentScreen) {
 
@@ -47,40 +43,32 @@ int main(void)
             {
                 currentScreen = TITLE;
             }
-        } break;
+        }break;
         case TITLE:
         {
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
                 currentScreen = GAMEPLAY;
             }
-        } break;
+        }break;
         case GAMEPLAY:
         {
             UpdateMusicStream(Main_BGM);
-            pengo.Update();
-            snoBee.Update();
-            bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);
-            BeginDrawing();
-            ClearBackground(BLACK);
+
+            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
+            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
+
 
             DrawRectangleLinesEx(borderTop, 10, BLUE);
             DrawRectangleLinesEx(borderBottom, 10, BLUE);
             DrawRectangleLinesEx(borderLeft, 10, BLUE);
             DrawRectangleLinesEx(borderRight, 10, BLUE);
 
-            pengo.Draw();
+
             map.Draw();
-            snoBee.Draw();
-            pengo.DrawHitbox(isColliding);
-            snoBee.DrawHitbox(isAColliding);
-        }
-        }
 
-        BeginDrawing();
-
-        ClearBackground(BLACK);
+        }break;
+        }
 
         switch (currentScreen)
         {

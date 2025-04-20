@@ -39,10 +39,10 @@ void SnoBee::Draw() {
 
 void SnoBee::Update() {
 	if (position.x == target_position.x && position.y == target_position.y) {
-		int direction = rand() % 4;
+		int direction = rand() % 4 + 1;
 
 		switch (direction) {
-        case 0: {//to go up
+        case Block::MovingDirection::up: {//to go up
             //--position.y; //to go up
             //break;
 
@@ -63,9 +63,9 @@ void SnoBee::Update() {
                             break;
                         }
                     }
-                    if (!isABlockAdjacent) {
+                    /*if (!isABlockAdjacent) {
                         blck.direction = Block::MovingDirection::up;
-                    }
+                    }*/
                     break;
                 }
             }
@@ -86,8 +86,8 @@ void SnoBee::Update() {
             break;
         }
         
-		case 1:{
-			++position.y; //to go down
+        case Block::MovingDirection::down:{
+			//++position.y; //to go down
             bool isABlock{};
             Vector2 v3{ position.x, position.y + 48 };
             auto& blocks = currentMap->GetBlocks();
@@ -105,9 +105,9 @@ void SnoBee::Update() {
                             break;
                         }
                     }
-                    if (!isABlockAdjacent) {
+                    /*if (!isABlockAdjacent) {
                         blck.direction = Block::MovingDirection::down;
-                    }
+                    }*/
                     break;
                 }
             }
@@ -127,8 +127,8 @@ void SnoBee::Update() {
             }
 			break;
         }
-		case 2:{
-			--position.x; //to go left
+        case Block::MovingDirection::left:{
+			//--position.x; //to go left
             bool isABlock{};
             Vector2 v3{ position.x - 48, position.y };
             auto& blocks = currentMap->GetBlocks();
@@ -146,9 +146,9 @@ void SnoBee::Update() {
                             break;
                         }
                     }
-                    if (!isABlockAdjacent) {
+                    /*if (!isABlockAdjacent) {
                         blck.direction = Block::MovingDirection::left;
-                    }
+                    }*/
                     break;
                 }
             }
@@ -167,8 +167,8 @@ void SnoBee::Update() {
             }
 			break;
         }
-		case 3:{
-			++position.x; //to go right
+        case Block::MovingDirection::right:{
+			//++position.x; //to go right
             bool isABlock{};
             Vector2 v3{ position.x + 48, position.y };
             auto& blocks = currentMap->GetBlocks();
@@ -186,9 +186,9 @@ void SnoBee::Update() {
                             break;
                         }
                     }
-                    if (!isABlockAdjacent) {
+                    /*if (!isABlockAdjacent) {
                         blck.direction = Block::MovingDirection::right;
-                    }
+                    }*/
 
                     break;
                 }
@@ -204,14 +204,19 @@ void SnoBee::Update() {
             if (position.x + image.width > borderRight.x - 48) {
                 position.x = borderRight.x - image.width;
                 target_position = position;
-
             }
 			break;
         }
 		}
-        
     }
-	
+    else {
+        float s = speed * GetFrameTime();
+        amount += s;
+        position = Vector2Lerp(start_position, target_position, amount);
+        if (amount >= 1) {
+            position = target_position;
+        }
+    }
 }
 Rectangle SnoBee::GetRect()
 {

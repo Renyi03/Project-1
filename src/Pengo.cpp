@@ -34,7 +34,6 @@ void Pengo::Draw() {
 
 void Pengo::Update() {
     
-    
     if (position.x == target_position.x && position.y == target_position.y) {
         if (IsKeyDown(KEY_RIGHT)) {
 
@@ -201,8 +200,6 @@ void Pengo::Update() {
         }
     }
 
-
-
     else {
         float s = speed * GetFrameTime();
         amount += s;
@@ -211,7 +208,6 @@ void Pengo::Update() {
             position = target_position;
         }
     }
-
 }
 
 
