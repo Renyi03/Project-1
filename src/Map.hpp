@@ -3,15 +3,17 @@
 #include <vector>
 class Pengo;
 class Block;
+class SnoBee;
 
-class Map{
+class Map {
 
 public:
-	Map();
+	Map(Rectangle border);
 	~Map();
 	void Draw();
 	std::vector<Block>& GetBlocks();
 	Pengo* pengo;
+	SnoBee* snoBee;
 private:
 	Texture2D ice_block;
 	int speed;

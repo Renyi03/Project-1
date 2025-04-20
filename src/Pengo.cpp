@@ -207,8 +207,6 @@ void Pengo::Update() {
         }
     }
 
-
-
     else {
         float s = speed * GetFrameTime();
         amount += s;
@@ -217,7 +215,6 @@ void Pengo::Update() {
             position = target_position;
         }
     }
-
 }
 
 
