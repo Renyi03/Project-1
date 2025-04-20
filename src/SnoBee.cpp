@@ -17,7 +17,7 @@ SnoBee::SnoBee(Rectangle screenBorder, Map* map)
 	borderLeft = Rectangle{ 78, 40, 10, 720 };
 	borderRight = Rectangle{ 712, 40, 10, 720 };
 	image = LoadTexture("resources/Graphics/Snobee.jpg");
-	position.x = 231;
+	position.x = 232;
 	position.y = 232;
 	target_position = position;
 	speed = 4;
@@ -55,14 +55,15 @@ void SnoBee::Update() {
                     isABlock = true;
                     Vector2 v4{ position.x, position.y - 96 };
                     bool isABlockAdjacent{};
-                    for (int j = 0; j < blocks.size(); ++j) {
+                    blck.isActive = false;
+                    /*for (int j = 0; j < blocks.size(); ++j) {
                         auto& blck2 = blocks[j];
                         if ((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.y <= borderTop.y - borderTop.height + 48)) {
                             isABlockAdjacent = true;
-                            blck.isActive = false;
+                            
                             break;
                         }
-                    }
+                    }*/
                     /*if (!isABlockAdjacent) {
                         blck.direction = Block::MovingDirection::up;
                     }*/
@@ -97,11 +98,12 @@ void SnoBee::Update() {
                     isABlock = true;
                     Vector2 v4{ position.x, position.y + 96 };
                     bool isABlockAdjacent{};
-                    for (int j = 0; j < blocks.size(); ++j) {
+                    blck.isActive = false;
+                    /*for (int j = 0; j < blocks.size(); ++j) {
                         auto& blck2 = blocks[j];
                         if ((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.y + image.height >= borderBottom.y)) {
                             isABlockAdjacent = true;
-                            blck.isActive = false;
+                           
                             break;
                         }
                     }
@@ -138,14 +140,15 @@ void SnoBee::Update() {
                     isABlock = true;
                     Vector2 v4{ position.x - 96, position.y };
                     bool isABlockAdjacent{};
-                    for (int j = 0; j < blocks.size(); ++j) {
+                    blck.isActive = false;
+                    /*for (int j = 0; j < blocks.size(); ++j) {
                         auto& blck2 = blocks[j];
                         if ((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.x - 48 < borderLeft.x + borderLeft.width)) {
                             isABlockAdjacent = true;
-                            blck.isActive = false;
+                            
                             break;
                         }
-                    }
+                    }*/
                     /*if (!isABlockAdjacent) {
                         blck.direction = Block::MovingDirection::left;
                     }*/
@@ -178,14 +181,15 @@ void SnoBee::Update() {
                     isABlock = true;
                     Vector2 v4{ position.x + 96, position.y };
                     bool isABlockAdjacent{};
-                    for (int j = 0; j < blocks.size(); ++j) {
+                    blck.isActive = false;
+                    /*for (int j = 0; j < blocks.size(); ++j) {
                         auto& blck2 = blocks[j];
                         if ((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.x + image.width > borderRight.x - 48)) {
                             isABlockAdjacent = true;
-                            blck.isActive = false;
+                            
                             break;
                         }
-                    }
+                    }*/
                     /*if (!isABlockAdjacent) {
                         blck.direction = Block::MovingDirection::right;
                     }*/
@@ -207,7 +211,8 @@ void SnoBee::Update() {
             }
 			break;
         }
-		}
+		
+        }
     }
     else {
         float s = speed * GetFrameTime();
