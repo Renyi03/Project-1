@@ -61,6 +61,7 @@ int main(void)
             pengo.Update();
             snoBee.Update();
             bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
+            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);
             BeginDrawing();
             ClearBackground(BLACK);
 
@@ -71,7 +72,9 @@ int main(void)
 
             pengo.Draw();
             map.Draw();
+            snoBee.Draw();
             pengo.DrawHitbox(isColliding);
+            snoBee.DrawHitbox(isAColliding);
         }
         }
 
