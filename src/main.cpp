@@ -2,6 +2,8 @@
 #include "Pengo.hpp"
 #include "Map.hpp"
 #include "Block.hpp"
+#include "SnoBee.hpp"
+#include <ctime>
 
 typedef enum GameScreen { INITIAL, TITLE, GAMEPLAY, POINTS } GameScreen;
 
@@ -20,6 +22,12 @@ int main(void)
     Map map{};
     Pengo pengo{border, &map};
     map.pengo = &pengo;
+    SnoBee snoBee{ border, &map };
+    map.snoBee = &snoBee;
+
+    srand(time(NULL));
+   
+    
         
     GameScreen currentScreen = INITIAL;
 
@@ -51,6 +59,7 @@ int main(void)
         {
             UpdateMusicStream(Main_BGM);
             pengo.Update();
+            snoBee.Update();
             bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             BeginDrawing();
             ClearBackground(BLACK);

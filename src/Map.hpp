@@ -3,6 +3,7 @@
 #include <vector>
 class Pengo;
 class Block;
+class SnoBee;
 
 class Map{
 
@@ -12,6 +13,7 @@ public:
 	void Draw();
 	std::vector<Block>& GetBlocks();
 	Pengo* pengo;
+	SnoBee* snoBee;
 private:
 	Texture2D ice_block;
 	int speed;
