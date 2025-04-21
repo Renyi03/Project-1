@@ -35,6 +35,12 @@ int main(void)
     lifePosition4.x = 15;
     lifePosition4.y = 182;
 
+
+    Texture2D levelCntImage = LoadTexture("resources/Graphics/level cnt.png");
+    Vector2 levelCntPosition;
+    levelCntPosition.x = 15;
+    levelCntPosition.y = 700;
+
     srand(time(NULL));
  
     GameScreen currentScreen = INITIAL;
@@ -113,6 +119,7 @@ int main(void)
             DrawTextureV(lifeImage, lifePosition3, WHITE);
             DrawTextureV(lifeImage, lifePosition4, WHITE);
 
+            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
         } break;
 
 
