@@ -88,7 +88,7 @@ int main(void)
 
     Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
 
-    //PlayMusicStream(Main_BGM);
+    PlayMusicStream(Main_BGM);
 
     //Game Loop
 
