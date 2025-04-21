@@ -17,12 +17,26 @@ int main(void)
     Rectangle borderRight = Rectangle{ 712, 40, 10, 720 };
     Rectangle border{88, 40, 624, 720};
     Map map{border};
-    
+
+    Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo life 1.png");
+    Vector2 lifePosition1;
+    lifePosition1.x = 15;
+    lifePosition1.y = 38;
+
+    Vector2 lifePosition2;
+    lifePosition2.x = 15;
+    lifePosition2.y = 86;
+
+    Vector2 lifePosition3;
+    lifePosition3.x = 15;
+    lifePosition3.y = 134;
+
+    Vector2 lifePosition4;
+    lifePosition4.x = 15;
+    lifePosition4.y = 182;
 
     srand(time(NULL));
-   
-    
-        
+ 
     GameScreen currentScreen = INITIAL;
 
     Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
@@ -91,6 +105,18 @@ int main(void)
             DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKBLUE);
 
         } break;
+        case GAMEPLAY:
+        {
+            // TODO: Draw GAMEPLAY screen here!
+            DrawTextureV(lifeImage, lifePosition1, WHITE);
+            DrawTextureV(lifeImage, lifePosition2, WHITE);
+            DrawTextureV(lifeImage, lifePosition3, WHITE);
+            DrawTextureV(lifeImage, lifePosition4, WHITE);
+
+        } break;
+
+
+
         default: break;
         }
 
