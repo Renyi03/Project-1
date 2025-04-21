@@ -1,7 +1,10 @@
 #include "raylib.h"
 #include "Pengo.hpp"
 #include "Map.hpp"
+<<<<<<< Updated upstream
 #include "Block.hpp"
+=======
+>>>>>>> Stashed changes
 #include "Pengo.hpp"
 #include "SnoBee.hpp"
 #include <ctime>
@@ -26,7 +29,11 @@ int main(void)
     Map map{border};
     
     srand(time(NULL)); 
+<<<<<<< Updated upstream
        
+=======
+        
+>>>>>>> Stashed changes
     GameScreen currentScreen = INITIAL;
 
     Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
@@ -53,13 +60,21 @@ int main(void)
                 gameOver = false;
                 currentScreen = GAMEPLAY;
             }
+<<<<<<< Updated upstream
         } break;
 
+=======
+            
+        }break;
+>>>>>>> Stashed changes
         case GAMEPLAY:
         {
             UpdateMusicStream(Main_BGM);
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
             DrawRectangleLinesEx(borderTop, 10, BLUE);
             DrawRectangleLinesEx(borderBottom, 10, BLUE);
             DrawRectangleLinesEx(borderLeft, 10, BLUE);
@@ -78,6 +93,10 @@ int main(void)
             {
                 currentScreen = TITLE;
             }
+<<<<<<< Updated upstream
+=======
+        }
+>>>>>>> Stashed changes
         }
         
         }

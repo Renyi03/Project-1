@@ -22,7 +22,11 @@ Pengo::Pengo(Rectangle screenBorder, Map* map, SnoBee *snobee)
     border = screenBorder;
     currentMap = map;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+    snoBee = snobee;
+>>>>>>> Stashed changes
 =======
     snoBee = snobee;
 >>>>>>> Stashed changes
@@ -69,6 +73,9 @@ void Pengo::Update() {
                         if (blockCollision == true) {
                             snoBee->isActive = false;
                         }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     }
                     
@@ -119,6 +126,9 @@ void Pengo::Update() {
                         if (blockCollision == true) {
                             snoBee->isActive = false;
                         }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     }
                     break;
@@ -167,6 +177,9 @@ void Pengo::Update() {
                         if (blockCollision == true) {
                             snoBee->isActive = false;
                         }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     }
                     break;
@@ -216,6 +229,9 @@ void Pengo::Update() {
                         if (blockCollision == true) {
                             snoBee->isActive = false;
                         }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     }
                     break;
@@ -253,8 +269,11 @@ void Pengo::Update() {
         }
     }
 
+<<<<<<< Updated upstream
 }
 
+=======
+>>>>>>> Stashed changes
 Rectangle Pengo::GetRect()
 {
     return Rectangle{position.x, position.y, float(image.width), float(image.height)};

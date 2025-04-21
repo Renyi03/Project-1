@@ -40,7 +40,11 @@ Map::Map(Rectangle border)
             ++row;
             break;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         case '1':
+=======
+        case '1':       
+>>>>>>> Stashed changes
 =======
         case '1':       
 >>>>>>> Stashed changes
@@ -48,11 +52,14 @@ Map::Map(Rectangle border)
             
             blocks.push_back(Block{ Rectangle{88 + col * 24, 40 + row * 48, 48, 48} });
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
             /*DrawRectangleLinesEx(GetRectMap(), 3, BLUE);*/
                
             
             
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
             break;
@@ -72,6 +79,9 @@ Map::~Map()
     delete snoBee;
     pengo = nullptr;
     snoBee = nullptr;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	UnloadTexture(ice_block);
 }
@@ -80,6 +90,7 @@ void Map::Draw() {
     Vector2 map_iceblock_position;
     map_iceblock_position.x = 88;
     map_iceblock_position.y = 40;
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
    /* for (int i = 0; i < matrix.size(); ++i) {
@@ -103,6 +114,8 @@ void Map::Draw() {
         b.rect.x = borderRight.x - image.width;
     }*/
 =======
+=======
+>>>>>>> Stashed changes
     pengo->Update();
     if (snoBee->isActive) {
         snoBee->Update();
@@ -112,6 +125,9 @@ void Map::Draw() {
     //crear un map::Update()
     /*pengo.DrawHitbox(isColliding);
     snoBee.DrawHitbox(isAColliding);*/
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
     for (auto& b : blocks) { //iterates over each element inside the vector internally
