@@ -16,6 +16,7 @@ public:
 	const Rectangle& GetBorderTop() const;
 	const Rectangle& GetBorderBottom() const;
 	bool isActive;
+	int score = 0;
 protected:
 	Texture2D image;
 	Vector2 position, target_position, start_position;

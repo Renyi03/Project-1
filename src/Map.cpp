@@ -146,6 +146,7 @@ void Map::Draw() {
                         break;
                     }
                 }
+
                 if (!isBlock) {
                     b.rect.x = displacement.x;
                     b.rect.y = displacement.y;
@@ -155,10 +156,15 @@ void Map::Draw() {
                         nextLevel = true;
                         b.direction = Block::MovingDirection::none;
                         PlaySound(b.Ice_Block_Destroyed);
+                        snoBee->score += 400;
                     }
                 }
                 else {
                     b.direction = Block::MovingDirection::none;
+                }
+                extern bool gameOver;
+                if (snoBee->isActive == false) {
+                    gameOver == true;
                 }
             }
             DrawTextureV(ice_block, { b.rect.x, b.rect.y }, WHITE);
@@ -166,9 +172,14 @@ void Map::Draw() {
     }
 }
 
+
 std::vector<Block>& Map::GetBlocks()
 {
     return blocks;
+}
+
+int Map::GetScore() const {
+    return snoBee->score;
 }
 
 //Rectangle Map::GetRectMap()

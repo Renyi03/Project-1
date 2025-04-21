@@ -122,6 +122,7 @@ int main(void)
         {
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
+
                 delete map1;
                 map1 = new Map{ border, map1file };
                 delete map2;
@@ -145,6 +146,9 @@ int main(void)
             DrawText("Team members: Sofia Barja, Clara Sanchez, Yin Ye", 133, 270, 20, GRAY);
             DrawText("Github accounts: sofia-221b, Valkyn22, Renyi03", 150, 320, 20, GRAY);
             DrawText("Tutors: Aleix Cots, Alejandro Paris", 205, 370, 20, GRAY);
+            DrawText(TextFormat("1P"), 30, 2, 20, BLUE);
+            DrawText(TextFormat("0"), 200, 2, 20, WHITE);
+
             
 
         } break;
@@ -169,6 +173,10 @@ int main(void)
                 currentScreen = LEVEL2;
                 nextLevel = false;
             }
+            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
+
+            DrawText(TextFormat("1P"), 30, 2, 20, BLUE);
+            DrawText(TextFormat("%i", map1->GetScore()), 200, 2, 20, WHITE);
         } break;
         case LEVEL2:
         {
@@ -182,6 +190,11 @@ int main(void)
             if (nextLevel == true) {
                 currentScreen = GAMEOVER;
             }
+
+            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
+
+            DrawText(TextFormat("1P"), 30, 2, 20, BLUE);
+            DrawText(TextFormat("%i", map2->GetScore()), 200, 2, 20, WHITE);
         } break;
         case GAMEOVER:
         {

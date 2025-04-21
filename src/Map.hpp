@@ -16,6 +16,7 @@ public:
 	std::vector<Block>& GetBlocks();
 	Pengo* pengo;
 	SnoBee* snoBee;
+	int GetScore() const;
 private:
 	Texture2D ice_block;
 	int speed;
