@@ -1,10 +1,12 @@
 #pragma once
 #include <raylib.h>
 class Map;
+class Map2;
 
 class SnoBee {
 public:
 	SnoBee(Rectangle screenBorder, Map* map);
+	SnoBee(Rectangle screenBorder, Map2* map2);
 	~SnoBee();
 	void Draw();
 	void Update();

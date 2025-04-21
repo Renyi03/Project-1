@@ -1,11 +1,13 @@
 #pragma once
 #include <raylib.h>
 class Map;
+class Map2;
 
 class Pengo {
 
 public:
 	Pengo(Rectangle screenBorder, Map *map);
+	Pengo(Rectangle screenBorder, Map2* map2);
 	~Pengo();
 	void Draw();
 	void Update();

@@ -1,8 +1,9 @@
 #include "raylib.h"
 #include "Map.hpp"
+#include "Map2.hpp"
 #include <ctime>
 
-typedef enum GameScreen { INITIAL, TITLE, GAMEPLAY, POINTS } GameScreen;
+typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, POINTS } GameScreen;
 
 int main(void)
 {
@@ -16,13 +17,34 @@ int main(void)
     Rectangle borderLeft = Rectangle{ 78, 40, 10, 720 };
     Rectangle borderRight = Rectangle{ 712, 40, 10, 720 };
     Rectangle border{88, 40, 624, 720};
-    Map map{border};
-    
+    Map map{ border };
+    Map2 map2{border};
+
+    Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo life 1.png");
+    Vector2 lifePosition1;
+    lifePosition1.x = 15;
+    lifePosition1.y = 38;
+
+    Vector2 lifePosition2;
+    lifePosition2.x = 15;
+    lifePosition2.y = 86;
+
+    Vector2 lifePosition3;
+    lifePosition3.x = 15;
+    lifePosition3.y = 134;
+
+    Vector2 lifePosition4;
+    lifePosition4.x = 15;
+    lifePosition4.y = 182;
+
+
+    Texture2D levelCntImage = LoadTexture("resources/Graphics/level cnt.png");
+    Vector2 levelCntPosition;
+    levelCntPosition.x = 15;
+    levelCntPosition.y = 700;
 
     srand(time(NULL));
-   
-    
-        
+ 
     GameScreen currentScreen = INITIAL;
 
     Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
@@ -48,10 +70,10 @@ int main(void)
         {
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
-                currentScreen = GAMEPLAY;
+                currentScreen = LEVEL1;
             }
         }break;
-        case GAMEPLAY:
+        case LEVEL1:
         {
             UpdateMusicStream(Main_BGM);
 
@@ -66,6 +88,23 @@ int main(void)
 
 
             map.Draw();
+
+        }break;
+        case LEVEL2:
+        {
+            UpdateMusicStream(Main_BGM);
+
+            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
+            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
+
+
+            DrawRectangleLinesEx(borderTop, 10, BLUE);
+            DrawRectangleLinesEx(borderBottom, 10, BLUE);
+            DrawRectangleLinesEx(borderLeft, 10, BLUE);
+            DrawRectangleLinesEx(borderRight, 10, BLUE);
+
+
+            map2.Draw();
 
         }break;
         }
@@ -91,6 +130,29 @@ int main(void)
             DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKBLUE);
 
         } break;
+        case LEVEL1:
+        {
+            // TODO: Draw GAMEPLAY screen here!
+            DrawTextureV(lifeImage, lifePosition1, WHITE);
+            DrawTextureV(lifeImage, lifePosition2, WHITE);
+            DrawTextureV(lifeImage, lifePosition3, WHITE);
+            DrawTextureV(lifeImage, lifePosition4, WHITE);
+
+            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
+        } break;
+        case LEVEL2:
+        {
+            // TODO: Draw GAMEPLAY screen here!
+            DrawTextureV(lifeImage, lifePosition1, WHITE);
+            DrawTextureV(lifeImage, lifePosition2, WHITE);
+            DrawTextureV(lifeImage, lifePosition3, WHITE);
+            DrawTextureV(lifeImage, lifePosition4, WHITE);
+
+            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
+        } break;
+
+
+
         default: break;
         }
 

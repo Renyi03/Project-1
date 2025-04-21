@@ -1,4 +1,4 @@
-#include "Map.hpp"
+#include "Map2.hpp"
 #include <raylib.h>
 #include <algorithm>
 #include <string>
@@ -9,7 +9,7 @@
 #include "SnoBee.hpp"
 using namespace std;
 
-Map::Map(Rectangle border)
+Map2::Map2(Rectangle border)
 {
     pengo = new Pengo{ border, this }; //this: referencia al objeto de la clase (en este caso, el mapa)
 
@@ -17,14 +17,14 @@ Map::Map(Rectangle border)
     
     ice_block = LoadTexture("resources/Graphics/ice block.png");
 
-    std::string map = LoadFileText("resources/Map_1.txt");
+    std::string map2 = LoadFileText("resources/Map_2.txt");
 
 
     float row{};
     float col{};
 
-    for (int i = 0; i < map.size(); ++i) {
-        auto ch = map[i];
+    for (int i = 0; i < map2.size(); ++i) {
+        auto ch = map2[i];
         switch (ch) {
         case '0':
             matrix.push_back(0);
@@ -50,14 +50,14 @@ Map::Map(Rectangle border)
     }
 }
 
-Map::~Map()
+Map2::~Map2()
 {
     delete pengo;
     delete snoBee;
 	UnloadTexture(ice_block);
 }
 
-void Map::Draw() {
+void Map2::Draw() {
     Vector2 map_iceblock_position;
     map_iceblock_position.x = 88;
     map_iceblock_position.y = 40;
@@ -162,7 +162,7 @@ void Map::Draw() {
     }
 }
 
-std::vector<Block>& Map::GetBlocks()
+std::vector<Block>& Map2::GetBlocks()
 {
     return blocks;
 }
