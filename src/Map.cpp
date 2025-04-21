@@ -143,6 +143,7 @@ void Map::Draw() {
                         break;
                     }
                 }
+
                 if (!isBlock) {
                     b.rect.x = displacement.x;
                     b.rect.y = displacement.y;
@@ -156,11 +157,16 @@ void Map::Draw() {
                 else {
                     b.direction = Block::MovingDirection::none;
                 }
+                extern bool gameOver;
+                if (snoBee->isActive == false) {
+                    gameOver == true;
+                }
             }
             DrawTextureV(ice_block, { b.rect.x, b.rect.y }, WHITE);
         }
     }
 }
+
 
 std::vector<Block>& Map::GetBlocks()
 {

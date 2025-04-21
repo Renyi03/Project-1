@@ -22,8 +22,9 @@ int main(void)
     Rectangle border{ 88, 40, 624, 720 };
     /*Pengo pengo{ border, &map };*/
     /*map.pengo = &pengo;*/
-    Map map{ border };
-    
+
+    Map* map = new Map{ border };
+
 
     Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo life 1.png");
     Vector2 lifePosition1;
@@ -83,14 +84,12 @@ int main(void)
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-
             DrawRectangleLinesEx(borderTop, 10, BLUE);
             DrawRectangleLinesEx(borderBottom, 10, BLUE);
             DrawRectangleLinesEx(borderLeft, 10, BLUE);
             DrawRectangleLinesEx(borderRight, 10, BLUE);
 
-
-            map.Draw();
+            map->Draw();
             if (gameOver == true) {
                 currentScreen = GAMEOVER;
             }
@@ -99,6 +98,9 @@ int main(void)
         {
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
+                delete map;
+                map = new Map{ border }; // recreate map
+                gameOver = false;
                 currentScreen = TITLE;
             }
         }
@@ -142,7 +144,7 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition, WHITE);
 
             DrawText(TextFormat("1P"), 30, 2, 20, BLUE);
-            DrawText(TextFormat("%i", map.GetScore()), 200, 2, 20, WHITE);
+            DrawText(TextFormat("%i", map->GetScore()), 200, 2, 20, WHITE);
         } break;
         case GAMEOVER:
         {
