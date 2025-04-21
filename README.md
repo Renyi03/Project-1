@@ -32,3 +32,5 @@ The goal of the game is to destroy all the Sno-Bees by pushing ice blocks to squ
 * Lose condition (death) and Win condition (defeating all the enemies)
 * User Interface
 * Win/lose screen
+* Points system
+* Second level
