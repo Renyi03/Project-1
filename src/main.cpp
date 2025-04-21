@@ -25,8 +25,8 @@ int main(void)
     Rectangle borderLeft = Rectangle{ 78, 40, 10, 720 };
     Rectangle borderRight = Rectangle{ 712, 40, 10, 720 };
     Rectangle border{88, 40, 624, 720};
-    Map map1{ border,  map1file };
-    Map map2{ border,  map2file };
+    Map* map1 = new Map{ border, map1file };
+    Map* map2 = new Map{ border, map2file };
     /*Pengo pengo{ border, &map };*/
     /*map.pengo = &pengo;*/
 
@@ -88,18 +88,16 @@ int main(void)
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-
             DrawRectangleLinesEx(borderTop, 10, BLUE);
             DrawRectangleLinesEx(borderBottom, 10, BLUE);
             DrawRectangleLinesEx(borderLeft, 10, BLUE);
             DrawRectangleLinesEx(borderRight, 10, BLUE);
 
-
-            map1.Draw();
-
-            if (gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
+            DrawTextureV(lifeImage, lifePosition1, WHITE);
+            DrawTextureV(lifeImage, lifePosition2, WHITE);
+            DrawTextureV(lifeImage, lifePosition3, WHITE);
+            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
         }break;
         case LEVEL2:
         {
@@ -108,23 +106,26 @@ int main(void)
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-
             DrawRectangleLinesEx(borderTop, 10, BLUE);
             DrawRectangleLinesEx(borderBottom, 10, BLUE);
             DrawRectangleLinesEx(borderLeft, 10, BLUE);
             DrawRectangleLinesEx(borderRight, 10, BLUE);
 
-
-            map2.Draw();
-
-            if (gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
+            DrawTextureV(lifeImage, lifePosition1, WHITE);
+            DrawTextureV(lifeImage, lifePosition2, WHITE);
+            DrawTextureV(lifeImage, lifePosition3, WHITE);
+            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
         }break;
         case GAMEOVER:
         {
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
+                delete map1;
+                map1 = new Map{ border, map1file };
+                delete map2;
+                map2 = new Map{ border, map2file };
+                gameOver = false;
                 currentScreen = TITLE;
             }
         }
@@ -157,22 +158,20 @@ int main(void)
         case LEVEL1:
         {
             // TODO: Draw GAMEPLAY screen here!
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            map1->Draw();
 
-            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
+            if (gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
         } break;
         case LEVEL2:
         {
             // TODO: Draw GAMEPLAY screen here!
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            map2->Draw();
 
-            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
+            if (gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
         } break;
         case GAMEOVER:
         {
@@ -183,7 +182,7 @@ int main(void)
         default: break;
         }
         EndDrawing();
-    }
+    } 
 
     UnloadMusicStream(Main_BGM);
     CloseAudioDevice();
