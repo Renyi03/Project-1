@@ -9,7 +9,7 @@
 #include "SnoBee.hpp"
 using namespace std;
 
-Map::Map(Rectangle border)
+Map::Map(Rectangle border, string map)
 {
     pengo = new Pengo{ border, this }; //this: referencia al objeto de la clase (en este caso, el mapa)
 
@@ -17,7 +17,7 @@ Map::Map(Rectangle border)
     
     ice_block = LoadTexture("resources/Graphics/ice block.png");
 
-    std::string map = LoadFileText("resources/Map_1.txt");
+    
 
 
     float row{};

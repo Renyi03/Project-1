@@ -2,6 +2,8 @@
 #include "Map.hpp"
 #include "Map2.hpp"
 #include <ctime>
+#include <string>
+using namespace std;
 
 typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, POINTS } GameScreen;
 
@@ -11,14 +13,16 @@ int main(void)
     InitAudioDevice();
     SetTargetFPS(60);
 
-    
+    std::string map1file = LoadFileText("resources/Map_1.txt");
+    std::string map2file = LoadFileText("resources/Map_2.txt");
+
     Rectangle borderTop = Rectangle{ 88, 30, 624, 10 };
     Rectangle borderBottom = Rectangle{ 88, 760, 624, 10 };
     Rectangle borderLeft = Rectangle{ 78, 40, 10, 720 };
     Rectangle borderRight = Rectangle{ 712, 40, 10, 720 };
     Rectangle border{88, 40, 624, 720};
-    Map map{ border };
-    Map2 map2{border};
+    Map map1{ border,  map1file };
+    Map map2{ border,  map2file };
 
     Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo life 1.png");
     Vector2 lifePosition1;
@@ -87,7 +91,7 @@ int main(void)
             DrawRectangleLinesEx(borderRight, 10, BLUE);
 
 
-            map.Draw();
+            map1.Draw();
 
         }break;
         case LEVEL2:
