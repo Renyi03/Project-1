@@ -36,17 +36,10 @@ Map::Map(Rectangle border)
             ++row;
             break;
         case '1':
-            matrix.push_back(1);
-            
+            matrix.push_back(1);           
             blocks.push_back(Block{ Rectangle{88 + col * 24, 40 + row * 48, 48, 48} });
-
-            /*DrawRectangleLinesEx(GetRectMap(), 3, BLUE);*/
-               
-            
-            
+            /*DrawRectangleLinesEx(GetRectMap(), 3, BLUE);*/           
             break;
-
-
         }
         ++col;
         std::cout << matrix[matrix.size() - 1];
@@ -86,11 +79,6 @@ void Map::Draw() {
             map_iceblock_position.y += 48;
             map_iceblock_position.x = 88;
         }
-    }*/
-
-    /*if (b.rect.x + image.width > borderRight.x - 48) {
-        b.direction = Block::MovingDirection::none;
-        b.rect.x = borderRight.x - image.width;
     }*/
 
     for (auto& b : blocks) { //iterates over each element inside the vector internally

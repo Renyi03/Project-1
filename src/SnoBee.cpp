@@ -42,9 +42,7 @@ void SnoBee::Update() {
 		int direction = rand() % 4 + 1;
 
 		switch (direction) {
-        case Block::MovingDirection::up: {//to go up
-            //--position.y; //to go up
-            //break;
+        case Block::MovingDirection::up: {
 
             bool isABlock{};
             Vector2 v3{ position.x, position.y - 48 };
@@ -55,7 +53,7 @@ void SnoBee::Update() {
                     isABlock = true;
                     Vector2 v4{ position.x, position.y - 96 };
                     bool isABlockAdjacent{};
-                    blck.isActive = false;
+                    /*blck.isActive = false;*/ //ESTO SE VOLVERÁ A USAR!!!! para que rompa bloques
                     /*for (int j = 0; j < blocks.size(); ++j) {
                         auto& blck2 = blocks[j];
                         if ((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.y <= borderTop.y - borderTop.height + 48)) {
@@ -76,7 +74,6 @@ void SnoBee::Update() {
                 target_position.y = v3.y;
             }
 
-
             start_position = position;
             amount = 0;
             if (position.y <= borderTop.y - borderTop.height + 48) {
@@ -88,7 +85,7 @@ void SnoBee::Update() {
         }
         
         case Block::MovingDirection::down:{
-			//++position.y; //to go down
+			
             bool isABlock{};
             Vector2 v3{ position.x, position.y + 48 };
             auto& blocks = currentMap->GetBlocks();
@@ -98,7 +95,7 @@ void SnoBee::Update() {
                     isABlock = true;
                     Vector2 v4{ position.x, position.y + 96 };
                     bool isABlockAdjacent{};
-                    blck.isActive = false;
+                    /*blck.isActive = false;*/
                     /*for (int j = 0; j < blocks.size(); ++j) {
                         auto& blck2 = blocks[j];
                         if ((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.y + image.height >= borderBottom.y)) {
@@ -119,7 +116,6 @@ void SnoBee::Update() {
                 target_position.y = v3.y;
             }
 
-
             start_position = position;
             amount = 0;
             if (position.y + image.height >= borderBottom.y) {
@@ -130,7 +126,7 @@ void SnoBee::Update() {
 			break;
         }
         case Block::MovingDirection::left:{
-			//--position.x; //to go left
+			
             bool isABlock{};
             Vector2 v3{ position.x - 48, position.y };
             auto& blocks = currentMap->GetBlocks();
@@ -140,7 +136,7 @@ void SnoBee::Update() {
                     isABlock = true;
                     Vector2 v4{ position.x - 96, position.y };
                     bool isABlockAdjacent{};
-                    blck.isActive = false;
+                   /* blck.isActive = false;*/
                     /*for (int j = 0; j < blocks.size(); ++j) {
                         auto& blck2 = blocks[j];
                         if ((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.x - 48 < borderLeft.x + borderLeft.width)) {
@@ -161,7 +157,6 @@ void SnoBee::Update() {
                 target_position.y = v3.y;
             }
 
-
             start_position = position;
             amount = 0;
             if (position.x - 48 < borderLeft.x + borderLeft.width) {
@@ -171,7 +166,7 @@ void SnoBee::Update() {
 			break;
         }
         case Block::MovingDirection::right:{
-			//++position.x; //to go right
+			
             bool isABlock{};
             Vector2 v3{ position.x + 48, position.y };
             auto& blocks = currentMap->GetBlocks();
@@ -181,7 +176,7 @@ void SnoBee::Update() {
                     isABlock = true;
                     Vector2 v4{ position.x + 96, position.y };
                     bool isABlockAdjacent{};
-                    blck.isActive = false;
+                    /*blck.isActive = false;*/
                     /*for (int j = 0; j < blocks.size(); ++j) {
                         auto& blck2 = blocks[j];
                         if ((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.x + image.width > borderRight.x - 48)) {
@@ -210,8 +205,7 @@ void SnoBee::Update() {
                 target_position = position;
             }
 			break;
-        }
-		
+        }		
         }
     }
     else {
@@ -223,6 +217,7 @@ void SnoBee::Update() {
         }
     }
 }
+
 Rectangle SnoBee::GetRect()
 {
     return Rectangle{ position.x, position.y, float(image.width), float(image.height) };
