@@ -102,6 +102,7 @@ void Map::Draw() {
                     if (b.rect.x + b.rect.width <= borderRight.x - step) {
                         blockTargetPosition.x += 48;
                         displacement.x += step;
+                        PlaySound(b.Block_Stopped);
                     }
                     else {
                         b.direction = Block::MovingDirection::none;
@@ -111,6 +112,7 @@ void Map::Draw() {
                     if (b.rect.x >= borderLeft.x + borderLeft.width + step) {
                         blockTargetPosition.x -= 48;
                         displacement.x -= step;
+                        PlaySound(b.Block_Stopped);
                     }
                     else {
                         b.direction = Block::MovingDirection::none;
@@ -120,6 +122,7 @@ void Map::Draw() {
                     if (b.rect.y >= borderTop.y + borderTop.height + step) {
                         blockTargetPosition.y -= 48;
                         displacement.y -= 3;
+                        PlaySound(b.Block_Stopped);
                     }
                     else {
                         b.direction = Block::MovingDirection::none;
@@ -129,6 +132,7 @@ void Map::Draw() {
                     if (b.rect.y + b.rect.height <= borderBottom.y - step) {
                         blockTargetPosition.y += 48;
                         displacement.y += 3;
+                        PlaySound(b.Block_Stopped);
                     }
                     else {
                         b.direction = Block::MovingDirection::none;
