@@ -150,6 +150,7 @@ void Map::Draw() {
                         snoBee->isActive = false;
                         b.direction = Block::MovingDirection::none;
                         PlaySound(b.Ice_Block_Destroyed);
+                        snoBee->score += 400;
                     }
                 }
                 else {
@@ -164,6 +165,10 @@ void Map::Draw() {
 std::vector<Block>& Map::GetBlocks()
 {
     return blocks;
+}
+
+int Map::GetScore() const {
+    return snoBee->score;
 }
 
 //Rectangle Map::GetRectMap()
