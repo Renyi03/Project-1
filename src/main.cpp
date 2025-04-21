@@ -146,11 +146,6 @@ int main(void)
             DrawText("Team members: Sofia Barja, Clara Sanchez, Yin Ye", 133, 270, 20, GRAY);
             DrawText("Github accounts: sofia-221b, Valkyn22, Renyi03", 150, 320, 20, GRAY);
             DrawText("Tutors: Aleix Cots, Alejandro Paris", 205, 370, 20, GRAY);
-            DrawText(TextFormat("1P"), 30, 2, 20, BLUE);
-            DrawText(TextFormat("0"), 200, 2, 20, WHITE);
-
-            
-
         } break;
         case TITLE:
         {
@@ -162,7 +157,6 @@ int main(void)
         } break;
         case LEVEL1:
         {
-            // TODO: Draw GAMEPLAY screen here!
             map1->Draw();
 
             if (gameOver == true) {
@@ -170,8 +164,8 @@ int main(void)
             }
 
             if (nextLevel == true) {
-                currentScreen = LEVEL2;
                 nextLevel = false;
+                currentScreen = LEVEL2;
             }
             DrawTextureV(levelCntImage, levelCntPosition, WHITE);
 
@@ -180,7 +174,6 @@ int main(void)
         } break;
         case LEVEL2:
         {
-            // TODO: Draw GAMEPLAY screen here!
             map2->Draw();
 
             if (gameOver == true) {
@@ -188,6 +181,7 @@ int main(void)
             }
 
             if (nextLevel == true) {
+                nextLevel = false;
                 currentScreen = GAMEOVER;
             }
 
