@@ -19,13 +19,12 @@ Map::Map(Rectangle border)
 
     std::string map = LoadFileText("resources/Map_1.txt");
 
+
     float row{};
     float col{};
 
     for (int i = 0; i < map.size(); ++i) {
         auto ch = map[i];
-
-
         switch (ch) {
         case '0':
             matrix.push_back(0);
@@ -36,9 +35,14 @@ Map::Map(Rectangle border)
             ++row;
             break;
         case '1':
+
             matrix.push_back(1);           
             blocks.push_back(Block{ Rectangle{88 + col * 24, 40 + row * 48, 48, 48} });
             /*DrawRectangleLinesEx(GetRectMap(), 3, BLUE);*/           
+
+            matrix.push_back(1);
+            blocks.push_back(Block{ Rectangle{88 + col * 24, 40 + row * 48, 48, 48} });
+
             break;
         }
         ++col;
@@ -64,6 +68,7 @@ void Map::Draw() {
     snoBee->Draw();
     /*pengo.DrawHitbox(isColliding);
     snoBee.DrawHitbox(isAColliding);*/
+
 
    /* for (int i = 0; i < matrix.size(); ++i) {
         auto ch = matrix[i];

@@ -9,9 +9,14 @@ public:
 	Rectangle rect;
 	bool isActive;
 	MovingDirection direction;
+	Sound Ice_Block_Destroyed;
+	Sound Push_Ice_Block;
+
 	Block(Rectangle r) {
 		rect = r;
 		isActive = true;
 		direction = none;
+		Ice_Block_Destroyed = LoadSound("resources/Pengo_Music/Ice_Block_Destroyed.wav");
+		Push_Ice_Block = LoadSound("resources/Pengo_Music/Push_Ice_Block.wav");
 	}
 };
