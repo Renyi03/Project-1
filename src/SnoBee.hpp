@@ -17,15 +17,11 @@ public:
 	const Rectangle& GetBorderLeft() const;
 	const Rectangle& GetBorderTop() const;
 	const Rectangle& GetBorderBottom() const;
+	bool isActive;
 protected:
 	Texture2D image;
 	Vector2 position, target_position, start_position;
 	float amount;
 	int speed;
 	Rectangle border, borderRight, borderLeft, borderTop, borderBottom;
-
-
-	
-	//void moveRandomly(); //Random movement
-
 };

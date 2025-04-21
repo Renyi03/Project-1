@@ -1,11 +1,15 @@
 #include "raylib.h"
+#include "Pengo.hpp"
 #include "Map.hpp"
-#include "Map2.hpp"
+#include "Block.hpp"
+#include "Pengo.hpp"
+#include "SnoBee.hpp"
 #include <ctime>
 #include <string>
 using namespace std;
 
-typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, POINTS } GameScreen;
+typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, GAMEOVER, POINTS } GameScreen;
+bool gameOver = false;
 
 int main(void)
 {
@@ -23,6 +27,8 @@ int main(void)
     Rectangle border{88, 40, 624, 720};
     Map map1{ border,  map1file };
     Map map2{ border,  map2file };
+    /*Pengo pengo{ border, &map };*/
+    /*map.pengo = &pengo;*/
 
     Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo life 1.png");
     Vector2 lifePosition1;
@@ -58,8 +64,6 @@ int main(void)
     //Game Loop
 
     while (WindowShouldClose() == false) {
-        BeginDrawing();
-        ClearBackground(BLACK);
 
         switch (currentScreen) {
 
@@ -93,6 +97,9 @@ int main(void)
 
             map1.Draw();
 
+            if (gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
         }break;
         case LEVEL2:
         {
@@ -110,8 +117,21 @@ int main(void)
 
             map2.Draw();
 
+            if (gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
         }break;
+        case GAMEOVER:
+        {
+            if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+            {
+                currentScreen = TITLE;
+            }
         }
+        }
+
+        BeginDrawing();
+        ClearBackground(BLACK);
 
         switch (currentScreen)
         {
@@ -154,20 +174,20 @@ int main(void)
 
             DrawTextureV(levelCntImage, levelCntPosition, WHITE);
         } break;
-
-
-
+        case GAMEOVER:
+        {
+            DrawRectangle(0, 0, 800, 800, BLUE);
+            DrawText("GAME OVER", 20, 20, 40, DARKBLUE);
+            DrawText("PRESS ENTER or TAP to JUMP to TITLE SCREEN", 120, 220, 20, DARKBLUE);
+        }
         default: break;
         }
-
         EndDrawing();
     }
 
     UnloadMusicStream(Main_BGM);
     CloseAudioDevice();
-
     CloseWindow();
-
 
     return 0;
 }
