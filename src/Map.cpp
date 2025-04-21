@@ -12,6 +12,13 @@ using namespace std;
 
 Map::Map()
 {
+=======
+Map::Map(Rectangle border)
+{
+    snoBee = new SnoBee{ border, this };
+    pengo = new Pengo{ border, this, snoBee }; //this: referencia al objeto de la clase (en este caso, el mapa)
+    
+>>>>>>> Stashed changes
     ice_block = LoadTexture("resources/Graphics/ice block.png");
 
     std::string map = LoadFileText("resources/Map_1.txt");
@@ -32,15 +39,22 @@ Map::Map()
             col = -1;
             ++row;
             break;
+<<<<<<< Updated upstream
         case '1':
+=======
+        case '1':       
+>>>>>>> Stashed changes
             matrix.push_back(1);
             
             blocks.push_back(Block{ Rectangle{88 + col * 24, 40 + row * 48, 48, 48} });
+<<<<<<< Updated upstream
 
             /*DrawRectangleLinesEx(GetRectMap(), 3, BLUE);*/
                
             
             
+=======
+>>>>>>> Stashed changes
             break;
 
 
@@ -52,6 +66,13 @@ Map::Map()
 
 Map::~Map()
 {
+<<<<<<< Updated upstream
+=======
+    delete pengo;
+    delete snoBee;
+    pengo = nullptr;
+    snoBee = nullptr;
+>>>>>>> Stashed changes
 	UnloadTexture(ice_block);
 }
 
@@ -59,6 +80,7 @@ void Map::Draw() {
     Vector2 map_iceblock_position;
     map_iceblock_position.x = 88;
     map_iceblock_position.y = 40;
+<<<<<<< Updated upstream
 
    /* for (int i = 0; i < matrix.size(); ++i) {
         auto ch = matrix[i];
@@ -80,6 +102,17 @@ void Map::Draw() {
         b.direction = Block::MovingDirection::none;
         b.rect.x = borderRight.x - image.width;
     }*/
+=======
+    pengo->Update();
+    if (snoBee->isActive) {
+        snoBee->Update();
+        snoBee->Draw();
+    }
+    pengo->Draw();
+    //crear un map::Update()
+    /*pengo.DrawHitbox(isColliding);
+    snoBee.DrawHitbox(isAColliding);*/
+>>>>>>> Stashed changes
 
     for (auto& b : blocks) { //iterates over each element inside the vector internally
         if (b.isActive) {
@@ -142,13 +175,17 @@ void Map::Draw() {
                 if (!isBlock) {
                     b.rect.x = displacement.x;
                     b.rect.y = displacement.y;
+                    if (snoBee->isActive && CheckCollisionRecs(b.rect, snoBee->GetRect())) {
+                        snoBee->isActive = false;
+                        b.direction = Block::MovingDirection::none;
+                        PlaySound(b.Ice_Block_Destroyed);
+                    }
                 }
                 else {
                     b.direction = Block::MovingDirection::none;
                 }
             }
             DrawTextureV(ice_block, { b.rect.x, b.rect.y }, WHITE);
-            /*DrawRectangle(b.rect.x, b.rect.y, b.rect.width, b.rect.height, YELLOW);*/
         }
     }
 }
@@ -158,11 +195,8 @@ std::vector<Block>& Map::GetBlocks()
     return blocks;
 }
 
-
-
 //Rectangle Map::GetRectMap()
 //{
 //    return Rectangle{ (50 + row * 80), (98 + col * 80), float(ice_block.width), float(ice_block.height) };
 //    return Rectangle();
 //}
-

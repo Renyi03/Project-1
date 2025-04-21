@@ -5,9 +5,10 @@
 #include <iostream>
 #include "Map.hpp"
 #include "Block.hpp"
+#include "SnoBee.hpp"
 using namespace std;
 
-Pengo::Pengo(Rectangle screenBorder, Map* map)
+Pengo::Pengo(Rectangle screenBorder, Map* map, SnoBee *snobee)
 {
     borderTop = Rectangle{ 88, 30, 624, 10 };
     borderBottom = Rectangle{ 88, 760, 624, 10 };
@@ -20,7 +21,11 @@ Pengo::Pengo(Rectangle screenBorder, Map* map)
     speed = 3;
     border = screenBorder;
     currentMap = map;
+<<<<<<< Updated upstream
 
+=======
+    snoBee = snobee;
+>>>>>>> Stashed changes
 }
 
 Pengo::~Pengo()
@@ -56,7 +61,15 @@ void Pengo::Update() {
                         }                       
                     }
                     if (!isBlockAdjacent) {
+                        bool blockCollision = CheckCollisionRecs(b.rect, snoBee->GetRect());
                         b.direction = Block::MovingDirection::right;
+<<<<<<< Updated upstream
+=======
+                        PlaySound(b.Push_Ice_Block);
+                        if (blockCollision == true) {
+                            snoBee->isActive = false;
+                        }
+>>>>>>> Stashed changes
                     }
                     
                     break;
@@ -74,8 +87,7 @@ void Pengo::Update() {
                 position.x = borderRight.x - image.width;
                 target_position = position;
 
-            }
-            
+            }           
         }
 
         else if (IsKeyDown(KEY_LEFT)) {
@@ -83,7 +95,8 @@ void Pengo::Update() {
             bool isBlock{};
             Vector2 v{ position.x - 48, position.y };
             auto& blocks = currentMap->GetBlocks();
-            for (int i = 0; i < blocks.size(); ++i) {
+            int blocksSize = blocks.size();
+            for (int i = 0; i < blocksSize; ++i) {
                 auto& b = blocks[i];
                 if (b.isActive == true && b.rect.x == v.x && b.rect.y == v.y) {
                     isBlock = true;
@@ -98,7 +111,15 @@ void Pengo::Update() {
                         }
                     }
                     if (!isBlockAdjacent) {
+                        bool blockCollision = CheckCollisionRecs(b.rect, snoBee->GetRect());
                         b.direction = Block::MovingDirection::left;
+<<<<<<< Updated upstream
+=======
+                        PlaySound(b.Push_Ice_Block);
+                        if (blockCollision == true) {
+                            snoBee->isActive = false;
+                        }
+>>>>>>> Stashed changes
                     }
                     break;
                 }
@@ -138,7 +159,15 @@ void Pengo::Update() {
                         }
                     }
                     if (!isBlockAdjacent) {
+                        bool blockCollision = CheckCollisionRecs(b.rect, snoBee->GetRect());
                         b.direction = Block::MovingDirection::up;
+<<<<<<< Updated upstream
+=======
+                        PlaySound(b.Push_Ice_Block);
+                        if (blockCollision == true) {
+                            snoBee->isActive = false;
+                        }
+>>>>>>> Stashed changes
                     }
                     break;
                 }
@@ -179,7 +208,15 @@ void Pengo::Update() {
                         }
                     }
                     if (!isBlockAdjacent) {
+                        bool blockCollision = CheckCollisionRecs(b.rect, snoBee->GetRect());
                         b.direction = Block::MovingDirection::down;
+<<<<<<< Updated upstream
+=======
+                        PlaySound(b.Push_Ice_Block);
+                        if (blockCollision == true) {
+                            snoBee->isActive = false;
+                        }
+>>>>>>> Stashed changes
                     }
                     break;
                 }
@@ -189,7 +226,6 @@ void Pengo::Update() {
                 target_position.x = v.x;
                 target_position.y = v.y;
             }
-
 
             start_position = position;
             amount = 0;
@@ -206,14 +242,18 @@ void Pengo::Update() {
     else {
         float s = speed * GetFrameTime();
         amount += s;
+        bool collision = CheckCollisionRecs(GetRect(), snoBee->GetRect());
         position = Vector2Lerp(start_position, target_position, amount);
         if (amount >= 1) {
             position = target_position;
         }
+        extern bool gameOver;
+        if (collision == true) {
+            gameOver = true;
+        }
     }
 
 }
-
 
 Rectangle Pengo::GetRect()
 {
