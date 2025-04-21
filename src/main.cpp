@@ -10,6 +10,7 @@ using namespace std;
 
 typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, GAMEOVER, POINTS } GameScreen;
 bool gameOver = false;
+bool nextLevel = false;
 
 int main(void)
 {
@@ -163,6 +164,11 @@ int main(void)
             if (gameOver == true) {
                 currentScreen = GAMEOVER;
             }
+
+            if (nextLevel == true) {
+                currentScreen = LEVEL2;
+                nextLevel = false;
+            }
         } break;
         case LEVEL2:
         {
@@ -170,6 +176,10 @@ int main(void)
             map2->Draw();
 
             if (gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (nextLevel == true) {
                 currentScreen = GAMEOVER;
             }
         } break;

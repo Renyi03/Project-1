@@ -151,6 +151,8 @@ void Map::Draw() {
                     b.rect.y = displacement.y;
                     if (snoBee->isActive && CheckCollisionRecs(b.rect, snoBee->GetRect())) {
                         snoBee->isActive = false;
+                        extern bool nextLevel;
+                        nextLevel = true;
                         b.direction = Block::MovingDirection::none;
                         PlaySound(b.Ice_Block_Destroyed);
                     }
