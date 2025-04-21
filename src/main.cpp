@@ -6,11 +6,15 @@
 #include "SnoBee.hpp"
 #include <ctime>
 #include <string>
+#include <stdlib.h>
+#include <iostream>
 using namespace std;
 
 typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, GAMEOVER, POINTS } GameScreen;
 bool gameOver = false;
 bool nextLevel = false;
+int pengoLives = 4;
+//bool finalChanceUsed = false;
 
 int main(void)
 {
@@ -98,6 +102,9 @@ int main(void)
             DrawTextureV(lifeImage, lifePosition2, WHITE);
             DrawTextureV(lifeImage, lifePosition3, WHITE);
             DrawTextureV(lifeImage, lifePosition4, WHITE);
+
+            /*if(CheckCollisionRecs(pengo->GetRect(), snoBee->GetRect()))*/
+
             DrawTextureV(levelCntImage, levelCntPosition, WHITE);
         }break;
         case LEVEL2:
@@ -127,11 +134,12 @@ int main(void)
                 delete map2;
                 map2 = new Map{ border, map2file };
                 gameOver = false;
+                pengoLives = 4;
                 currentScreen = TITLE;
             }
         }
         }
-
+        cout << pengoLives;
         BeginDrawing();
         ClearBackground(BLACK);
 

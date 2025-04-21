@@ -52,6 +52,8 @@ Map::~Map()
 	UnloadTexture(ice_block);
 }
 
+bool canCollide = true;
+
 void Map::Draw() {
     Vector2 map_iceblock_position;
     map_iceblock_position.x = 88;
@@ -60,6 +62,22 @@ void Map::Draw() {
     if (snoBee->isActive) {
         snoBee->Update();
         snoBee->Draw();
+    }
+    extern int pengoLives;
+
+    if (snoBee->isActive && CheckCollisionRecs(snoBee->GetRect(), pengo->GetRect()) && canCollide) {
+        if (pengoLives >= 0) {
+            pengoLives--;
+            snoBee->isActive = false;
+            pengo->Reset();
+        }
+        else {
+            extern bool gameOver;
+            gameOver = true;
+        }
+    }
+    if (snoBee->isActive == false) {
+        snoBee->isActive = true;
     }
     pengo->Draw();
     //crear un map::Update()

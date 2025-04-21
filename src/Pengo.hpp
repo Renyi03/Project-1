@@ -10,6 +10,7 @@ public:
 	void Draw();
 	void Update();
 	Rectangle GetRect();
+	void Reset();
 	void DrawHitbox(bool isColliding);
 	Map* currentMap;
 	SnoBee* snoBee;

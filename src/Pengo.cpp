@@ -232,13 +232,23 @@ void Pengo::Update() {
         if (amount >= 1) {
             position = target_position;
         }
-        extern bool gameOver;
+       /* extern bool gameOver;
+        extern bool pengoLives;
         if (collision == true) {
-            gameOver = true;
-        }
+            if (pengoLives >= 0) {
+                Reset();
+            }
+            else {
+                gameOver = true;
+            }           
+        }*/
     }
 }
 
+void Pengo::Reset() {
+    position.x = 376;
+    position.y = 328;
+}
 
 Rectangle Pengo::GetRect()
 {
