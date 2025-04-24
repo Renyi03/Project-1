@@ -12,13 +12,13 @@ using namespace std;
 
 SnoBee::SnoBee(Rectangle screenBorder, Map* map)
 {
-	borderTop = Rectangle{ 88, 30, 624, 10 };
-	borderBottom = Rectangle{ 88, 760, 624, 10 };
-	borderLeft = Rectangle{ 78, 40, 10, 720 };
-	borderRight = Rectangle{ 712, 40, 10, 720 };
+	borderTop = Rectangle{ 88, 80, 624, 10 };
+	borderBottom = Rectangle{ 88, 810, 624, 10 };
+	borderLeft = Rectangle{ 78, 90, 10, 720 };
+	borderRight = Rectangle{ 712, 90, 10, 720 };
 	image = LoadTexture("resources/Graphics/Snobee.png");
 	position.x = 232;
-	position.y = 232;
+	position.y = 282;
 	target_position = position;
 	speed = 3;
 	border = screenBorder;

@@ -42,18 +42,18 @@ bool nextLevel = false;
 
 int main(void)
 {
-    InitWindow(800, 800, "El mejor juego de proyecto 1: An indescribable emptiness");
+    InitWindow(800, 900, "El mejor juego de proyecto 1: An indescribable emptiness");
     InitAudioDevice();
     SetTargetFPS(60);
 
     std::string map1file = LoadFileText("resources/Map_1.txt");
     std::string map2file = LoadFileText("resources/Map_2.txt");
 
-    Rectangle borderTop = Rectangle{ 88, 30, 624, 10 };
-    Rectangle borderBottom = Rectangle{ 88, 760, 624, 10 };
-    Rectangle borderLeft = Rectangle{ 78, 40, 10, 720 };
-    Rectangle borderRight = Rectangle{ 712, 40, 10, 720 };
-    Rectangle border{88, 40, 624, 720};
+    Rectangle borderTop = Rectangle{ 88, 80, 624, 10 };
+    Rectangle borderBottom = Rectangle{ 88, 810, 624, 10 };
+    Rectangle borderLeft = Rectangle{ 78, 90, 10, 720 };
+    Rectangle borderRight = Rectangle{ 712, 90, 10, 720 };
+    Rectangle border{88, 90, 624, 720};
     Map* map1 = new Map{ border, map1file };
     Map* map2 = new Map{ border, map2file };
     /*Pengo pengo{ border, &map };*/
@@ -61,26 +61,26 @@ int main(void)
 
     Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo life 1.png");
     Vector2 lifePosition1;
-    lifePosition1.x = 15;
-    lifePosition1.y = 38;
+    lifePosition1.x = 88;
+    lifePosition1.y = 30;
 
     Vector2 lifePosition2;
-    lifePosition2.x = 15;
-    lifePosition2.y = 86;
+    lifePosition2.x = 136;
+    lifePosition2.y = 30;
 
     Vector2 lifePosition3;
-    lifePosition3.x = 15;
-    lifePosition3.y = 134;
+    lifePosition3.x = 184;
+    lifePosition3.y = 30;
 
     Vector2 lifePosition4;
-    lifePosition4.x = 15;
-    lifePosition4.y = 182;
+    lifePosition4.x = 232;
+    lifePosition4.y = 30;
 
 
     Texture2D levelCntImage = LoadTexture("resources/Graphics/level cnt.png");
     Vector2 levelCntPosition;
     levelCntPosition.x = 15;
-    levelCntPosition.y = 700;
+    levelCntPosition.y = 750;
 
     srand(time(NULL));
  
@@ -178,7 +178,7 @@ int main(void)
         case TITLE:
         {
             // TODO: Draw TITLE screen here!
-            DrawRectangle(0, 0, 800, 800, BLUE);
+            DrawRectangle(0, 0, 800, 900, BLUE);
             DrawText("TITLE SCREEN", 20, 20, 40, DARKBLUE);
             DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKBLUE);
 
@@ -220,7 +220,7 @@ int main(void)
         } break;
         case GAMEOVER:
         {
-            DrawRectangle(0, 0, 800, 800, BLUE);
+            DrawRectangle(0, 0, 800, 900, BLUE);
             DrawText("GAME OVER", 20, 20, 40, DARKBLUE);
             DrawText("PRESS ENTER or TAP to JUMP to TITLE SCREEN", 120, 220, 20, DARKBLUE);
         }

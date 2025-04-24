@@ -35,7 +35,7 @@ Map::Map(Rectangle border, string map)
             break;
         case '1':
             matrix.push_back(1);           
-            blocks.push_back(Block{ Rectangle{88 + col * 24, 40 + row * 48, 48, 48} });
+            blocks.push_back(Block{ Rectangle{88 + col * 24, 90 + row * 48, 48, 48} });
             break;
         }
         ++col;
@@ -55,7 +55,7 @@ Map::~Map()
 void Map::Draw() {
     Vector2 map_iceblock_position;
     map_iceblock_position.x = 88;
-    map_iceblock_position.y = 40;
+    map_iceblock_position.y = 90;
     pengo->Update();
     if (snoBee->isActive) {
         snoBee->Update();
