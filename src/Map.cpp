@@ -61,6 +61,16 @@ void Map::Draw() {
         snoBee->Update();
         snoBee->Draw();
     }
+    extern int lives;
+    extern bool gameOver;
+    if (snoBee->isActive && CheckCollisionRecs(pengo->GetRect(), snoBee->GetRect()) == true) {
+        if (lives >= 0) {
+            --lives;
+        }
+        else {
+            gameOver = true;
+        }
+    }
     pengo->Draw();
     //crear un map::Update()
 

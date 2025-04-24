@@ -39,6 +39,7 @@ using namespace std;
 typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, GAMEOVER, POINTS } GameScreen;
 bool gameOver = false;
 bool nextLevel = false;
+int lives = 4;
 
 int main(void)
 {
@@ -59,7 +60,10 @@ int main(void)
     /*Pengo pengo{ border, &map };*/
     /*map.pengo = &pengo;*/
 
-    Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo life 1.png");
+    Texture2D lifeImage1 = LoadTexture("resources/Graphics/Pengo_life_1.png");
+    Texture2D lifeImage2 = LoadTexture("resources/Graphics/Pengo_life_2.png");
+    Texture2D lifeImage3 = LoadTexture("resources/Graphics/Pengo_life_3.png");
+    Texture2D lifeImage4 = LoadTexture("resources/Graphics/Pengo_life_4.png");
     Vector2 lifePosition1;
     lifePosition1.x = 15;
     lifePosition1.y = 38;
@@ -122,11 +126,24 @@ int main(void)
             DrawRectangleLinesEx(borderLeft, 10, BLUE);
             DrawRectangleLinesEx(borderRight, 10, BLUE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            DrawTextureV(lifeImage1, lifePosition1, WHITE);
+            DrawTextureV(lifeImage2, lifePosition2, WHITE);
+            DrawTextureV(lifeImage3, lifePosition3, WHITE);
+            DrawTextureV(lifeImage4, lifePosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition, WHITE);
+
+            if (lives == 3){
+                UnloadTexture(lifeImage4);
+            }
+            else if (lives == 2) {
+                UnloadTexture(lifeImage4);
+            }
+            else if (lives == 1) {
+                UnloadTexture(lifeImage4);
+            }
+            else if (lives == 0) {
+                UnloadTexture(lifeImage4);
+            }
         }break;
         case LEVEL2:
         {
@@ -140,10 +157,10 @@ int main(void)
             DrawRectangleLinesEx(borderLeft, 10, BLUE);
             DrawRectangleLinesEx(borderRight, 10, BLUE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            DrawTextureV(lifeImage1, lifePosition1, WHITE);
+            DrawTextureV(lifeImage2, lifePosition2, WHITE);
+            DrawTextureV(lifeImage3, lifePosition3, WHITE);
+            DrawTextureV(lifeImage4, lifePosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition, WHITE);
         }break;
         case GAMEOVER:

@@ -233,8 +233,15 @@ void Pengo::Update() {
             position = target_position;
         }
         extern bool gameOver;
+        extern int lives;
         if (collision == true) {
-            gameOver = true;
+            if (lives >= 0) {
+                --lives;
+            }
+            else {
+                gameOver = true;
+            }
+            
         }
     }
 }
