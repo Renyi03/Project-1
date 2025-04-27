@@ -78,9 +78,12 @@ int main(void)
 
 
     Texture2D levelCntImage = LoadTexture("resources/Graphics/level cnt.png");
-    Vector2 levelCntPosition;
-    levelCntPosition.x = 15;
-    levelCntPosition.y = 750;
+    Vector2 levelCntPosition1;
+    levelCntPosition1.x = 220;
+    levelCntPosition1.y = 850;
+    Vector2 levelCntPosition2;
+    levelCntPosition2.x = 270;
+    levelCntPosition2.y = 850;
 
     srand(time(NULL));
  
@@ -88,7 +91,7 @@ int main(void)
 
     Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
 
-    PlayMusicStream(Main_BGM);
+    //PlayMusicStream(Main_BGM);
 
     //Game Loop
 
@@ -126,7 +129,7 @@ int main(void)
             DrawTextureV(lifeImage, lifePosition2, WHITE);
             DrawTextureV(lifeImage, lifePosition3, WHITE);
             DrawTextureV(lifeImage, lifePosition4, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
+            DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
         }break;
         case LEVEL2:
         {
@@ -144,7 +147,7 @@ int main(void)
             DrawTextureV(lifeImage, lifePosition2, WHITE);
             DrawTextureV(lifeImage, lifePosition3, WHITE);
             DrawTextureV(lifeImage, lifePosition4, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
+            DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
         }break;
         case GAMEOVER:
         {
@@ -195,10 +198,12 @@ int main(void)
                 nextLevel = false;
                 currentScreen = LEVEL2;
             }
-            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
+            DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
 
-            DrawText(TextFormat("1P"), 30, 2, 20, BLUE);
-            DrawText(TextFormat("%i", map1->GetScore()), 200, 2, 20, WHITE);
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", map1->GetScore()), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  1"), 88, 850, 30, WHITE);
+
         } break;
         case LEVEL2:
         {
@@ -213,10 +218,12 @@ int main(void)
                 currentScreen = GAMEOVER;
             }
 
-            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
+            DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
+            DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
 
-            DrawText(TextFormat("1P"), 30, 2, 20, BLUE);
-            DrawText(TextFormat("%i", map2->GetScore()), 200, 2, 20, WHITE);
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", map1->GetScore()), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  2"), 88, 850, 30, WHITE);
         } break;
         case GAMEOVER:
         {
