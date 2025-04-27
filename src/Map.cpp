@@ -17,8 +17,6 @@ Map::Map(Rectangle border, string map)
     
     ice_block = LoadTexture("resources/Graphics/ice block.png");
 
-    
-
     float row{};
     float col{};
 
@@ -61,17 +59,32 @@ void Map::Draw() {
         snoBee->Update();
         snoBee->Draw();
     }
+
     extern int lives;
     extern bool gameOver;
-    if (snoBee->isActive && CheckCollisionRecs(pengo->GetRect(), snoBee->GetRect()) == true) {
-        if (lives >= 0) {
+    bool hasCollided = false;
+
+    //losing lives
+    if (snoBee->isActive && CheckCollisionRecs(pengo->GetRect(), snoBee->GetRect())) {
+        if (!hasCollided) {
             --lives;
-        }
-        else {
-            gameOver = true;
+            hasCollided = true;
+            cout << lives << " ";
+
+            if (lives > 0) {
+                pengo->resetPosition();
+            }
+            else {
+                gameOver = true;
+            }
         }
     }
+    else {
+        hasCollided = false;
+    }
+
     pengo->Draw();
+
     //crear un map::Update()
 
     /*pengo.DrawHitbox(isColliding);
@@ -174,7 +187,7 @@ void Map::Draw() {
                 }
                 extern bool gameOver;
                 if (snoBee->isActive == false) {
-                    gameOver == true;
+                    gameOver = true;
                 }
             }
             DrawTextureV(ice_block, { b.rect.x, b.rect.y }, WHITE);
