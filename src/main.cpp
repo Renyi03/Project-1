@@ -199,8 +199,8 @@ int main(void)
                 currentScreen = GAMEOVER;
             }
 
-            if (nextLevel == true) {
-                nextLevel = false;
+            if (map1->nextLevel == true) {
+                map1->nextLevel = false;
                 currentScreen = LEVEL2;
             }
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
@@ -218,8 +218,8 @@ int main(void)
                 currentScreen = GAMEOVER;
             }
 
-            if (nextLevel == true) {
-                nextLevel = false;
+            if (map2->nextLevel == true) {
+                map2->nextLevel = false;
                 currentScreen = GAMEOVER;
             }
 
