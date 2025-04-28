@@ -39,6 +39,7 @@ using namespace std;
 typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, GAMEOVER, POINTS } GameScreen;
 bool gameOver = false;
 bool nextLevel = false;
+int lives = 5;
 
 int main(void)
 {
@@ -59,7 +60,8 @@ int main(void)
     /*Pengo pengo{ border, &map };*/
     /*map.pengo = &pengo;*/
 
-    Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo life 1.png");
+    Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo_life.png");
+
     Vector2 lifePosition1;
     lifePosition1.x = 88;
     lifePosition1.y = 30;
@@ -129,6 +131,7 @@ int main(void)
             DrawTextureV(lifeImage, lifePosition2, WHITE);
             DrawTextureV(lifeImage, lifePosition3, WHITE);
             DrawTextureV(lifeImage, lifePosition4, WHITE);
+
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
         }break;
         case LEVEL2:
@@ -147,7 +150,9 @@ int main(void)
             DrawTextureV(lifeImage, lifePosition2, WHITE);
             DrawTextureV(lifeImage, lifePosition3, WHITE);
             DrawTextureV(lifeImage, lifePosition4, WHITE);
+
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
+            DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
         }break;
         case GAMEOVER:
         {
@@ -217,9 +222,6 @@ int main(void)
                 nextLevel = false;
                 currentScreen = GAMEOVER;
             }
-
-            DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
             DrawText(TextFormat("%i", map1->GetScore()), 260, 2, 30, WHITE);

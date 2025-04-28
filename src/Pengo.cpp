@@ -227,18 +227,18 @@ void Pengo::Update() {
     else {
         float s = speed * GetFrameTime();
         amount += s;
-        bool collision = CheckCollisionRecs(GetRect(), snoBee->GetRect());
         position = Vector2Lerp(start_position, target_position, amount);
         if (amount >= 1) {
             position = target_position;
         }
-        extern bool gameOver;
-        if (collision == true) {
-            gameOver = true;
-        }
     }
 }
 
+void Pengo::resetPosition() {
+    position = respawn_position;
+    target_position = respawn_position;
+    start_position = respawn_position;
+}
 
 Rectangle Pengo::GetRect()
 {
