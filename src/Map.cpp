@@ -16,6 +16,7 @@ Map::Map(Rectangle border, string map)
     pengo = new Pengo{ border, this, snoBee }; //this: referencia al objeto de la clase (en este caso, el mapa)
     
     ice_block = LoadTexture("resources/Graphics/ice block.png");
+    lives = 5;
 
     float row{};
     float col{};
@@ -60,8 +61,6 @@ void Map::Draw() {
         snoBee->Draw();
     }
 
-    extern int lives;
-    extern bool gameOver;
     bool hasCollided = false;
 
     //losing lives
@@ -184,7 +183,6 @@ void Map::Draw() {
                 else {
                     b.direction = Block::MovingDirection::none;
                 }
-                extern bool gameOver;
                 if (snoBee->isActive == false) {
                     gameOver = true;
                 }

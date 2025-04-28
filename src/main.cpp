@@ -37,9 +37,6 @@ SOFTWARE.
 using namespace std;
 
 typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, GAMEOVER, POINTS } GameScreen;
-bool gameOver = false;
-bool nextLevel = false;
-int lives = 5;
 
 int main(void)
 {
@@ -163,7 +160,8 @@ int main(void)
                 map1 = new Map{ border, map1file };
                 delete map2;
                 map2 = new Map{ border, map2file };
-                gameOver = false;
+                map1->gameOver = false;
+                map2->gameOver = false;
                 currentScreen = TITLE;
             }
         }
@@ -195,7 +193,7 @@ int main(void)
         {
             map1->Draw();
 
-            if (gameOver == true) {
+            if (map1->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
@@ -214,7 +212,7 @@ int main(void)
         {
             map2->Draw();
 
-            if (gameOver == true) {
+            if (map2->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
