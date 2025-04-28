@@ -21,7 +21,7 @@ public:
 protected:
 	Texture2D image;
 	Vector2 position, target_position, start_position;
-	Vector2 respawn_position = { 376, 328 };
+	Vector2 respawn_position = { 376, 378 };
 	float amount;
 	int speed;
 	Rectangle border, borderRight, borderLeft, borderTop, borderBottom;
