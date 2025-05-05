@@ -5,21 +5,23 @@
 #include <iostream>
 #include "Map.hpp"
 #include "Block.hpp"
+#include "SnoBee.hpp"
 using namespace std;
 
-Pengo::Pengo(Rectangle screenBorder, Map* map)
+Pengo::Pengo(Rectangle screenBorder, Map* map, SnoBee* snobee)
 {
-    borderTop = Rectangle{ 88, 30, 624, 10 };
-    borderBottom = Rectangle{ 88, 760, 624, 10 };
-    borderLeft = Rectangle{ 78, 40, 10, 720 };
-    borderRight = Rectangle{ 712, 40, 10, 720 };
+    borderTop = Rectangle{ 88, 80, 624, 10 };
+    borderBottom = Rectangle{ 88, 810, 624, 10 };
+    borderLeft = Rectangle{ 78, 90, 10, 720 };
+    borderRight = Rectangle{ 712, 90, 10, 720 };
     image = LoadTexture("resources/Graphics/Pengo front.png");
     position.x = 376;
-    position.y = 328;
+    position.y = 378;
     target_position = position;
     speed = 3;
     border = screenBorder;
     currentMap = map;
+    snoBee = snobee;
 }
 
 Pengo::~Pengo()
@@ -55,10 +57,13 @@ void Pengo::Update() {
                         }                       
                     }
                     if (!isBlockAdjacent) {
+                        bool blockCollision = CheckCollisionRecs(b.rect, snoBee->GetRect());
                         b.direction = Block::MovingDirection::right;
                         PlaySound(b.Push_Ice_Block);
-                    }
-                    
+                        if (blockCollision == true) {
+                            snoBee->isActive = false;
+                        }
+                    }                   
                     break;
                 }
             }
@@ -99,8 +104,12 @@ void Pengo::Update() {
                         }
                     }
                     if (!isBlockAdjacent) {
+                        bool blockCollision = CheckCollisionRecs(b.rect, snoBee->GetRect());
                         b.direction = Block::MovingDirection::left;
                         PlaySound(b.Push_Ice_Block);
+                        if (blockCollision == true) {
+                            snoBee->isActive = false;
+                        }
                     }
                     break;
                 }
@@ -141,8 +150,12 @@ void Pengo::Update() {
                         }
                     }
                     if (!isBlockAdjacent) {
+                        bool blockCollision = CheckCollisionRecs(b.rect, snoBee->GetRect());
                         b.direction = Block::MovingDirection::up;
                         PlaySound(b.Push_Ice_Block);
+                        if (blockCollision == true) {
+                            snoBee->isActive = false;
+                        }
                     }
                     break;
                 }
@@ -184,8 +197,12 @@ void Pengo::Update() {
                         }
                     }
                     if (!isBlockAdjacent) {
+                        bool blockCollision = CheckCollisionRecs(b.rect, snoBee->GetRect());
                         b.direction = Block::MovingDirection::down;
                         PlaySound(b.Push_Ice_Block);
+                        if (blockCollision == true) {
+                            snoBee->isActive = false;
+                        }
                     }
                     break;
                 }
@@ -217,6 +234,11 @@ void Pengo::Update() {
     }
 }
 
+void Pengo::resetPosition() {
+    position = respawn_position;
+    target_position = respawn_position;
+    start_position = respawn_position;
+}
 
 Rectangle Pengo::GetRect()
 {

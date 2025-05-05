@@ -1,47 +1,88 @@
-#include "raylib.h"
-#include "Map.hpp"
-#include "Map2.hpp"
-#include <ctime>
+/*
+?MIT License
 
-typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, POINTS } GameScreen;
+
+Copyright(c)[year][fullname]
+
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files(the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and /or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions :
+
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+#include "raylib.h"
+#include "Pengo.hpp"
+#include "Map.hpp"
+#include "Block.hpp"
+#include "Pengo.hpp"
+#include "SnoBee.hpp"
+#include <ctime>
+#include <string>
+using namespace std;
+
+typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, GAMEOVER, POINTS } GameScreen;
 
 int main(void)
 {
-    InitWindow(800, 800, "El mejor juego de proyecto 1: An indescribable emptiness");
+    InitWindow(800, 900, "El mejor juego de proyecto 1: An indescribable emptiness");
     InitAudioDevice();
     SetTargetFPS(60);
 
-    
-    Rectangle borderTop = Rectangle{ 88, 30, 624, 10 };
-    Rectangle borderBottom = Rectangle{ 88, 760, 624, 10 };
-    Rectangle borderLeft = Rectangle{ 78, 40, 10, 720 };
-    Rectangle borderRight = Rectangle{ 712, 40, 10, 720 };
-    Rectangle border{88, 40, 624, 720};
-    Map map{ border };
-    Map2 map2{border};
+    std::string map1file = LoadFileText("resources/Map_1.txt");
+    std::string map2file = LoadFileText("resources/Map_2.txt");
 
-    Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo life 1.png");
+    Rectangle borderTop = Rectangle{ 88, 80, 624, 10 };
+    Rectangle borderBottom = Rectangle{ 88, 810, 624, 10 };
+    Rectangle borderLeft = Rectangle{ 78, 90, 10, 720 };
+    Rectangle borderRight = Rectangle{ 712, 90, 10, 720 };
+    Rectangle border{88, 90, 624, 720};
+    Map* map1 = new Map{ border, map1file };
+    Map* map2 = new Map{ border, map2file };
+    /*Pengo pengo{ border, &map };*/
+    /*map.pengo = &pengo;*/
+
+    Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo_life.png");
+
     Vector2 lifePosition1;
-    lifePosition1.x = 15;
-    lifePosition1.y = 38;
+    lifePosition1.x = 88;
+    lifePosition1.y = 30;
 
     Vector2 lifePosition2;
-    lifePosition2.x = 15;
-    lifePosition2.y = 86;
+    lifePosition2.x = 136;
+    lifePosition2.y = 30;
 
     Vector2 lifePosition3;
-    lifePosition3.x = 15;
-    lifePosition3.y = 134;
+    lifePosition3.x = 184;
+    lifePosition3.y = 30;
 
     Vector2 lifePosition4;
-    lifePosition4.x = 15;
-    lifePosition4.y = 182;
+    lifePosition4.x = 232;
+    lifePosition4.y = 30;
 
 
     Texture2D levelCntImage = LoadTexture("resources/Graphics/level cnt.png");
-    Vector2 levelCntPosition;
-    levelCntPosition.x = 15;
-    levelCntPosition.y = 700;
+    Vector2 levelCntPosition1;
+    levelCntPosition1.x = 220;
+    levelCntPosition1.y = 850;
+    Vector2 levelCntPosition2;
+    levelCntPosition2.x = 270;
+    levelCntPosition2.y = 850;
 
     srand(time(NULL));
  
@@ -54,8 +95,6 @@ int main(void)
     //Game Loop
 
     while (WindowShouldClose() == false) {
-        BeginDrawing();
-        ClearBackground(BLACK);
 
         switch (currentScreen) {
 
@@ -80,15 +119,17 @@ int main(void)
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-
             DrawRectangleLinesEx(borderTop, 10, BLUE);
             DrawRectangleLinesEx(borderBottom, 10, BLUE);
             DrawRectangleLinesEx(borderLeft, 10, BLUE);
             DrawRectangleLinesEx(borderRight, 10, BLUE);
 
+            DrawTextureV(lifeImage, lifePosition1, WHITE);
+            DrawTextureV(lifeImage, lifePosition2, WHITE);
+            DrawTextureV(lifeImage, lifePosition3, WHITE);
+            DrawTextureV(lifeImage, lifePosition4, WHITE);
 
-            map.Draw();
-
+            DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
         }break;
         case LEVEL2:
         {
@@ -97,17 +138,37 @@ int main(void)
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-
             DrawRectangleLinesEx(borderTop, 10, BLUE);
             DrawRectangleLinesEx(borderBottom, 10, BLUE);
             DrawRectangleLinesEx(borderLeft, 10, BLUE);
             DrawRectangleLinesEx(borderRight, 10, BLUE);
 
+            DrawTextureV(lifeImage, lifePosition1, WHITE);
+            DrawTextureV(lifeImage, lifePosition2, WHITE);
+            DrawTextureV(lifeImage, lifePosition3, WHITE);
+            DrawTextureV(lifeImage, lifePosition4, WHITE);
 
-            map2.Draw();
-
+            DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
+            DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
         }break;
+        case GAMEOVER:
+        {
+            if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+            {
+
+                delete map1;
+                map1 = new Map{ border, map1file };
+                delete map2;
+                map2 = new Map{ border, map2file };
+                map1->gameOver = false;
+                map2->gameOver = false;
+                currentScreen = TITLE;
+            }
         }
+        }
+
+        BeginDrawing();
+        ClearBackground(BLACK);
 
         switch (currentScreen)
         {
@@ -119,51 +180,65 @@ int main(void)
             DrawText("Team members: Sofia Barja, Clara Sanchez, Yin Ye", 133, 270, 20, GRAY);
             DrawText("Github accounts: sofia-221b, Valkyn22, Renyi03", 150, 320, 20, GRAY);
             DrawText("Tutors: Aleix Cots, Alejandro Paris", 205, 370, 20, GRAY);
-            
-
         } break;
         case TITLE:
         {
             // TODO: Draw TITLE screen here!
-            DrawRectangle(0, 0, 800, 800, BLUE);
+            DrawRectangle(0, 0, 800, 900, BLUE);
             DrawText("TITLE SCREEN", 20, 20, 40, DARKBLUE);
             DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKBLUE);
 
         } break;
         case LEVEL1:
         {
-            // TODO: Draw GAMEPLAY screen here!
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            map1->Draw();
 
-            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
+            if (map1->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map1->nextLevel == true) {
+                map1->nextLevel = false;
+                currentScreen = LEVEL2;
+            }
+            DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", map1->GetScore()), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  1"), 88, 850, 30, WHITE);
+
         } break;
         case LEVEL2:
         {
-            // TODO: Draw GAMEPLAY screen here!
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            map2->Draw();
 
-            DrawTextureV(levelCntImage, levelCntPosition, WHITE);
+            if (map2->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map2->nextLevel == true) {
+                map2->nextLevel = false;
+                currentScreen = GAMEOVER;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", map1->GetScore()), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  2"), 88, 850, 30, WHITE);
         } break;
-
-
-
+        case GAMEOVER:
+        {
+            DrawRectangle(0, 0, 800, 900, BLUE);
+            DrawText("GAME OVER", 20, 20, 40, DARKBLUE);
+            DrawText("PRESS ENTER or TAP to JUMP to TITLE SCREEN", 120, 220, 20, DARKBLUE);
+        }
         default: break;
         }
-
         EndDrawing();
-    }
+    } 
 
     UnloadMusicStream(Main_BGM);
     CloseAudioDevice();
-
     CloseWindow();
-
 
     return 0;
 }

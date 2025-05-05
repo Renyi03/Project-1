@@ -1,4 +1,5 @@
 #include "Map.hpp"
+#include "Block.hpp"
 #include <raylib.h>
 #include <algorithm>
 #include <string>
@@ -9,16 +10,13 @@
 #include "SnoBee.hpp"
 using namespace std;
 
-Map::Map(Rectangle border)
+Map::Map(Rectangle border, string map)
 {
-    pengo = new Pengo{ border, this }; //this: referencia al objeto de la clase (en este caso, el mapa)
-
     snoBee = new SnoBee{ border, this };
+    pengo = new Pengo{ border, this, snoBee }; //this: referencia al objeto de la clase (en este caso, el mapa)
     
     ice_block = LoadTexture("resources/Graphics/ice block.png");
-
-    std::string map = LoadFileText("resources/Map_1.txt");
-
+    lives = 5;
 
     float row{};
     float col{};
@@ -35,14 +33,8 @@ Map::Map(Rectangle border)
             ++row;
             break;
         case '1':
-
             matrix.push_back(1);           
-            blocks.push_back(Block{ Rectangle{88 + col * 24, 40 + row * 48, 48, 48} });
-            /*DrawRectangleLinesEx(GetRectMap(), 3, BLUE);*/           
-
-            matrix.push_back(1);
-            blocks.push_back(Block{ Rectangle{88 + col * 24, 40 + row * 48, 48, 48} });
-
+            blocks.push_back(Block{ Rectangle{88 + col * 24, 90 + row * 48, 48, 48} });
             break;
         }
         ++col;
@@ -53,19 +45,47 @@ Map::Map(Rectangle border)
 Map::~Map()
 {
     delete pengo;
-    delete snoBee;
+    delete snoBee; 
+    pengo = nullptr;
+    snoBee = nullptr;
 	UnloadTexture(ice_block);
 }
 
 void Map::Draw() {
     Vector2 map_iceblock_position;
     map_iceblock_position.x = 88;
-    map_iceblock_position.y = 40;
+    map_iceblock_position.y = 90;
     pengo->Update();
-    snoBee->Update();
-    //crear un map::Update()
+    if (snoBee->isActive) {
+        snoBee->Update();
+        snoBee->Draw();
+    }
+
+    bool hasCollided = false;
+
+    //losing lives
+    if (snoBee->isActive && CheckCollisionRecs(pengo->GetRect(), snoBee->GetRect())) {
+        if (!hasCollided) {
+            --lives;
+            hasCollided = true;
+            cout << lives << " ";
+
+            if (lives > 0) {
+                pengo->resetPosition();
+            }
+            else {
+                gameOver = true;
+            }
+        }
+    }
+    else {
+        hasCollided = false;
+    }
+
     pengo->Draw();
-    snoBee->Draw();
+
+    //crear un map::Update()
+
     /*pengo.DrawHitbox(isColliding);
     snoBee.DrawHitbox(isAColliding);*/
 
@@ -148,26 +168,39 @@ void Map::Draw() {
                         break;
                     }
                 }
+
                 if (!isBlock) {
                     b.rect.x = displacement.x;
                     b.rect.y = displacement.y;
+                    if (snoBee->isActive && CheckCollisionRecs(b.rect, snoBee->GetRect())) {
+                        snoBee->isActive = false;
+                        nextLevel = true;
+                        b.direction = Block::MovingDirection::none;
+                        PlaySound(b.Ice_Block_Destroyed);
+                        snoBee->score += 400;
+                    }
                 }
                 else {
                     b.direction = Block::MovingDirection::none;
                 }
+                if (snoBee->isActive == false) {
+                    gameOver = true;
+                }
             }
             DrawTextureV(ice_block, { b.rect.x, b.rect.y }, WHITE);
-            /*DrawRectangle(b.rect.x, b.rect.y, b.rect.width, b.rect.height, YELLOW);*/
         }
     }
 }
+
 
 std::vector<Block>& Map::GetBlocks()
 {
     return blocks;
 }
 
-
+int Map::GetScore() const {
+    return snoBee->score;
+}
 
 //Rectangle Map::GetRectMap()
 //{

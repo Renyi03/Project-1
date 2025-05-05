@@ -12,18 +12,18 @@ using namespace std;
 
 SnoBee::SnoBee(Rectangle screenBorder, Map* map)
 {
-	borderTop = Rectangle{ 88, 30, 624, 10 };
-	borderBottom = Rectangle{ 88, 760, 624, 10 };
-	borderLeft = Rectangle{ 78, 40, 10, 720 };
-	borderRight = Rectangle{ 712, 40, 10, 720 };
-	image = LoadTexture("resources/Graphics/Snobee.jpg");
+	borderTop = Rectangle{ 88, 80, 624, 10 };
+	borderBottom = Rectangle{ 88, 810, 624, 10 };
+	borderLeft = Rectangle{ 78, 90, 10, 720 };
+	borderRight = Rectangle{ 712, 90, 10, 720 };
+	image = LoadTexture("resources/Graphics/Snobee.png");
 	position.x = 232;
-	position.y = 232;
+	position.y = 282;
 	target_position = position;
-	speed = 4;
+	speed = 3;
 	border = screenBorder;
 	currentMap = map;
-
+    isActive = true;
 }
 
 SnoBee::~SnoBee()
@@ -32,12 +32,16 @@ SnoBee::~SnoBee()
 }
 
 void SnoBee::Draw() {
-	DrawTextureV(image, position, WHITE);
+    if (isActive == true) {
+        DrawTextureV(image, position, WHITE);
+    }
 }
 
-
-
 void SnoBee::Update() {
+    if (!isActive) {
+        return;
+    }
+
 	if (position.x == target_position.x && position.y == target_position.y) {
 		int direction = rand() % 4 + 1;
 
@@ -220,6 +224,9 @@ void SnoBee::Update() {
 
 Rectangle SnoBee::GetRect()
 {
+    if (!isActive) {
+        return Rectangle{ 0, 0, 0, 0 };
+    }
     return Rectangle{ position.x, position.y, float(image.width), float(image.height) };
 }
 
