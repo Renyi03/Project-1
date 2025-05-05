@@ -78,6 +78,12 @@ void Pengo::Update() {
             if (position.x + image.width > borderRight.x - 48) {
                 position.x = borderRight.x - image.width;
                 target_position = position;
+                if (position.x + image.width > borderRight.x - 48 && snoBee->position) {
+                    cout << "FUNCIONAAA" << endl;
+                }
+                if (CheckCollisionRecs(GetRect(), snoBee->GetRect()) && snoBee->isStunned) {
+                    snoBee->isActive = false;
+                }
 
             }
             

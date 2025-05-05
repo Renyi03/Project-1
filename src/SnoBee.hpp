@@ -17,9 +17,11 @@ public:
 	const Rectangle& GetBorderBottom() const;
 	bool isActive;
 	int score = 0;
+	bool isStunned;
+	Vector2 position, target_position, start_position;
 protected:
 	Texture2D image;
-	Vector2 position, target_position, start_position;
+	//Vector2 position, target_position, start_position;	ESTABA AQUI!!
 	float amount;
 	int speed;
 	Rectangle border, borderRight, borderLeft, borderTop, borderBottom;
