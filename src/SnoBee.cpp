@@ -57,6 +57,7 @@ void SnoBee::Update() {
                     isABlock = true;
                     Vector2 v4{ position.x, position.y - 96 };
                     bool isABlockAdjacent{};
+                    int blockCtr = 0;
                     /*blck.isActive = false;*/ //ESTO SE VOLVERÁ A USAR!!!! para que rompa bloques
                     /*for (int j = 0; j < blocks.size(); ++j) {
                         auto& blck2 = blocks[j];
@@ -228,6 +229,11 @@ Rectangle SnoBee::GetRect()
         return Rectangle{ 0, 0, 0, 0 };
     }
     return Rectangle{ position.x, position.y, float(image.width), float(image.height) };
+}
+
+bool isActiveRight(Vector2 position) {
+    bool isActiveRight = false;
+    if(position)
 }
 
 void SnoBee::DrawHitbox(bool isColliding)
