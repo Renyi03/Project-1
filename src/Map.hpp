@@ -17,6 +17,9 @@ public:
 	Pengo* pengo;
 	SnoBee* snoBee;
 	int GetScore() const;
+	bool nextLevel;
+	bool gameOver;
+	int lives;
 private:
 	Texture2D ice_block;
 	int speed;

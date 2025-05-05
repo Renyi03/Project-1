@@ -10,13 +10,13 @@ using namespace std;
 
 Pengo::Pengo(Rectangle screenBorder, Map* map, SnoBee* snobee)
 {
-    borderTop = Rectangle{ 88, 30, 624, 10 };
-    borderBottom = Rectangle{ 88, 760, 624, 10 };
-    borderLeft = Rectangle{ 78, 40, 10, 720 };
-    borderRight = Rectangle{ 712, 40, 10, 720 };
+    borderTop = Rectangle{ 88, 80, 624, 10 };
+    borderBottom = Rectangle{ 88, 810, 624, 10 };
+    borderLeft = Rectangle{ 78, 90, 10, 720 };
+    borderRight = Rectangle{ 712, 90, 10, 720 };
     image = LoadTexture("resources/Graphics/Pengo front.png");
     position.x = 376;
-    position.y = 328;
+    position.y = 378;
     target_position = position;
     speed = 3;
     border = screenBorder;

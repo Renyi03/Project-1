@@ -16,6 +16,7 @@ Map::Map(Rectangle border, string map)
     pengo = new Pengo{ border, this, snoBee }; //this: referencia al objeto de la clase (en este caso, el mapa)
     
     ice_block = LoadTexture("resources/Graphics/ice block.png");
+    lives = 5;
 
     float row{};
     float col{};
@@ -33,7 +34,7 @@ Map::Map(Rectangle border, string map)
             break;
         case '1':
             matrix.push_back(1);           
-            blocks.push_back(Block{ Rectangle{88 + col * 24, 40 + row * 48, 48, 48} });
+            blocks.push_back(Block{ Rectangle{88 + col * 24, 90 + row * 48, 48, 48} });
             break;
         }
         ++col;
@@ -53,15 +54,13 @@ Map::~Map()
 void Map::Draw() {
     Vector2 map_iceblock_position;
     map_iceblock_position.x = 88;
-    map_iceblock_position.y = 40;
+    map_iceblock_position.y = 90;
     pengo->Update();
     if (snoBee->isActive) {
         snoBee->Update();
         snoBee->Draw();
     }
 
-    extern int lives;
-    extern bool gameOver;
     bool hasCollided = false;
 
     //losing lives
@@ -175,7 +174,6 @@ void Map::Draw() {
                     b.rect.y = displacement.y;
                     if (snoBee->isActive && CheckCollisionRecs(b.rect, snoBee->GetRect())) {
                         snoBee->isActive = false;
-                        extern bool nextLevel;
                         nextLevel = true;
                         b.direction = Block::MovingDirection::none;
                         PlaySound(b.Ice_Block_Destroyed);
@@ -185,7 +183,6 @@ void Map::Draw() {
                 else {
                     b.direction = Block::MovingDirection::none;
                 }
-                extern bool gameOver;
                 if (snoBee->isActive == false) {
                     gameOver = true;
                 }
