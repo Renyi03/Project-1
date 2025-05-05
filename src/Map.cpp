@@ -12,7 +12,22 @@ using namespace std;
 
 Map::Map(Rectangle border, string map)
 {
-    snoBee = new SnoBee{ border, this };
+    Vector2 spawnPos;
+    spawnPos.x = 232;
+    spawnPos.y = 282;
+    vector<SnoBee*>SnoBees;
+    for (int i = 0; i < 2; i++) {
+        if (i == 0) {
+            spawnPos.x = 232;
+            spawnPos.y = 282;
+        }
+        if (i == 1) {
+            spawnPos.x = 328;
+            spawnPos.y = 282;
+        }
+        snoBee = new SnoBee{ border, this, spawnPos };
+        SnoBees.push_back(snoBee);
+    }
     pengo = new Pengo{ border, this, snoBee }; //this: referencia al objeto de la clase (en este caso, el mapa)
     
     ice_block = LoadTexture("resources/Graphics/ice block.png");

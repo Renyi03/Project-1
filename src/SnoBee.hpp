@@ -4,7 +4,7 @@ class Map;
 
 class SnoBee {
 public:
-	SnoBee(Rectangle screenBorder, Map* map);
+	SnoBee(Rectangle screenBorder, Map* map, Vector2 position);
 	~SnoBee();
 	void Draw();
 	void Update();
@@ -19,7 +19,7 @@ public:
 	int score = 0;
 protected:
 	Texture2D image;
-	Vector2 position, target_position, start_position;
+	Vector2 current_position, target_position, start_position;
 	float amount;
 	int speed;
 	Rectangle border, borderRight, borderLeft, borderTop, borderBottom;
