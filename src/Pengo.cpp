@@ -78,9 +78,11 @@ void Pengo::Update() {
             if (position.x + image.width > borderRight.x - 48) {
                 position.x = borderRight.x - image.width;
                 target_position = position;
-                if (position.x + image.width > borderRight.x - 48 && snoBee->position) {
-                    cout << "FUNCIONAAA" << endl;
+                
+                if (snoBee->position.x + image.width == borderRight.x && position.x + image.width > borderRight.x - 48) {
+                    snoBee->isStunned = true;
                 }
+
                 if (CheckCollisionRecs(GetRect(), snoBee->GetRect()) && snoBee->isStunned) {
                     snoBee->isActive = false;
                 }
@@ -132,6 +134,10 @@ void Pengo::Update() {
             if (position.x - 48 < borderLeft.x + borderLeft.width) {
                 position.x = borderLeft.x + borderLeft.width;
                 target_position = position;
+
+                if (snoBee->position.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) {
+                    snoBee->isStunned = true;
+                }
             }
         }
 
@@ -179,6 +185,10 @@ void Pengo::Update() {
                 position.y = borderTop.y + borderTop.height;
                 target_position.y = position.y;
                 target_position.x = position.x;
+
+                if (snoBee->position.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) {
+                    snoBee->isStunned = true;
+                }
             }
         }
 
@@ -226,6 +236,10 @@ void Pengo::Update() {
                 position.y = borderBottom.y - image.height;
                 target_position.y = position.y;
                 target_position.x = position.x;
+
+                if (snoBee->position.y + image.height == borderBottom.y && position.y + image.height >= borderBottom.y) {
+                    snoBee->isStunned = true;
+                }
             }
         }
     }
