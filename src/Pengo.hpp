@@ -25,6 +25,7 @@ protected:
 	float amount;
 	int speed;
 	Rectangle border, borderRight, borderLeft, borderTop, borderBottom;
+	float timer = 4;
 };
 
 

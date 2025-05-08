@@ -65,6 +65,12 @@ void Map::Draw() {
 
     //losing lives
     if (snoBee->isActive && CheckCollisionRecs(pengo->GetRect(), snoBee->GetRect())) {
+        
+        if (snoBee->isStunned && CheckCollisionRecs(pengo->GetRect(), snoBee->GetRect())) {
+            snoBee->isActive = false;
+            nextLevel = true;
+        }
+
         if (!hasCollided) {
             --lives;
             hasCollided = true;

@@ -22,6 +22,7 @@ Pengo::Pengo(Rectangle screenBorder, Map* map, SnoBee* snobee)
     border = screenBorder;
     currentMap = map;
     snoBee = snobee;
+    timer = 4;
 }
 
 Pengo::~Pengo()
@@ -78,15 +79,10 @@ void Pengo::Update() {
             if (position.x + image.width > borderRight.x - 48) {
                 position.x = borderRight.x - image.width;
                 target_position = position;
-                
+
                 if (snoBee->position.x + image.width == borderRight.x && position.x + image.width > borderRight.x - 48) {
                     snoBee->isStunned = true;
                 }
-
-                if (CheckCollisionRecs(GetRect(), snoBee->GetRect()) && snoBee->isStunned) {
-                    snoBee->isActive = false;
-                }
-
             }
             
         }
@@ -137,6 +133,7 @@ void Pengo::Update() {
 
                 if (snoBee->position.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) {
                     snoBee->isStunned = true;
+                    
                 }
             }
         }
