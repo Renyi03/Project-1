@@ -9,6 +9,7 @@ public:
 	void Draw();
 	void Update();
 	Rectangle GetRect();
+	bool IsActiveRight(Vector2 position);
 	void DrawHitbox(bool isColliding);
 	Map* currentMap;
 	const Rectangle& GetBorderRight() const;

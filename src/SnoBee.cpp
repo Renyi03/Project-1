@@ -231,9 +231,12 @@ Rectangle SnoBee::GetRect()
     return Rectangle{ position.x, position.y, float(image.width), float(image.height) };
 }
 
-bool isActiveRight(Vector2 position) {
+bool SnoBee::IsActiveRight(Vector2 position) {
     bool isActiveRight = false;
-    if(position)
+    auto& blocks = currentMap->GetBlocks();
+    auto& blck = blocks[];
+
+    if(position.x + 48 == )
 }
 
 void SnoBee::DrawHitbox(bool isColliding)
