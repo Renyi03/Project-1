@@ -5,14 +5,13 @@ class SnoBee;
 
 class Pengo {
 public:
-	Pengo(Rectangle screenBorder, Map* map, SnoBee* snobee);
+	Pengo(Rectangle screenBorder, Map* map);
 	~Pengo();
 	void Draw();
 	void Update();
 	Rectangle GetRect();
 	void DrawHitbox(bool isColliding);
 	Map* currentMap;
-	SnoBee* snoBee;
 	const Rectangle& GetBorderRight() const;
 	const Rectangle& GetBorderLeft() const;
 	const Rectangle& GetBorderTop() const;

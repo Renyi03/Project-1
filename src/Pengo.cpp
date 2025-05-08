@@ -8,7 +8,7 @@
 #include "SnoBee.hpp"
 using namespace std;
 
-Pengo::Pengo(Rectangle screenBorder, Map* map, SnoBee* snobee)
+Pengo::Pengo(Rectangle screenBorder, Map* map)
 {
     borderTop = Rectangle{ 88, 80, 624, 10 };
     borderBottom = Rectangle{ 88, 810, 624, 10 };
@@ -21,7 +21,6 @@ Pengo::Pengo(Rectangle screenBorder, Map* map, SnoBee* snobee)
     speed = 3;
     border = screenBorder;
     currentMap = map;
-    snoBee = snobee;
 }
 
 Pengo::~Pengo()

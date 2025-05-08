@@ -14,8 +14,9 @@ public:
 	~Map();
 	void Draw();
 	std::vector<Block>& GetBlocks();
+	std::vector<SnoBee>& GetSnoBees();
+	vector<SnoBee>SnoBees;
 	Pengo* pengo;
-	SnoBee* snoBee;
 	int GetScore() const;
 	bool nextLevel;
 	bool gameOver;
