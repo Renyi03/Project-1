@@ -10,6 +10,10 @@ public:
 	void Update();
 	Rectangle GetRect();
 	bool IsActiveRight(Vector2 position);
+	bool IsActiveLeft(Vector2 position);
+	bool IsActiveUp(Vector2 position);
+	bool IsActiveDown(Vector2 position);
+	bool IsSurrounded();
 	void DrawHitbox(bool isColliding);
 	Map* currentMap;
 	const Rectangle& GetBorderRight() const;

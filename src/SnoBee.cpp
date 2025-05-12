@@ -181,18 +181,18 @@ void SnoBee::Update() {
                     isABlock = true;
                     Vector2 v4{ position.x + 96, position.y };
                     bool isABlockAdjacent{};
-                    /*blck.isActive = false;*/
-                    /*for (int j = 0; j < blocks.size(); ++j) {
+                    blck.isActive = false;
+                    for (int j = 0; j < blocks.size(); ++j) {
                         auto& blck2 = blocks[j];
-                        if ((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.x + image.width > borderRight.x - 48)) {
+                        if (((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.x + image.width > borderRight.x - 48))) {
                             isABlockAdjacent = true;
                             
                             break;
                         }
-                    }*/
-                    /*if (!isABlockAdjacent) {
+                    }
+                    if (!isABlockAdjacent) {
                         blck.direction = Block::MovingDirection::right;
-                    }*/
+                    }
 
                     break;
                 }
@@ -231,12 +231,78 @@ Rectangle SnoBee::GetRect()
     return Rectangle{ position.x, position.y, float(image.width), float(image.height) };
 }
 
-bool SnoBee::IsActiveRight(Vector2 position) {
+bool SnoBee::IsActiveRight(Vector2 position) 
+{
     bool isActiveRight = false;
     auto& blocks = currentMap->GetBlocks();
-    auto& blck = blocks[];
 
-    if(position.x + 48 == )
+    Rectangle blockRight = { position.x + 48, position.y, image.width, image.height };
+
+    for (int i = 0; i < blocks.size(); ++i) {
+        auto& blck = blocks[i];
+        if (blck.isActive == true && blck.rect.x == blockRight.x && blck.rect.y == blockRight.y) {
+            isActiveRight = true;
+            return isActiveRight;
+        }
+    }
+    return isActiveRight;
+}
+
+bool SnoBee::IsActiveLeft(Vector2 position)
+{
+    bool isActiveLeft = false;
+    auto& blocks = currentMap->GetBlocks();
+
+    Rectangle blockRight = { position.x - 48, position.y, image.width, image.height };
+
+    for (int i = 0; i < blocks.size(); ++i) {
+        auto& blck = blocks[i];
+        if (blck.isActive == true && blck.rect.x == blockRight.x && blck.rect.y == blockRight.y) {
+            isActiveLeft = true;
+            return isActiveLeft;
+        }
+    }
+    return isActiveLeft;
+}
+
+bool SnoBee::IsActiveUp(Vector2 position)
+{
+    bool isActiveUp = false;
+    auto& blocks = currentMap->GetBlocks();
+
+    Rectangle blockRight = { position.x, position.y - 48, image.width, image.height };
+
+    for (int i = 0; i < blocks.size(); ++i) {
+        auto& blck = blocks[i];
+        if (blck.isActive == true && blck.rect.x == blockRight.x && blck.rect.y == blockRight.y) {
+            isActiveUp = true;
+            return isActiveUp;
+        }
+    }
+    return isActiveUp;
+}
+
+bool SnoBee::IsActiveDown(Vector2 position)
+{
+    bool isActiveDown = false;
+    auto& blocks = currentMap->GetBlocks();
+
+    Rectangle blockRight = { position.x, position.y + 48, image.width, image.height };
+
+    for (int i = 0; i < blocks.size(); ++i) {
+        auto& blck = blocks[i];
+        if (blck.isActive == true && blck.rect.x == blockRight.x && blck.rect.y == blockRight.y) {
+            isActiveDown = true;
+            return isActiveDown;
+        }
+    }
+    return isActiveDown;
+}
+
+bool SnoBee::IsSurrounded()
+{
+    if(IsActiveRight(position) == true && )
+    return false;
 }
 
 void SnoBee::DrawHitbox(bool isColliding)
