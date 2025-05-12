@@ -5,7 +5,7 @@ class SnoBee;
 
 class Pengo {
 public:
-	Pengo(Rectangle screenBorder, Map* map);
+	Pengo(Rectangle screenBorder, Map* map, Texture2D img);
 	~Pengo();
 	void Draw();
 	void Update();

@@ -10,13 +10,14 @@
 #include "Block.hpp"
 using namespace std;
 
-SnoBee::SnoBee(Rectangle screenBorder, Map* map, Vector2 position)
+SnoBee::SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img)
 {
 	borderTop = Rectangle{ 88, 80, 624, 10 };
 	borderBottom = Rectangle{ 88, 810, 624, 10 };
 	borderLeft = Rectangle{ 78, 90, 10, 720 };
 	borderRight = Rectangle{ 712, 90, 10, 720 };
-	image = LoadTexture("resources/Graphics/Snobee.png");
+	//image = LoadTexture("resources/Graphics/Snobee.png");
+    image = img;
 	target_position = position;
     current_position = position;
 	speed = 3;
@@ -32,7 +33,7 @@ SnoBee::~SnoBee()
 
 void SnoBee::Draw() {
     if (isActive == true) {
-        DrawTextureV(image, current_position, WHITE);
+       DrawTextureV(image, current_position, WHITE);
     }
 }
 

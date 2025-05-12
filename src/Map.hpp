@@ -17,7 +17,7 @@ public:
 	std::vector<SnoBee>& GetSnoBees();
 	vector<SnoBee>SnoBees;
 	Pengo* pengo;
-	int GetScore() const;
+	int GetScore();
 	bool nextLevel;
 	bool gameOver;
 	int lives;

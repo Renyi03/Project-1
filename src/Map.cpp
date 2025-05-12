@@ -12,18 +12,17 @@ using namespace std;
 
 Map::Map(Rectangle border, string map)
 {
-    Vector2 spawnPos;
-    spawnPos.x = 232;
-    spawnPos.y = 282;
     vector<Vector2>SpawnPositions = {
         {232, 282}, {328, 282}
     };
+    auto img = LoadTexture("resources/Graphics/Snobee.png");
+    auto img2 = LoadTexture("resources/Graphics/Pengo_front.png");
     for (auto &v : SpawnPositions) {
-        auto s = SnoBee{ border, this, v };
+        auto& s = SnoBee{ border, this, v, img };
         SnoBees.push_back(s);
     }
 
-    pengo = new Pengo{ border, this}; //this: referencia al objeto de la clase (en este caso, el mapa)
+    pengo = new Pengo{ border, this, img2 }; //this: referencia al objeto de la clase (en este caso, el mapa)
     
     ice_block = LoadTexture("resources/Graphics/ice block.png");
     lives = 5;
@@ -55,28 +54,27 @@ Map::Map(Rectangle border, string map)
 Map::~Map()
 {
     delete pengo;
-    for(auto &v : SnoBees)
     pengo = nullptr;
 	UnloadTexture(ice_block);
 }
 
 void Map::Draw() {
-    for (auto& v : GetSnoBees()) {
+    pengo->Update();
+    pengo->Draw();
 
-
+    for (auto& snobee : GetSnoBees()) {
         Vector2 map_iceblock_position;
         map_iceblock_position.x = 88;
         map_iceblock_position.y = 90;
-        pengo->Update();
-        if (SnoBees[v].isActive) {
-            SnoBees[v]->Update();
-            SnoBees[v]->Draw();
+        if (snobee.isActive) {
+            snobee.Update();
+            snobee.Draw();
         }
 
         bool hasCollided = false;
 
         //losing lives
-        if (snoBee->isActive && CheckCollisionRecs(pengo->GetRect(), snoBee->GetRect())) {
+        if (snobee.isActive && CheckCollisionRecs(pengo->GetRect(), snobee.GetRect())) {
             if (!hasCollided) {
                 --lives;
                 hasCollided = true;
@@ -94,7 +92,6 @@ void Map::Draw() {
             hasCollided = false;
         }
 
-        pengo->Draw();
 
         //crear un map::Update()
 
@@ -184,18 +181,18 @@ void Map::Draw() {
                     if (!isBlock) {
                         b.rect.x = displacement.x;
                         b.rect.y = displacement.y;
-                        if (snoBee->isActive && CheckCollisionRecs(b.rect, snoBee->GetRect())) {
-                            snoBee->isActive = false;
+                        if (snobee.isActive && CheckCollisionRecs(b.rect, snobee.GetRect())) {
+                            snobee.isActive = false;
                             nextLevel = true;
                             b.direction = Block::MovingDirection::none;
                             PlaySound(b.Ice_Block_Destroyed);
-                            snoBee->score += 400;
+                            snobee.score += 400;
                         }
                     }
                     else {
                         b.direction = Block::MovingDirection::none;
                     }
-                    if (snoBee->isActive == false) {
+                    if (snobee.isActive == false) {
                         gameOver = true;
                     }
                 }
@@ -211,8 +208,12 @@ std::vector<Block>& Map::GetBlocks()
     return blocks;
 }
 
-int Map::GetScore() const {
-    return snoBee->score;
+int Map::GetScore() { //antes era "Map::GetScore() const"
+    int score = 0;
+    for (auto& snobees : GetSnoBees()) {
+        score += snobees.score;
+    }
+    return score;
 }
 
 std::vector<SnoBee>& Map::GetSnoBees()
