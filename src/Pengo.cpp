@@ -22,7 +22,8 @@ Pengo::Pengo(Rectangle screenBorder, Map* map, SnoBee* snobee)
     border = screenBorder;
     currentMap = map;
     snoBee = snobee;
-    timer = 4;
+    stunTimer = 0;
+    stunDuration = 2.5;
 }
 
 Pengo::~Pengo()
@@ -82,6 +83,16 @@ void Pengo::Update() {
 
                 if (snoBee->position.x + image.width == borderRight.x && position.x + image.width > borderRight.x - 48) {
                     snoBee->isStunned = true;
+                    stunTimer = stunDuration;
+                }
+                
+            }
+            if (snoBee->isStunned) {
+                stunTimer -= GetFrameTime();
+                cout << " " << stunTimer << endl;
+                if (stunTimer <= 0) {
+                    stunTimer = 0;
+                    snoBee->isStunned = false;
                 }
             }
             
@@ -133,7 +144,16 @@ void Pengo::Update() {
 
                 if (snoBee->position.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) {
                     snoBee->isStunned = true;
-                    
+                    stunTimer = stunDuration;
+                }
+                
+            }
+            if (snoBee->isStunned) {
+                stunTimer -= GetFrameTime();
+                cout << " " << stunTimer << endl;
+                if (stunTimer <= 0) {
+                    stunTimer = 0;
+                    snoBee->isStunned = false;
                 }
             }
         }
@@ -185,6 +205,16 @@ void Pengo::Update() {
 
                 if (snoBee->position.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) {
                     snoBee->isStunned = true;
+                    stunTimer = stunDuration;
+                }
+                
+            }
+            if (snoBee->isStunned) {
+                stunTimer -= GetFrameTime();
+                cout << " " << stunTimer << endl;
+                if (stunTimer <= 0) {
+                    stunTimer = 0;
+                    snoBee->isStunned = false;
                 }
             }
         }
@@ -236,7 +266,25 @@ void Pengo::Update() {
 
                 if (snoBee->position.y + image.height == borderBottom.y && position.y + image.height >= borderBottom.y) {
                     snoBee->isStunned = true;
+                    stunTimer = stunDuration;
                 }
+                
+            }
+            if (snoBee->isStunned) {
+                stunTimer -= GetFrameTime();
+                cout << " " << stunTimer << endl;
+                if (stunTimer <= 0) {
+                    stunTimer = 0;
+                    snoBee->isStunned = false;
+                }
+            }
+        }
+        if (snoBee->isStunned) {
+            stunTimer -= GetFrameTime();
+            cout << " " << stunTimer << endl;
+            if (stunTimer <= 0) {
+                stunTimer = 0;
+                snoBee->isStunned = false;
             }
         }
     }
