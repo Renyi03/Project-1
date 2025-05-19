@@ -52,12 +52,18 @@ int main(void)
     Rectangle borderLeft = Rectangle{ 78, 90, 10, 720 };
     Rectangle borderRight = Rectangle{ 712, 90, 10, 720 };
     Rectangle border{88, 90, 624, 720};
-    Map* map1 = new Map{ border, map1file };
-    Map* map2 = new Map{ border, map2file };
+    Texture2D imgPengo = LoadTexture("resources/Graphics/Pengo_front.png");
+    Texture2D ice_block = LoadTexture("resources/Graphics/ice_block.png");
+    Texture2D levelCntImage = LoadTexture("resources/Graphics/level_cnt.png");
+    Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo_life.png");
+    Texture2D imgSnobee = LoadTexture("resources/Graphics/Snobee.png");
+
+    Map* map1 = new Map{ border, map1file, imgSnobee, imgPengo, ice_block };
+    Map* map2 = new Map{ border, map2file, imgSnobee, imgPengo, ice_block };
+
     /*Pengo pengo{ border, &map };*/
     /*map.pengo = &pengo;*/
 
-    Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo_life.png");
 
     Vector2 lifePosition1;
     lifePosition1.x = 88;
@@ -76,7 +82,6 @@ int main(void)
     lifePosition4.y = 30;
 
 
-    Texture2D levelCntImage = LoadTexture("resources/Graphics/level cnt.png");
     Vector2 levelCntPosition1;
     levelCntPosition1.x = 220;
     levelCntPosition1.y = 850;
@@ -173,9 +178,9 @@ int main(void)
             {
 
                 delete map1;
-                map1 = new Map{ border, map1file };
+                map1 = new Map{ border, map1file, imgSnobee, imgPengo, ice_block };
                 delete map2;
-                map2 = new Map{ border, map2file };
+                map2 = new Map{ border, map2file, imgSnobee, imgPengo, ice_block };
                 map1->gameOver = false;
                 map2->gameOver = false;
                 currentScreen = TITLE;
@@ -253,6 +258,11 @@ int main(void)
     } 
 
     UnloadMusicStream(Main_BGM);
+    UnloadTexture(imgPengo);
+    UnloadTexture(imgSnobee);
+    UnloadTexture(ice_block);
+    UnloadTexture(levelCntImage);
+    UnloadTexture(lifeImage);
     CloseAudioDevice();
     CloseWindow();
 

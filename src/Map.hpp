@@ -10,7 +10,7 @@ class SnoBee;
 class Map {
 
 public:
-	Map(Rectangle border, string map);
+	Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, Texture2D imgIceBlock);
 	~Map();
 	void Draw();
 	std::vector<Block>& GetBlocks();

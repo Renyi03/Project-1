@@ -28,7 +28,6 @@ SnoBee::SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img
 
 SnoBee::~SnoBee()
 {
-	UnloadTexture(image);
 }
 
 void SnoBee::Draw() {

@@ -19,14 +19,13 @@ Pengo::Pengo(Rectangle screenBorder, Map* map, Texture2D img)
     position.x = 376;
     position.y = 378;
     target_position = position;
-    speed = 3;
+    speed = 1;
     border = screenBorder;
     currentMap = map;
 }
 
 Pengo::~Pengo()
 {
-	UnloadTexture(image);
 }
 
 void Pengo::Draw() {

@@ -10,21 +10,21 @@
 #include "SnoBee.hpp"
 using namespace std;
 
-Map::Map(Rectangle border, string map)
+Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, Texture2D imgIceBlock)
 {
+    ice_block = imgIceBlock;
+
     vector<Vector2>SpawnPositions = {
-        {232, 282}, {328, 282}
+        {232, 282}, {328, 282}, {184, 474}, {184, 666}
     };
-    auto img = LoadTexture("resources/Graphics/Snobee.png");
-    auto img2 = LoadTexture("resources/Graphics/Pengo_front.png");
+    
     for (auto &v : SpawnPositions) {
-        auto& s = SnoBee{ border, this, v, img };
+        auto& s = SnoBee{ border, this, v, imgSnobee };
         SnoBees.push_back(s);
     }
 
-    pengo = new Pengo{ border, this, img2 }; //this: referencia al objeto de la clase (en este caso, el mapa)
+    pengo = new Pengo{ border, this, imgPengo }; //this: referencia al objeto de la clase (en este caso, el mapa)
     
-    ice_block = LoadTexture("resources/Graphics/ice block.png");
     lives = 5;
 
     float row{};
@@ -55,13 +55,12 @@ Map::~Map()
 {
     delete pengo;
     pengo = nullptr;
-	UnloadTexture(ice_block);
 }
 
 void Map::Draw() {
     pengo->Update();
     pengo->Draw();
-
+    
     for (auto& snobee : GetSnoBees()) {
         Vector2 map_iceblock_position;
         map_iceblock_position.x = 88;
@@ -125,7 +124,7 @@ void Map::Draw() {
 
                     Vector2 blockTargetPosition{ b.rect.x, b.rect.y };
                     Vector2 displacement{ blockTargetPosition };
-                    float step{ 3 }; //another way of declaring a variable
+                    float step{ 1 }; //another way of declaring a variable
                     switch (b.direction) {
                     case Block::MovingDirection::right:
                         if (b.rect.x + b.rect.width <= borderRight.x - step) {
@@ -150,7 +149,7 @@ void Map::Draw() {
                     case Block::MovingDirection::up:
                         if (b.rect.y >= borderTop.y + borderTop.height + step) {
                             blockTargetPosition.y -= 48;
-                            displacement.y -= 3;
+                            displacement.y -= step;
                             PlaySound(b.Block_Stopped);
                         }
                         else {
@@ -160,7 +159,7 @@ void Map::Draw() {
                     case Block::MovingDirection::down:
                         if (b.rect.y + b.rect.height <= borderBottom.y - step) {
                             blockTargetPosition.y += 48;
-                            displacement.y += 3;
+                            displacement.y += step;
                             PlaySound(b.Block_Stopped);
                         }
                         else {
@@ -192,7 +191,14 @@ void Map::Draw() {
                     else {
                         b.direction = Block::MovingDirection::none;
                     }
-                    if (snobee.isActive == false) {
+                    
+                    int gameOver_aux = 0;
+                    for (auto& snobees : GetSnoBees()){
+                        if (!snobee.isActive == true) {
+                            gameOver_aux++;
+                        }
+                    }
+                    if (gameOver_aux == 4) {
                         gameOver = true;
                     }
                 }
