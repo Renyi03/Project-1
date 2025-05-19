@@ -86,17 +86,18 @@ void Pengo::Update() {
 
                     stunTimer = stunDuration;
                 }
+                if (snoBee->isStunned) {
+                    stunTimer -= GetFrameTime();
+                    cout << " " << stunTimer << endl;
+                    if (stunTimer <= 0) {
+                        stunTimer = 0;
+                        snoBee->isStunned = false;
+
+                    }
+                }
                 
             }
-            if (snoBee->isStunned) {
-                stunTimer -= GetFrameTime();
-                cout << " " << stunTimer << endl;
-                if (stunTimer <= 0) {
-                    stunTimer = 0;
-                    snoBee->isStunned = false;
-
-                }
-            }
+            
             
         }
 
@@ -149,17 +150,18 @@ void Pengo::Update() {
 
                     stunTimer = stunDuration;
                 }
+                if (snoBee->isStunned) {
+                    stunTimer -= GetFrameTime();
+                    cout << " " << stunTimer << endl;
+                    if (stunTimer <= 0) {
+                        stunTimer = 0;
+                        snoBee->isStunned = false;
+
+                    }
+                }
                 
             }
-            if (snoBee->isStunned) {
-                stunTimer -= GetFrameTime();
-                cout << " " << stunTimer << endl;
-                if (stunTimer <= 0) {
-                    stunTimer = 0;
-                    snoBee->isStunned = false;
-
-                }
-            }
+            
         }
 
         else if (IsKeyDown(KEY_UP)) {
@@ -212,17 +214,17 @@ void Pengo::Update() {
 
                     stunTimer = stunDuration;
                 }
-                
-            }
-            if (snoBee->isStunned) {
-                stunTimer -= GetFrameTime();
-                cout << " " << stunTimer << endl;
-                if (stunTimer <= 0) {
-                    stunTimer = 0;
-                    snoBee->isStunned = false;
+                if (snoBee->isStunned) {
+                    stunTimer -= GetFrameTime();
+                    cout << " " << stunTimer << endl;
+                    if (stunTimer <= 0) {
+                        stunTimer = 0;
+                        snoBee->isStunned = false;
 
+                    }
                 }
             }
+            
         }
 
         else if (IsKeyDown(KEY_DOWN)) {
@@ -276,16 +278,16 @@ void Pengo::Update() {
                     stunTimer = stunDuration;
 
                 }
-                
-            }
-            if (snoBee->isStunned) {
-                stunTimer -= GetFrameTime();
-                cout << " " << stunTimer << endl;
-                if (stunTimer <= 0) {
-                    stunTimer = 0;
-                    snoBee->isStunned = false;
+                if (snoBee->isStunned) {
+                    stunTimer -= GetFrameTime();
+                    cout << " " << stunTimer << endl;
+                    if (stunTimer <= 0) {
+                        stunTimer = 0;
+                        snoBee->isStunned = false;
+                    }
                 }
             }
+            
         }
         if (snoBee->isStunned) {
             stunTimer -= GetFrameTime();
