@@ -9,12 +9,13 @@ public:
 	void Draw();
 	void Update();
 	Rectangle GetRect();
-	bool IsActiveRight(Vector2 position);
-	bool IsActiveLeft(Vector2 position);
-	bool IsActiveUp(Vector2 position);
-	bool IsActiveDown(Vector2 position);
-	bool IsSurrounded();
+	//bool IsActiveRight(Vector2 position);
+	//bool IsActiveLeft(Vector2 position);
+	//bool IsActiveUp(Vector2 position);
+	//bool IsActiveDown(Vector2 position);
+	//bool IsSurrounded();
 	void DrawHitbox(bool isColliding);
+	int countSurroundingBlocks();
 	Map* currentMap;
 	const Rectangle& GetBorderRight() const;
 	const Rectangle& GetBorderLeft() const;
@@ -22,6 +23,8 @@ public:
 	const Rectangle& GetBorderBottom() const;
 	bool isActive;
 	int score = 0;
+	bool breakingMode;
+	float breakCooldown;
 protected:
 	Texture2D image;
 	Vector2 position, target_position, start_position;
