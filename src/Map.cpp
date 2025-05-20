@@ -13,6 +13,7 @@ using namespace std;
 Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, Texture2D imgIceBlock)
 {
     ice_block = imgIceBlock;
+    snobeesDefeated = 0;
 
     vector<Vector2>SpawnPositions = {
         {232, 282}, {328, 282}, {184, 474}, {184, 666}
@@ -61,6 +62,7 @@ void Map::Draw() {
     pengo->Update();
     pengo->Draw();
     
+
     for (auto& snobee : GetSnoBees()) {
         Vector2 map_iceblock_position;
         map_iceblock_position.x = 88;
@@ -180,27 +182,30 @@ void Map::Draw() {
                     if (!isBlock) {
                         b.rect.x = displacement.x;
                         b.rect.y = displacement.y;
+                        
                         if (snobee.isActive && CheckCollisionRecs(b.rect, snobee.GetRect())) {
                             snobee.isActive = false;
-                            nextLevel = true;
+                            snobeesDefeated++;
+                            snobee.DrawHitbox(snobee.isActive);
+                            if (snobeesDefeated >= 4) {
+                                nextLevel = true;
+                            }
                             b.direction = Block::MovingDirection::none;
                             PlaySound(b.Ice_Block_Destroyed);
                             snobee.score += 400;
+
                         }
                     }
+
                     else {
                         b.direction = Block::MovingDirection::none;
                     }
                     
-                    int gameOver_aux = 0;
-                    for (auto& snobees : GetSnoBees()){
-                        if (!snobee.isActive == true) {
-                            gameOver_aux++;
-                        }
-                    }
-                    if (gameOver_aux == 4) {
+
+                    /*if (snobee.isActive == false) {
                         gameOver = true;
-                    }
+                    }*/
+                    
                 }
                 DrawTextureV(ice_block, { b.rect.x, b.rect.y }, WHITE);
             }

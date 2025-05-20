@@ -18,6 +18,7 @@ public:
 	vector<SnoBee>SnoBees;
 	Pengo* pengo;
 	int GetScore();
+	int snobeesDefeated;
 	bool nextLevel;
 	bool gameOver;
 	int lives;
