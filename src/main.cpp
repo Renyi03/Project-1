@@ -43,6 +43,9 @@ int main(void)
     InitWindow(800, 900, "El mejor juego de proyecto 1: An indescribable emptiness");
     InitAudioDevice();
     SetTargetFPS(60);
+    double levelStartTime = 0.0;
+    double levelEndTime = 0.0;
+    int bonusPoints = 0;
 
     std::string map1file = LoadFileText("resources/Map_1.txt");
     std::string map2file = LoadFileText("resources/Map_2.txt");
@@ -109,6 +112,7 @@ int main(void)
         {
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
+                levelStartTime = GetTime();
                 currentScreen = LEVEL1;
             }
         }break;
@@ -183,11 +187,14 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
         }break;
+        case POINTS:
+        {
+
+        }
         case GAMEOVER:
         {
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
-
                 delete map1;
                 map1 = new Map{ border, map1file };
                 delete map2;
@@ -206,7 +213,6 @@ int main(void)
         {
         case INITIAL:
         {
-            // TODO: Draw LOGO screen here!
             DrawText("PENGO PROTOTYPE", 66, 50, 40, LIGHTGRAY);
             DrawText("Project 1, Video game design and development, CITM", 125, 220, 20, GRAY);
             DrawText("Team members: Sofia Barja, Clara Sanchez, Yin Ye", 133, 270, 20, GRAY);
@@ -215,7 +221,6 @@ int main(void)
         } break;
         case TITLE:
         {
-            // TODO: Draw TITLE screen here!
             DrawRectangle(0, 0, 800, 900, BLUE);
             DrawText("TITLE SCREEN", 20, 20, 40, DARKBLUE);
             DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKBLUE);
@@ -230,6 +235,21 @@ int main(void)
             }
 
             if (map1->nextLevel == true) {
+                levelEndTime = GetTime();
+                double timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+
                 map1->nextLevel = false;
                 currentScreen = LEVEL2;
             }
@@ -257,6 +277,10 @@ int main(void)
             DrawText(TextFormat("%i", map1->GetScore()), 260, 2, 30, WHITE);
             DrawText(TextFormat("ACT  2"), 88, 850, 30, WHITE);
         } break;
+        case POINTS:
+        {
+            DrawRectangle(0, 0, 800, 900, BLACK);
+        }
         case GAMEOVER:
         {
             DrawRectangle(0, 0, 800, 900, BLUE);
