@@ -186,7 +186,6 @@ void Map::Draw() {
                         if (snobee.isActive && CheckCollisionRecs(b.rect, snobee.GetRect())) {
                             snobee.isActive = false;
                             snobeesDefeated++;
-                            snobee.DrawHitbox(snobee.isActive);
                             if (snobeesDefeated >= 4) {
                                 nextLevel = true;
                             }

@@ -222,6 +222,9 @@ int main(void)
                 map1->nextLevel = false;
                 currentScreen = LEVEL2;
             }
+            
+            
+            
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
