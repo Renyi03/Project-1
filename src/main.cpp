@@ -34,6 +34,7 @@ SOFTWARE.
 #include "SnoBee.hpp"
 #include <ctime>
 #include <string>
+#include <iostream>
 using namespace std;
 
 typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, GAMEOVER, POINTS } GameScreen;
@@ -43,9 +44,11 @@ int main(void)
     InitWindow(800, 900, "El mejor juego de proyecto 1: An indescribable emptiness");
     InitAudioDevice();
     SetTargetFPS(60);
-    double levelStartTime = 0.0;
-    double levelEndTime = 0.0;
+    int levelStartTime = 0;
+    int levelEndTime = 0;
     int bonusPoints = 0;
+    int level;
+    int totalScore = 0;
 
     std::string map1file = LoadFileText("resources/Map_1.txt");
     std::string map2file = LoadFileText("resources/Map_2.txt");
@@ -110,6 +113,7 @@ int main(void)
         }break;
         case TITLE:
         {
+            level = 0;
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
                 levelStartTime = GetTime();
@@ -119,6 +123,7 @@ int main(void)
         case LEVEL1:
         {
             UpdateMusicStream(Main_BGM);
+            level = 1;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
@@ -154,24 +159,25 @@ int main(void)
         case LEVEL2:
         {
             UpdateMusicStream(Main_BGM);
+            level = 2;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            for (int i = 0; i < map1->lives; ++i) {
-                if (map1->lives == 2) {
+            for (int i = 0; i < map2->lives; ++i) {
+                if (map2->lives == 2) {
                     DrawTextureV(lifeImage, lifePosition1, WHITE);
                 }
-                if (map1->lives == 3) {
+                if (map2->lives == 3) {
                     DrawTextureV(lifeImage, lifePosition1, WHITE);
                     DrawTextureV(lifeImage, lifePosition2, WHITE);
                 }
-                if (map1->lives == 4) {
+                if (map2->lives == 4) {
                     DrawTextureV(lifeImage, lifePosition1, WHITE);
                     DrawTextureV(lifeImage, lifePosition2, WHITE);
                     DrawTextureV(lifeImage, lifePosition3, WHITE);
                 }
-                if (map1->lives == 5) {
+                if (map2->lives == 5) {
                     DrawTextureV(lifeImage, lifePosition1, WHITE);
                     DrawTextureV(lifeImage, lifePosition2, WHITE);
                     DrawTextureV(lifeImage, lifePosition3, WHITE);
@@ -189,8 +195,11 @@ int main(void)
         }break;
         case POINTS:
         {
-
-        }
+            DrawTextureV(lifeImage, lifePosition1, WHITE);
+            DrawTextureV(lifeImage, lifePosition2, WHITE);
+            DrawTextureV(lifeImage, lifePosition3, WHITE);
+            DrawTextureV(lifeImage, lifePosition4, WHITE);
+        }break;
         case GAMEOVER:
         {
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
@@ -233,10 +242,9 @@ int main(void)
             if (map1->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
-
             if (map1->nextLevel == true) {
                 levelEndTime = GetTime();
-                double timeSpent = levelEndTime - levelStartTime;
+                int timeSpent = levelEndTime - levelStartTime;
                 if (timeSpent < 20) {
                     bonusPoints = 5000;
                 }
@@ -249,16 +257,19 @@ int main(void)
                 else if (timeSpent < 50) {
                     bonusPoints = 500;
                 }
-
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map1->snoBee->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map1->nextLevel = false;
-                currentScreen = LEVEL2;
+                currentScreen = POINTS;
             }
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", map1->GetScore()), 260, 2, 30, WHITE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
             DrawText(TextFormat("ACT  1"), 88, 850, 30, WHITE);
-
         } break;
         case LEVEL2:
         {
@@ -269,20 +280,59 @@ int main(void)
             }
 
             if (map2->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map2->snoBee->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map2->nextLevel = false;
-                currentScreen = GAMEOVER;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", map1->GetScore()), 260, 2, 30, WHITE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
             DrawText(TextFormat("ACT  2"), 88, 850, 30, WHITE);
         } break;
         case POINTS:
-        {
+        {           
             DrawRectangle(0, 0, 800, 900, BLACK);
-        }
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("GAME TIME %d SECONDS", levelEndTime - levelStartTime), 200, 160, 30, YELLOW);
+            DrawText("FROM 00 TO 19  5000 PTS", 200, 260, 30, BLUE);
+            DrawText("FROM 20 TO 29  2000 PTS", 200, 360, 30, BLUE);
+            DrawText("FROM 30 TO 39  1000 PTS", 200, 460, 30, BLUE);
+            DrawText("FROM 40 TO 49  500 PTS", 200, 560, 30, BLUE);
+            DrawText("FROM 50 TO 59  10 PTS", 200, 660, 30, BLUE);
+            DrawText("60 AND OVER   NO BONUS", 200, 760, 30, YELLOW);
+            if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+            {
+                if (level == 1) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL2;
+                }
+                else if (level == 2) {
+                    currentScreen = GAMEOVER;
+                }
+            }
+        } break;
         case GAMEOVER:
         {
+            totalScore = 0;
             DrawRectangle(0, 0, 800, 900, BLUE);
             DrawText("GAME OVER", 20, 20, 40, DARKBLUE);
             DrawText("PRESS ENTER or TAP to JUMP to TITLE SCREEN", 120, 220, 20, DARKBLUE);

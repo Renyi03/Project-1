@@ -222,6 +222,10 @@ Rectangle SnoBee::GetRect()
     return Rectangle{ position.x, position.y, float(image.width), float(image.height) };
 }
 
+void SnoBee::addScore(int points) {
+    score += points;
+}
+
 void SnoBee::DrawHitbox(bool isColliding)
 {
     Color outlineColor = isColliding ? RED : WHITE;

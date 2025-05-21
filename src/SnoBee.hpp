@@ -9,11 +9,6 @@ public:
 	void Draw();
 	void Update();
 	Rectangle GetRect();
-	//bool IsActiveRight(Vector2 position);
-	//bool IsActiveLeft(Vector2 position);
-	//bool IsActiveUp(Vector2 position);
-	//bool IsActiveDown(Vector2 position);
-	//bool IsSurrounded();
 	void DrawHitbox(bool isColliding);
 	int countSurroundingBlocks();
 	Map* currentMap;
@@ -22,6 +17,7 @@ public:
 	const Rectangle& GetBorderTop() const;
 	const Rectangle& GetBorderBottom() const;
 	bool isActive;
+	void addScore(int points);
 	int score = 0;
 	bool breakingMode;
 	float breakCooldown;
