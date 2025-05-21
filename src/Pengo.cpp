@@ -22,6 +22,9 @@ Pengo::Pengo(Rectangle screenBorder, Map* map, Texture2D img)
     speed = 1;
     border = screenBorder;
     currentMap = map;
+    stunTimer = 0;
+    stunDuration = 2.5;
+
 }
 
 Pengo::~Pengo()
@@ -78,8 +81,20 @@ void Pengo::Update() {
                     position.x = borderRight.x - image.width;
                     target_position = position;
 
-                }
+                    if (snobees.position.x + image.width == borderRight.x && position.x + image.width > borderRight.x - 48) {
+                        snobees.isStunned = true;
 
+                        stunTimer = stunDuration;
+                    }
+                    if (snobees.isStunned) {
+                        stunTimer -= GetFrameTime();
+                        cout << " " << stunTimer << endl;
+                        if (stunTimer <= 0) {
+                            stunTimer = 0;
+                            snobees.isStunned = false;
+                        }
+                    }
+                }
             }
 
             else if (IsKeyDown(KEY_LEFT)) {
@@ -125,7 +140,23 @@ void Pengo::Update() {
                 if (position.x - 48 < borderLeft.x + borderLeft.width) {
                     position.x = borderLeft.x + borderLeft.width;
                     target_position = position;
+
+                    if (snobees.position.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) {
+                        snobees.isStunned = true;
+
+                        stunTimer = stunDuration;
+                    }
+                    if (snobees.isStunned) {
+                        stunTimer -= GetFrameTime();
+                        cout << " " << stunTimer << endl;
+                        if (stunTimer <= 0) {
+                            stunTimer = 0;
+                            snobees.isStunned = false;
+
+                        }
+                    }
                 }
+
             }
 
             else if (IsKeyDown(KEY_UP)) {
@@ -173,6 +204,22 @@ void Pengo::Update() {
                     target_position.y = position.y;
                     target_position.x = position.x;
                 }
+
+                if (snobees.position.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) {
+                    snobees.isStunned = true;
+
+                    stunTimer = stunDuration;
+                }
+                if (snobees.isStunned) {
+                    stunTimer -= GetFrameTime();
+                    cout << " " << stunTimer << endl;
+                    if (stunTimer <= 0) {
+                        stunTimer = 0;
+                        snobees.isStunned = false;
+
+                    }
+                }
+
             }
 
             else if (IsKeyDown(KEY_DOWN)) {
@@ -219,8 +266,33 @@ void Pengo::Update() {
                     position.y = borderBottom.y - image.height;
                     target_position.y = position.y;
                     target_position.x = position.x;
+
+                    if (snobees.position.y + image.height == borderBottom.y && position.y + image.height >= borderBottom.y) {
+                        snobees.isStunned = true;
+
+                        stunTimer = stunDuration;
+                    }
+
+                    if (snobees.isStunned) {
+                        stunTimer -= GetFrameTime();
+                        cout << " " << stunTimer << endl;
+                        if (stunTimer <= 0) {
+                            stunTimer = 0;
+                            snobees.isStunned = false;
+                        }
+                    }
                 }
             }
+
+            if (snobees.isStunned) {
+                stunTimer -= GetFrameTime();
+                cout << " " << stunTimer << endl;
+                if (stunTimer <= 0) {
+                    stunTimer = 0;
+                    snobees.isStunned = false;
+                }
+            }
+
         }
 
         else {

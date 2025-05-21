@@ -159,6 +159,27 @@ int main(void)
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
+            for (int i = 0; i < map1->lives; ++i) {
+                if (map1->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map1->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map1->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map1->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
+
             DrawRectangleLinesEx(borderTop, 10, BLUE);
             DrawRectangleLinesEx(borderBottom, 10, BLUE);
             DrawRectangleLinesEx(borderLeft, 10, BLUE);

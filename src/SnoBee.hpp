@@ -19,7 +19,7 @@ public:
 	bool isActive;
 	int score = 0;
 	bool isStunned;
-	Vector2 position, target_position, start_position;
+	Vector2 current_position, position, target_position, start_position;
 protected:
 	Texture2D image;
 	float amount;
