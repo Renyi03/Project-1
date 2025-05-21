@@ -17,10 +17,12 @@ public:
 	Pengo* pengo;
 	SnoBee* snoBee;
 	int GetScore() const;
+	void addScore(int value);
 	bool nextLevel;
 	bool gameOver;
 	int lives;
 private:
+	int score;
 	Texture2D ice_block;
 	int speed;
 	Rectangle border;

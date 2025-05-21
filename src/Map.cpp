@@ -202,6 +202,11 @@ int Map::GetScore() const {
     return snoBee->score;
 }
 
+void Map::addScore(int value)
+{
+    score += value;
+}
+
 //Rectangle Map::GetRectMap()
 //{
 //    return Rectangle{ (50 + row * 80), (98 + col * 80), float(ice_block.width), float(ice_block.height) };
