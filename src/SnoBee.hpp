@@ -11,6 +11,7 @@ public:
 	void Update();
 	Rectangle GetRect();
 	void DrawHitbox(bool isColliding);
+	int countSurroundingBlocks();
 	Map* currentMap;
 	const Rectangle& GetBorderRight() const;
 	const Rectangle& GetBorderLeft() const;
@@ -19,6 +20,8 @@ public:
 	bool isActive;
 	int score = 0;
 	bool isStunned;
+	bool breakingMode;
+	float breakCooldown;
 	Vector2 current_position, position, target_position, start_position;
 protected:
 	Texture2D image;

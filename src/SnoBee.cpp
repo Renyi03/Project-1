@@ -25,11 +25,28 @@ SnoBee::SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img
 	currentMap = map;
     isActive = true;
     isStunned = false;
+    breakingMode = false;
+    breakCooldown = 0.0f;
 }
 
 SnoBee::~SnoBee()
 {
 }
+
+int SnoBee::countSurroundingBlocks() {
+    auto& blocks = currentMap->GetBlocks();
+    int ctr = 0;
+    Vector2 directions[4] = { {48, 0}, {-48, 0}, {0, -48}, {0, 48} }; //right, left, up, down
+    for (auto& d : directions) {
+        for (auto& b : blocks) {
+            if (b.isActive && b.rect.x == position.x + d.x && b.rect.y == position.y + d.y) {
+                ctr++;
+            }
+        }
+    }
+    return ctr;
+}
+
 
 void SnoBee::Draw() {
     if (isActive == true) {
@@ -42,8 +59,15 @@ void SnoBee::Update() {
         return;
     }
 
+    if (breakCooldown > 0.0f) {
+        breakCooldown -= GetFrameTime();
+    }
+
     if (!isStunned) {
         if (current_position.x == target_position.x && current_position.y == target_position.y) {
+            if (!breakingMode && countSurroundingBlocks() >= 2) {
+                breakingMode = true;
+            }
             int direction = rand() % 4 + 1;
 
             switch (direction) {
@@ -56,20 +80,12 @@ void SnoBee::Update() {
                     auto& blck = blocks[i];
                     if (blck.isActive == true && blck.rect.x == v3.x && blck.rect.y == v3.y) {
                         isABlock = true;
-                        Vector2 v4{ current_position.x, current_position.y - 96 };
-                        bool isABlockAdjacent{};
-                        /*blck.isActive = false;*/ //ESTO SE VOLVERÁ A USAR!!!! para que rompa bloques
-                        /*for (int j = 0; j < blocks.size(); ++j) {
-                            auto& blck2 = blocks[j];
-                            if ((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.y <= borderTop.y - borderTop.height + 48)) {
-                                isABlockAdjacent = true;
-
-                                break;
+                        if (breakingMode == true && breakCooldown <= 0.0f) {
+                            if ((rand() % 4 + 1) == 1) {
+                                breakCooldown = 3.0f;
+                                blck.isActive = false;
                             }
-                        }*/
-                        /*if (!isABlockAdjacent) {
-                            blck.direction = Block::MovingDirection::up;
-                        }*/
+                        }
                         break;
                     }
                 }
@@ -98,20 +114,12 @@ void SnoBee::Update() {
                     auto& blck = blocks[i];
                     if (blck.isActive == true && blck.rect.x == v3.x && blck.rect.y == v3.y) {
                         isABlock = true;
-                        Vector2 v4{ current_position.x, current_position.y + 96 };
-                        bool isABlockAdjacent{};
-                        /*blck.isActive = false;*/
-                        /*for (int j = 0; j < blocks.size(); ++j) {
-                            auto& blck2 = blocks[j];
-                            if ((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.y + image.height >= borderBottom.y)) {
-                                isABlockAdjacent = true;
-
-                                break;
+                        if (breakingMode == true && breakCooldown <= 0.0f) {
+                            if ((rand() % 4 + 1) == 1) {
+                                breakCooldown = 3.0f;
+                                blck.isActive = false;
                             }
                         }
-                        /*if (!isABlockAdjacent) {
-                            blck.direction = Block::MovingDirection::down;
-                        }*/
                         break;
                     }
                 }
@@ -139,20 +147,12 @@ void SnoBee::Update() {
                     auto& blck = blocks[i];
                     if (blck.isActive == true && blck.rect.x == v3.x && blck.rect.y == v3.y) {
                         isABlock = true;
-                        Vector2 v4{ current_position.x - 96, current_position.y };
-                        bool isABlockAdjacent{};
-                        /* blck.isActive = false;*/
-                         /*for (int j = 0; j < blocks.size(); ++j) {
-                             auto& blck2 = blocks[j];
-                             if ((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.x - 48 < borderLeft.x + borderLeft.width)) {
-                                 isABlockAdjacent = true;
-
-                                 break;
-                             }
-                         }*/
-                         /*if (!isABlockAdjacent) {
-                             blck.direction = Block::MovingDirection::left;
-                         }*/
+                        if (breakingMode == true && breakCooldown <= 0.0f) {
+                            if ((rand() % 4 + 1) == 1) {
+                                breakCooldown = 3.0f;
+                                blck.isActive = false;
+                            }
+                        }
                         break;
                     }
                 }
@@ -179,21 +179,12 @@ void SnoBee::Update() {
                     auto& blck = blocks[i];
                     if (blck.isActive == true && blck.rect.x == v3.x && blck.rect.y == v3.y) {
                         isABlock = true;
-                        Vector2 v4{ current_position.x + 96, current_position.y };
-                        bool isABlockAdjacent{};
-                        /*blck.isActive = false;*/
-                        /*for (int j = 0; j < blocks.size(); ++j) {
-                            auto& blck2 = blocks[j];
-                            if ((blck2.isActive == true && blck2.rect.x == v4.x && blck2.rect.y == v4.y) || (blck.rect.x + image.width > borderRight.x - 48)) {
-                                isABlockAdjacent = true;
-
-                                break;
+                        if (breakingMode == true && breakCooldown <= 0.0f) {
+                            if ((rand() % 4 + 1) == 1) {
+                                breakCooldown = 3.0f;
+                                blck.isActive = false;
                             }
-                        }*/
-                        /*if (!isABlockAdjacent) {
-                            blck.direction = Block::MovingDirection::right;
-                        }*/
-
+                        }
                         break;
                     }
                 }

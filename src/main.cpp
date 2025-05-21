@@ -55,11 +55,11 @@ int main(void)
     Rectangle borderLeft = Rectangle{ 78, 90, 10, 720 };
     Rectangle borderRight = Rectangle{ 712, 90, 10, 720 };
     Rectangle border{88, 90, 624, 720};
-    Texture2D imgPengo = LoadTexture("resources/Graphics/Pengo_front.png");
+    Texture2D imgPengo = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_down_1.png");
     Texture2D ice_block = LoadTexture("resources/Graphics/ice_block.png");
     Texture2D levelCntImage = LoadTexture("resources/Graphics/level_cnt.png");
     Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo_life.png");
-    Texture2D imgSnobee = LoadTexture("resources/Graphics/Snobee.png");
+    Texture2D imgSnobee = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_down_1.png");
 
     Map* map1 = new Map{ border, map1file, imgSnobee, imgPengo, ice_block };
     Map* map2 = new Map{ border, map2file, imgSnobee, imgPengo, ice_block };
@@ -163,20 +163,20 @@ int main(void)
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            for (int i = 0; i < map1->lives; ++i) {
-                if (map1->lives == 2) {
+            for (int i = 0; i < map2->lives; ++i) {
+                if (map2->lives == 2) {
                     DrawTextureV(lifeImage, lifePosition1, WHITE);
                 }
-                if (map1->lives == 3) {
+                if (map2->lives == 3) {
                     DrawTextureV(lifeImage, lifePosition1, WHITE);
                     DrawTextureV(lifeImage, lifePosition2, WHITE);
                 }
-                if (map1->lives == 4) {
+                if (map2->lives == 4) {
                     DrawTextureV(lifeImage, lifePosition1, WHITE);
                     DrawTextureV(lifeImage, lifePosition2, WHITE);
                     DrawTextureV(lifeImage, lifePosition3, WHITE);
                 }
-                if (map1->lives == 5) {
+                if (map2->lives == 5) {
                     DrawTextureV(lifeImage, lifePosition1, WHITE);
                     DrawTextureV(lifeImage, lifePosition2, WHITE);
                     DrawTextureV(lifeImage, lifePosition3, WHITE);
