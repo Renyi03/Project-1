@@ -86,15 +86,7 @@ void Pengo::Update() {
                         snobees.isStunned = true;
 
                         stunTimer = stunDuration;
-                    }
-                    if (snobees.isStunned) {
-                        stunTimer -= GetFrameTime();
-                        cout << " " << stunTimer << endl;
-                        if (stunTimer <= 0) {
-                            stunTimer = 0;
-                            snobees.isStunned = false;
-                        }
-                    }
+                    }                
                 }
             }
 
@@ -136,7 +128,6 @@ void Pengo::Update() {
                     target_position.y = v.y;
                 }
 
-
                 start_position = position;
                 amount = 0;
                 if (position.x - 48 < borderLeft.x + borderLeft.width) {
@@ -147,18 +138,8 @@ void Pengo::Update() {
                         snobees.isStunned = true;
 
                         stunTimer = stunDuration;
-                    }
-                    if (snobees.isStunned) {
-                        stunTimer -= GetFrameTime();
-                        cout << " " << stunTimer << endl;
-                        if (stunTimer <= 0) {
-                            stunTimer = 0;
-                            snobees.isStunned = false;
-                            
-                        }
-                    }
+                    }                   
                 }
-
             }
 
             else if (IsKeyDown(KEY_UP)) {
@@ -199,7 +180,6 @@ void Pengo::Update() {
                     target_position.y = v.y;
                 }
 
-
                 start_position = position;
                 amount = 0;
                 if (position.y <= borderTop.y - borderTop.height + 48) {
@@ -212,16 +192,7 @@ void Pengo::Update() {
                     snobees.isStunned = true;
 
                     stunTimer = stunDuration;
-                }
-                if (snobees.isStunned) {
-                    stunTimer -= GetFrameTime();
-                    cout << " " << stunTimer << endl;
-                    if (stunTimer <= 0) {
-                        stunTimer = 0;
-                        snobees.isStunned = false;
-
-                    }
-                }
+                }               
 
             }
 
@@ -263,7 +234,6 @@ void Pengo::Update() {
                     target_position.y = v.y;
                 }
 
-
                 start_position = position;
                 amount = 0;
                 if (position.y + image.height >= borderBottom.y) {
@@ -275,36 +245,24 @@ void Pengo::Update() {
                         snobees.isStunned = true;
 
                         stunTimer = stunDuration;
-                    }
-
-                    if (snobees.isStunned) {
-                        stunTimer -= GetFrameTime();
-                        cout << " " << stunTimer << endl;
-                        if (stunTimer <= 0) {
-                            stunTimer = 0;
-                            snobees.isStunned = false;
-                        }
-                    }
+                    }                   
                 }
-            }
-
-            if (snobees.isStunned) {
-                stunTimer -= GetFrameTime();
-                cout << " " << stunTimer << endl;
-                if (stunTimer <= 0) {
-                    stunTimer = 0;
-                    snobees.isStunned = false;
-                }
-            }
-
+            }            
         }
-
         else {
             float s = speed * GetFrameTime();
             amount += s;
             position = Vector2Lerp(start_position, target_position, amount);
             if (amount >= 1) {
                 position = target_position;
+            }
+        }
+        if (snobees.isStunned) {
+            stunTimer -= GetFrameTime();
+            cout << " " << stunTimer << endl;
+            if (stunTimer <= 0) {
+                stunTimer = 0;
+                snobees.isStunned = false;
             }
         }
     }
