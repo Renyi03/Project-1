@@ -76,7 +76,7 @@ void Map::Draw() {
 
         //losing lives
         if (snobee.isActive && CheckCollisionRecs(pengo->GetRect(), snobee.GetRect())) {
-            if (!hasCollided) {
+            if (!hasCollided && snobee.isStunned == false) {
                 --lives;
                 hasCollided = true;
                 cout << lives << " ";
@@ -88,6 +88,15 @@ void Map::Draw() {
                     gameOver = true;
                 }
             }
+            if (snobee.isStunned) {
+                snobee.isActive = false;
+                addScore(100);
+                snobeesDefeated++;
+                if (snobeesDefeated >= 4) {
+                    nextLevel = true;
+                }
+            }
+
         }
         else {
             hasCollided = false;
@@ -195,23 +204,15 @@ void Map::Draw() {
 
                         }
                     }
-
                     else {
                         b.direction = Block::MovingDirection::none;
-                    }
-                    
-
-                    /*if (snobee.isActive == false) {
-                        gameOver = true;
-                    }*/
-                    
+                    }                   
                 }
                 DrawTextureV(ice_block, { b.rect.x, b.rect.y }, WHITE);
             }
         }
     }
 }
-
 
 std::vector<Block>& Map::GetBlocks()
 {
@@ -226,7 +227,6 @@ void Map::addScore(int value)
 {
     score += value;
 }
-
 
 std::vector<SnoBee>& Map::GetSnoBees()
 {
