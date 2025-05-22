@@ -68,18 +68,32 @@ int main(void)
     std::string map16file = LoadFileText("resources/Maps/Map_16.txt");
 
 
-    Rectangle borderTop = Rectangle{ 88, 80, 624, 10 };
+    /*Rectangle borderTop = Rectangle{ 88, 80, 624, 10 };
     Rectangle borderBottom = Rectangle{ 88, 810, 624, 10 };
     Rectangle borderLeft = Rectangle{ 78, 90, 10, 720 };
-    Rectangle borderRight = Rectangle{ 712, 90, 10, 720 };
+    Rectangle borderRight = Rectangle{ 712, 90, 10, 720 };*/
+
+    Vector2 borderTopPosition = { 88,80 };
+    Vector2 borderBottomPosition = { 88,810 };
+    Vector2 borderLeftPosition = { 78, 90 };
+    Vector2 borderRightPosition = { 712,90 };
+
+
     Rectangle border{88, 90, 624, 720};
     Texture2D imgPengo = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_down_1.png");
     Texture2D ice_block = LoadTexture("resources/Graphics/ice_block.png");
     Texture2D levelCntImage = LoadTexture("resources/Graphics/level_cnt.png");
     Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo_life.png");
     Texture2D imgSnobee = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_down_1.png");
-    Texture2D levelCntImage2 = LoadTexture("resources/Graphics/level cnt.png"); //se tiene que cambiar por el sprite del pinguino con el 5
-
+    Texture2D levelCntBigImage = LoadTexture("resources/Graphics/level_cnt_big.png");
+    Texture2D borderTopImage = LoadTexture("resources/Graphics/Border_top.png");
+    Texture2D borderBottomImage = LoadTexture("resources/Graphics/Border_bottom.png");
+    Texture2D borderLeftImage = LoadTexture("resources/Graphics/Border_left.png");
+    Texture2D borderRightImage = LoadTexture("resources/Graphics/Border_right.png");
+    Texture2D borderTopMovingImage = LoadTexture("resources/Graphics/Border_top_moving.png");
+    Texture2D borderBottomMovingImage = LoadTexture("resources/Graphics/Border_bottom_moving.png");
+    Texture2D borderLeftMovingImage = LoadTexture("resources/Graphics/Border_left_moving.png");
+    Texture2D borderRightMovingImage = LoadTexture("resources/Graphics/Border_right_moving.png");
 
     Map* map1 = new Map{ border, map1file, imgSnobee, imgPengo, ice_block };
     Map* map2 = new Map{ border, map2file, imgSnobee, imgPengo, ice_block };
@@ -219,10 +233,10 @@ int main(void)
                 }
             }
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
 
@@ -258,10 +272,10 @@ int main(void)
                 }
             }
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
@@ -274,19 +288,36 @@ int main(void)
         case LEVEL3:
         {
             UpdateMusicStream(Main_BGM);
+            level = 3;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map3->lives; ++i) {
+                if (map2->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map3->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map3->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map3->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
@@ -295,19 +326,36 @@ int main(void)
         case LEVEL4:
         {
             UpdateMusicStream(Main_BGM);
+            level = 4;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map4->lives; ++i) {
+                if (map4->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map4->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map4->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map4->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
@@ -317,266 +365,470 @@ int main(void)
         case LEVEL5:
         {
             UpdateMusicStream(Main_BGM);
+            level = 5;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map5->lives; ++i) {
+                if (map5->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map5->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map5->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map5->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
-            DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
         }break;
         case LEVEL6:
         {
             UpdateMusicStream(Main_BGM);
+            level = 6;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map6->lives; ++i) {
+                if (map6->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map6->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map6->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map6->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
         }break;
         case LEVEL7:
         {
             UpdateMusicStream(Main_BGM);
+            level = 7;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map7->lives; ++i) {
+                if (map7->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map7->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map7->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map7->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
         }break;
         case LEVEL8:
         {
             UpdateMusicStream(Main_BGM);
+            level = 8;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map8->lives; ++i) {
+                if (map8->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map8->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map8->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map8->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
         }break;
         case LEVEL9:
         {
             UpdateMusicStream(Main_BGM);
+            level = 9;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map9->lives; ++i) {
+                if (map9->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map9->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map9->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map9->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
         }break;
         case LEVEL10:
         {
             UpdateMusicStream(Main_BGM);
+            level = 10;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map10->lives; ++i) {
+                if (map2->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map10->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map10->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map10->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
-            DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
         }break;
         case LEVEL11:
         {
             UpdateMusicStream(Main_BGM);
+            level = 11;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map11->lives; ++i) {
+                if (map11->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map11->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map11->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map2->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
         }break;
         case LEVEL12:
         {
             UpdateMusicStream(Main_BGM);
+            level = 12;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map12->lives; ++i) {
+                if (map12->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map12->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map12->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map12->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
         }break;
         case LEVEL13:
         {
             UpdateMusicStream(Main_BGM);
+            level = 13;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map13->lives; ++i) {
+                if (map13->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map13->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map13->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map13->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
         }break;
         case LEVEL14:
         {
             UpdateMusicStream(Main_BGM);
+            level = 14;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map14->lives; ++i) {
+                if (map14->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map14->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map14->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map14->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
         }break;
         case LEVEL15:
         {
             UpdateMusicStream(Main_BGM);
+            level = 15;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map15->lives; ++i) {
+                if (map15->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map15->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map15->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map15->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
-            DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition15, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition15, WHITE);
         }break;
         case LEVEL16:
         {
             UpdateMusicStream(Main_BGM);
+            level = 16;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
-            DrawRectangleLinesEx(borderTop, 10, BLUE);
-            DrawRectangleLinesEx(borderBottom, 10, BLUE);
-            DrawRectangleLinesEx(borderLeft, 10, BLUE);
-            DrawRectangleLinesEx(borderRight, 10, BLUE);
+            DrawTextureV(borderTopImage, borderTopPosition, WHITE);
+            DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
+            DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
+            DrawTextureV(borderRightImage, borderRightPosition, WHITE);
 
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            for (int i = 0; i < map16->lives; ++i) {
+                if (map16->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map16->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map16->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map16->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition15, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
+            DrawTextureV(levelCntBigImage, levelCntPosition15, WHITE);
         }break;
 
 
@@ -733,7 +985,7 @@ int main(void)
                 map2->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map2->nextLevel = false;
-                currentScreen = LEVEL3;
+                currentScreen = POINTS;
             }
 
 
@@ -755,8 +1007,27 @@ int main(void)
             }
 
             if (map3->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map3->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map3->nextLevel = false;
-                currentScreen = LEVEL4;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -776,8 +1047,27 @@ int main(void)
             }
 
             if (map4->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map4->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map4->nextLevel = false;
-                currentScreen = LEVEL5;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -797,8 +1087,27 @@ int main(void)
             }
 
             if (map5->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map5->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map5->nextLevel = false;
-                currentScreen = LEVEL6;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -818,8 +1127,27 @@ int main(void)
             }
 
             if (map6->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map6->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map6->nextLevel = false;
-                currentScreen = LEVEL7;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -839,8 +1167,27 @@ int main(void)
             }
 
             if (map7->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map7->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map7->nextLevel = false;
-                currentScreen = LEVEL8;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -860,8 +1207,27 @@ int main(void)
             }
 
             if (map8->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map8->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map8->nextLevel = false;
-                currentScreen = LEVEL9;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -881,8 +1247,27 @@ int main(void)
             }
 
             if (map9->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map9->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map9->nextLevel = false;
-                currentScreen = LEVEL10;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -902,8 +1287,27 @@ int main(void)
             }
 
             if (map10->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map10->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map10->nextLevel = false;
-                currentScreen = LEVEL11;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -923,8 +1327,27 @@ int main(void)
             }
 
             if (map11->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map11->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map11->nextLevel = false;
-                currentScreen = LEVEL12;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -944,8 +1367,27 @@ int main(void)
             }
 
             if (map12->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map12->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map12->nextLevel = false;
-                currentScreen = LEVEL13;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -966,8 +1408,27 @@ int main(void)
             }
 
             if (map13->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map13->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map13->nextLevel = false;
-                currentScreen = LEVEL14;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -987,8 +1448,27 @@ int main(void)
             }
 
             if (map14->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map14->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map14->nextLevel = false;
-                currentScreen = LEVEL15;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -1008,8 +1488,27 @@ int main(void)
             }
 
             if (map15->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map15->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map15->nextLevel = false;
-                currentScreen = LEVEL16;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -1029,8 +1528,27 @@ int main(void)
             }
 
             if (map16->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map16->addScore(bonusPoints);
+                totalScore += bonusPoints;
                 map16->nextLevel = false;
-                currentScreen = GAMEOVER;
+                currentScreen = POINTS;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -1066,7 +1584,60 @@ int main(void)
                     currentScreen = LEVEL2;
                 }
                 else if (level == 2) {
-                    currentScreen = GAMEOVER;
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL3;
+                }
+                else if (level == 3) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL4;
+                }
+                else if (level == 4) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL5;
+                }
+                else if (level == 5) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL6;
+                }
+                else if (level == 6) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL7;
+                }
+                else if (level == 7) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL8;
+                }
+                else if (level == 8) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL9;
+                }
+                else if (level == 9) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL10;
+                }
+                else if (level == 10) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL11;
+                }
+                else if (level == 11) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL12;
+                }
+                else if (level == 12) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL13;
+                }
+                else if (level == 13) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL14;
+                }
+                else if (level == 14) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL15;
+                }
+                else if (level == 15) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL16;
                 }
             }
         } break;
