@@ -189,7 +189,7 @@ void Map::Draw() {
                             if (snobeesDefeated >= 4) {
                                 nextLevel = true;
                             }
-                            b.direction = Block::MovingDirection::none;
+
                             PlaySound(b.Ice_Block_Destroyed);
                             snobee.score += 400;
 

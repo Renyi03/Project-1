@@ -47,8 +47,8 @@ int main(void)
     double levelEndTime = 0.0;
     int bonusPoints = 0;
 
-    std::string map1file = LoadFileText("resources/Map_1.txt");
-    std::string map2file = LoadFileText("resources/Map_2.txt");
+    std::string map1file = LoadFileText("resources/Maps/Map_1.txt");
+    std::string map2file = LoadFileText("resources/Maps/Map_2.txt");
 
     Rectangle borderTop = Rectangle{ 88, 80, 624, 10 };
     Rectangle borderBottom = Rectangle{ 88, 810, 624, 10 };
@@ -293,7 +293,7 @@ int main(void)
             DrawText(TextFormat("ACT  2"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL1;
+                currentScreen = GAMEOVER;
             }
 
         } break;

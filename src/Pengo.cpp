@@ -19,7 +19,7 @@ Pengo::Pengo(Rectangle screenBorder, Map* map, Texture2D img)
     position.x = 376;
     position.y = 378;
     target_position = position;
-    speed = 0.5;
+    speed = 1;
     border = screenBorder;
     currentMap = map;
     stunTimer = 0;
@@ -299,7 +299,7 @@ void Pengo::Update() {
             float s = speed * GetFrameTime();
             amount += s;
             position = Vector2Lerp(start_position, target_position, amount);
-            if (amount >= 0.5) {
+            if (amount >= 1) {
                 position = target_position;
             }
         }
