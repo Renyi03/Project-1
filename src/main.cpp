@@ -155,6 +155,9 @@ int main(void)
             DrawRectangleLinesEx(borderRight, 10, BLUE);
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
+
+            
+
         }break;
         case LEVEL2:
         {
@@ -267,6 +270,10 @@ int main(void)
             DrawText(TextFormat("%i", map1->GetScore()), 260, 2, 30, WHITE);
             DrawText(TextFormat("ACT  1"), 88, 850, 30, WHITE);
 
+            if (IsKeyPressed(KEY_N)) {
+                currentScreen = LEVEL2;
+            }
+
         } break;
         case LEVEL2:
         {
@@ -284,6 +291,11 @@ int main(void)
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
             DrawText(TextFormat("%i", map1->GetScore()), 260, 2, 30, WHITE);
             DrawText(TextFormat("ACT  2"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                currentScreen = LEVEL1;
+            }
+
         } break;
         case POINTS:
         {

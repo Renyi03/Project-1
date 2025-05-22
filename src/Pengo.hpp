@@ -22,7 +22,7 @@ protected:
 	Vector2 position, target_position, start_position;
 	Vector2 respawn_position = { 376, 378 };
 	float amount;
-	int speed;
+	float speed;
 	Rectangle border, borderRight, borderLeft, borderTop, borderBottom;
 	float stunTimer = 0;
 	float stunDuration = 2.5;
