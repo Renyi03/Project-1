@@ -141,7 +141,7 @@ void Pengo::Update() {
                     position.x = borderLeft.x + borderLeft.width;
                     target_position = position;
 
-                    if (snobees.position.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) {
+                    if (snobees.current_position.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) {
                         snobees.isStunned = true;
 
                         stunTimer = stunDuration;
@@ -152,7 +152,7 @@ void Pengo::Update() {
                         if (stunTimer <= 0) {
                             stunTimer = 0;
                             snobees.isStunned = false;
-
+                            
                         }
                     }
                 }
