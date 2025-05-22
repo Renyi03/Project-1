@@ -39,7 +39,7 @@ int SnoBee::countSurroundingBlocks() {
     Vector2 directions[4] = { {48, 0}, {-48, 0}, {0, -48}, {0, 48} }; //right, left, up, down
     for (auto& d : directions) {
         for (auto& b : blocks) {
-            if (b.isActive && b.rect.x == position.x + d.x && b.rect.y == position.y + d.y) {
+            if (b.isActive && b.rect.x == current_position.x + d.x && b.rect.y == current_position.y + d.y) {
                 ctr++;
             }
         }
@@ -65,7 +65,8 @@ void SnoBee::Update() {
 
     if (!isStunned) {
         if (current_position.x == target_position.x && current_position.y == target_position.y) {
-            if (!breakingMode && countSurroundingBlocks() >= 2) {
+            auto i = countSurroundingBlocks();
+            if (!breakingMode && i >= 2) {
                 breakingMode = true;
             }
             int direction = rand() % 4 + 1;
