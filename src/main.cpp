@@ -197,10 +197,7 @@ int main(void)
         }break;
         case POINTS:
         {
-            DrawTextureV(lifeImage, lifePosition1, WHITE);
-            DrawTextureV(lifeImage, lifePosition2, WHITE);
-            DrawTextureV(lifeImage, lifePosition3, WHITE);
-            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            
         }break;
         case GAMEOVER:
         {
@@ -321,6 +318,10 @@ int main(void)
             DrawText("FROM 40 TO 49  500 PTS", 200, 560, 30, BLUE);
             DrawText("FROM 50 TO 59  10 PTS", 200, 660, 30, BLUE);
             DrawText("60 AND OVER   NO BONUS", 200, 760, 30, YELLOW);
+            DrawTextureV(lifeImage, lifePosition1, WHITE);
+            DrawTextureV(lifeImage, lifePosition2, WHITE);
+            DrawTextureV(lifeImage, lifePosition3, WHITE);
+            DrawTextureV(lifeImage, lifePosition4, WHITE);
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
                 if (level == 1) {

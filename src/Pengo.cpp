@@ -53,6 +53,7 @@ void Pengo::Update() {
                             isBlockAdjacent = true;
                             b.isActive = false;
                             PlaySound(b.Ice_Block_Destroyed);
+                            currentMap->addScore(30);
                             break;
                         }                       
                     }
@@ -100,6 +101,7 @@ void Pengo::Update() {
                             isBlockAdjacent = true;
                             b.isActive = false;
                             PlaySound(b.Ice_Block_Destroyed);
+                            currentMap->addScore(30);
                             break;
                         }
                     }
@@ -146,6 +148,7 @@ void Pengo::Update() {
                             isBlockAdjacent = true;
                             b.isActive = false;
                             PlaySound(b.Ice_Block_Destroyed);
+                            currentMap->addScore(30);
                             break;
                         }
                     }
@@ -193,6 +196,7 @@ void Pengo::Update() {
                             isBlockAdjacent = true;
                             b.isActive = false;
                             PlaySound(b.Ice_Block_Destroyed);
+                            currentMap->addScore(30);
                             break;
                         }
                     }
