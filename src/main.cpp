@@ -67,6 +67,7 @@ int main(void)
     Rectangle borderLeft = Rectangle{ 78, 90, 10, 720 };
     Rectangle borderRight = Rectangle{ 712, 90, 10, 720 };
     Rectangle border{88, 90, 624, 720};
+<<<<<<< Updated upstream
     Map* map1 = new Map{ border, map1file };
     Map* map2 = new Map{ border, map2file };
     Map* map3 = new Map{ border, map3file };
@@ -83,6 +84,50 @@ int main(void)
     Map* map14 = new Map{ border, map14file };
     Map* map15 = new Map{ border, map15file };
     Map* map16 = new Map{ border, map16file };
+=======
+    Texture2D imgPengo = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_down_1.png");
+    Texture2D ice_block = LoadTexture("resources/Graphics/ice_block.png");
+    Texture2D levelCntImage = LoadTexture("resources/Graphics/level_cnt.png");
+    Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo_life.png");
+    Texture2D imgSnobee = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_down_1.png");
+    Texture2D levelCntImage2 = LoadTexture("resources/Graphics/level cnt.png"); //se tiene que cambiar por el sprite del pinguino con el 5
+
+    Map* map;
+    Map* map1 = new Map{ border, map1file, imgSnobee, imgPengo, ice_block };
+    Map* map2 = new Map{ border, map2file, imgSnobee, imgPengo, ice_block };
+    Map* map3 = new Map{ border, map3file, imgSnobee, imgPengo, ice_block };
+    Map* map4 = new Map{ border, map4file, imgSnobee, imgPengo, ice_block };
+    Map* map5 = new Map{ border, map5file, imgSnobee, imgPengo, ice_block };
+    Map* map6 = new Map{ border, map6file, imgSnobee, imgPengo, ice_block };
+    Map* map7 = new Map{ border, map7file, imgSnobee, imgPengo, ice_block };
+    Map* map8 = new Map{ border, map8file, imgSnobee, imgPengo, ice_block };
+    Map* map9 = new Map{ border, map9file, imgSnobee, imgPengo, ice_block };
+    Map* map10 = new Map{ border, map10file, imgSnobee, imgPengo, ice_block };
+    Map* map11 = new Map{ border, map11file, imgSnobee, imgPengo, ice_block };
+    Map* map12 = new Map{ border, map12file, imgSnobee, imgPengo, ice_block };
+    Map* map13 = new Map{ border, map13file, imgSnobee, imgPengo, ice_block };
+    Map* map14 = new Map{ border, map14file, imgSnobee, imgPengo, ice_block };
+    Map* map15 = new Map{ border, map15file, imgSnobee, imgPengo, ice_block };
+    Map* map16 = new Map{ border, map16file, imgSnobee, imgPengo, ice_block };
+
+    map1->gameOver = false;
+    map2->gameOver = false;
+    map3->gameOver = false;
+    map4->gameOver = false;
+    map5->gameOver = false;
+    map6->gameOver = false;
+    map7->gameOver = false;
+    map8->gameOver = false;
+    map9->gameOver = false;
+    map10->gameOver = false;
+    map11->gameOver = false;
+    map12->gameOver = false;
+    map13->gameOver = false;
+    map14->gameOver = false;
+    map15->gameOver = false;
+    map16->gameOver = false;
+
+>>>>>>> Stashed changes
     /*Pengo pengo{ border, &map };*/
     /*map.pengo = &pengo;*/
 
@@ -187,6 +232,30 @@ int main(void)
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
             bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
+<<<<<<< Updated upstream
+=======
+            for (int i = 0; i < map->lives; ++i) {
+                if (map->lives == 2) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                }
+                if (map->lives == 3) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                }
+                if (map->lives == 4) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                }
+                if (map->lives == 5) {
+                    DrawTextureV(lifeImage, lifePosition1, WHITE);
+                    DrawTextureV(lifeImage, lifePosition2, WHITE);
+                    DrawTextureV(lifeImage, lifePosition3, WHITE);
+                    DrawTextureV(lifeImage, lifePosition4, WHITE);
+                }
+            }
+
+>>>>>>> Stashed changes
             DrawRectangleLinesEx(borderTop, 10, BLUE);
             DrawRectangleLinesEx(borderBottom, 10, BLUE);
             DrawRectangleLinesEx(borderLeft, 10, BLUE);
@@ -608,14 +677,38 @@ int main(void)
         } break;
         case LEVEL2:
         {
-            map2->Draw();
+            map->Draw();
 
-            if (map2->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
+<<<<<<< Updated upstream
             if (map2->nextLevel == true) {
                 map2->nextLevel = false;
+=======
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+>>>>>>> Stashed changes
                 currentScreen = LEVEL3;
             }
 
@@ -625,14 +718,14 @@ int main(void)
         } break;
         case LEVEL3:
         {
-            map3->Draw();
+            map->Draw();
 
-            if (map3->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map3->nextLevel == true) {
-                map3->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = LEVEL4;
             }
 
@@ -642,14 +735,14 @@ int main(void)
         } break;
         case LEVEL4:
         {
-            map4->Draw();
+            map->Draw();
 
-            if (map4->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map4->nextLevel == true) {
-                map4->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = LEVEL5;
             }
 
@@ -659,14 +752,14 @@ int main(void)
         } break;
         case LEVEL5:
         {
-            map5->Draw();
+            map->Draw();
 
-            if (map5->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map5->nextLevel == true) {
-                map5->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = LEVEL6;
             }
 
@@ -676,14 +769,14 @@ int main(void)
         } break;
         case LEVEL6:
         {
-            map6->Draw();
+            map->Draw();
 
-            if (map6->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map6->nextLevel == true) {
-                map6->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = LEVEL7;
             }
 
@@ -693,14 +786,14 @@ int main(void)
         } break;
         case LEVEL7:
         {
-            map7->Draw();
+            map->Draw();
 
-            if (map7->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map7->nextLevel == true) {
-                map7->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = LEVEL8;
             }
 
@@ -710,14 +803,14 @@ int main(void)
         } break;
         case LEVEL8:
         {
-            map8->Draw();
+            map->Draw();
 
-            if (map8->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map8->nextLevel == true) {
-                map8->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = LEVEL9;
             }
 
@@ -727,14 +820,14 @@ int main(void)
         } break;
         case LEVEL9:
         {
-            map9->Draw();
+            map->Draw();
 
-            if (map9->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map9->nextLevel == true) {
-                map9->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = LEVEL10;
             }
 
@@ -744,14 +837,14 @@ int main(void)
         } break;
         case LEVEL10:
         {
-            map10->Draw();
+            map->Draw();
 
-            if (map10->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map10->nextLevel == true) {
-                map10->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = LEVEL11;
             }
 
@@ -761,14 +854,14 @@ int main(void)
         } break;
         case LEVEL11:
         {
-            map11->Draw();
+            map->Draw();
 
-            if (map11->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map11->nextLevel == true) {
-                map11->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = LEVEL12;
             }
 
@@ -778,14 +871,14 @@ int main(void)
         } break;
         case LEVEL12:
         {
-            map12->Draw();
+            map->Draw();
 
-            if (map12->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map12->nextLevel == true) {
-                map12->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = LEVEL13;
             }
 
@@ -795,14 +888,14 @@ int main(void)
         } break;
         case LEVEL13:
         {
-            map13->Draw();
+            map->Draw();
 
-            if (map13->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map13->nextLevel == true) {
-                map13->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = LEVEL14;
             }
 
@@ -812,14 +905,14 @@ int main(void)
         } break;
         case LEVEL14:
         {
-            map14->Draw();
+            map->Draw();
 
-            if (map14->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map14->nextLevel == true) {
-                map14->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = LEVEL15;
             }
 
@@ -829,14 +922,14 @@ int main(void)
         } break;
         case LEVEL15:
         {
-            map15->Draw();
+            map->Draw();
 
-            if (map15->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map15->nextLevel == true) {
-                map15->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = LEVEL16;
             }
 
@@ -846,14 +939,14 @@ int main(void)
         } break;
         case LEVEL16:
         {
-            map16->Draw();
+            map->Draw();
 
-            if (map16->gameOver == true) {
+            if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
             }
 
-            if (map16->nextLevel == true) {
-                map16->nextLevel = false;
+            if (map->nextLevel == true) {
+                map->nextLevel = false;
                 currentScreen = GAMEOVER;
             }
 
@@ -861,6 +954,88 @@ int main(void)
             DrawText(TextFormat("%i", map16->GetScore()), 260, 2, 30, WHITE);
             DrawText(TextFormat("ACT  16"), 88, 850, 30, WHITE);
         } break;
+<<<<<<< Updated upstream
+=======
+
+
+        case POINTS:
+        {
+            DrawRectangle(0, 0, 800, 900, BLACK);
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("GAME TIME %d SECONDS", levelEndTime - levelStartTime), 200, 160, 30, YELLOW);
+            DrawText("FROM 00 TO 19  5000 PTS", 200, 260, 30, BLUE);
+            DrawText("FROM 20 TO 29  2000 PTS", 200, 360, 30, BLUE);
+            DrawText("FROM 30 TO 39  1000 PTS", 200, 460, 30, BLUE);
+            DrawText("FROM 40 TO 49  500 PTS", 200, 560, 30, BLUE);
+            DrawText("FROM 50 TO 59  10 PTS", 200, 660, 30, BLUE);
+            DrawText("60 AND OVER   NO BONUS", 200, 760, 30, YELLOW);
+            DrawTextureV(lifeImage, lifePosition1, WHITE);
+            DrawTextureV(lifeImage, lifePosition2, WHITE);
+            DrawTextureV(lifeImage, lifePosition3, WHITE);
+            DrawTextureV(lifeImage, lifePosition4, WHITE);
+            if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
+            {
+                if (level == 1) {
+                    levelStartTime = GetTime();
+                    currentScreen = LEVEL2;
+                }
+                else if (level == 2) {
+                    currentScreen = GAMEOVER;
+                }
+            }
+            
+                int num_map = GetRandomValue(2, 16);
+                
+                if (num_map == 2) {
+                    map = map2;
+                }
+                else if (num_map == 3) {
+                    map = map3;
+                }
+                else if (num_map == 4) {
+                    map = map4;
+                }
+                else if (num_map == 5) {
+                    map = map5;
+                }
+                else if (num_map == 6) {
+                    map = map6;
+                }
+                else if (num_map == 7) {
+                    map = map7;
+                }
+                else if (num_map == 8) {
+                    map = map8;
+                }
+                else if (num_map == 9) {
+                    map = map9;
+                }
+                else if (num_map == 10) {
+                    map = map10;
+                }
+                else if (num_map == 11) {
+                    map = map11;
+                }
+                else if (num_map == 12) {
+                    map = map12;
+                }
+                else if (num_map == 13) {
+                    map = map13;
+                }
+                else if (num_map == 14) {
+                    map = map14;
+                }
+                else if (num_map == 15) {
+                    map = map15;
+                }
+                else if (num_map == 16) {
+                    map = map16;
+                }
+            
+        } break;
+
+>>>>>>> Stashed changes
         case GAMEOVER:
         {
             DrawRectangle(0, 0, 800, 900, BLUE);

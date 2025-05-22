@@ -17,6 +17,12 @@ public:
 	Pengo* pengo;
 	SnoBee* snoBee;
 	int GetScore() const;
+<<<<<<< Updated upstream
+=======
+	void addScore(int value);
+	int randomMap();
+	int snobeesDefeated;
+>>>>>>> Stashed changes
 	bool nextLevel;
 	bool gameOver;
 	int lives;

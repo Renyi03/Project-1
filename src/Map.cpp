@@ -205,7 +205,21 @@ std::vector<Block>& Map::GetBlocks()
 }
 
 int Map::GetScore() const {
+<<<<<<< Updated upstream
     return snoBee->score;
+=======
+    return score;
+}
+
+void Map::addScore(int value)
+{
+    score += value;
+}
+
+std::vector<SnoBee>& Map::GetSnoBees()
+{
+    return SnoBees;
+>>>>>>> Stashed changes
 }
 
 //Rectangle Map::GetRectMap()
