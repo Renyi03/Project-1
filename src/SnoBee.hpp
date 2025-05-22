@@ -17,8 +17,6 @@ public:
 	const Rectangle& GetBorderTop() const;
 	const Rectangle& GetBorderBottom() const;
 	bool isActive;
-	void addScore(int points);
-	int score = 0;
 	bool breakingMode;
 	float breakCooldown;
 protected:

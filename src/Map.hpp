@@ -22,7 +22,7 @@ public:
 	bool gameOver;
 	int lives;
 private:
-	int score;
+	int score = 0;
 	Texture2D ice_block;
 	int speed;
 	Rectangle border;

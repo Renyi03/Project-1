@@ -177,7 +177,7 @@ void Map::Draw() {
                         nextLevel = true;
                         b.direction = Block::MovingDirection::none;
                         PlaySound(b.Ice_Block_Destroyed);
-                        snoBee->score += 400;
+                        addScore(400);
                     }
                 }
                 else {
@@ -199,7 +199,7 @@ std::vector<Block>& Map::GetBlocks()
 }
 
 int Map::GetScore() const {
-    return snoBee->score;
+    return score;
 }
 
 void Map::addScore(int value)

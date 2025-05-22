@@ -102,6 +102,8 @@ int main(void)
 
     while (WindowShouldClose() == false) {
 
+        totalScore = map1->GetScore() + map2->GetScore();
+
         switch (currentScreen) {
 
         case INITIAL:
@@ -260,7 +262,7 @@ int main(void)
                 else if (timeSpent < 60) {
                     bonusPoints = 10;
                 }
-                map1->snoBee->addScore(bonusPoints);
+                map1->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map1->nextLevel = false;
                 currentScreen = POINTS;
@@ -297,7 +299,7 @@ int main(void)
                 else if (timeSpent < 60) {
                     bonusPoints = 10;
                 }
-                map2->snoBee->addScore(bonusPoints);
+                map2->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map2->nextLevel = false;
                 currentScreen = POINTS;
