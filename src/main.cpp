@@ -119,36 +119,6 @@ int main(void)
     levelCntPosition4.x = 370;
     levelCntPosition4.y = 850;
 
-    Vector2 levelCntPosition6;
-    levelCntPosition6.x = 320;
-    levelCntPosition6.y = 850;
-    Vector2 levelCntPosition7;
-    levelCntPosition7.x = 320;
-    levelCntPosition7.y = 850;
-    Vector2 levelCntPosition8;
-    levelCntPosition8.x = 320;
-    levelCntPosition8.y = 850;
-    Vector2 levelCntPosition9;
-    levelCntPosition9.x = 320;
-    levelCntPosition9.y = 850;
-
-    Vector2 levelCntPosition11;
-    levelCntPosition11.x = 320;
-    levelCntPosition11.y = 850;
-    Vector2 levelCntPosition12;
-    levelCntPosition12.x = 320;
-    levelCntPosition12.y = 850;
-    Vector2 levelCntPosition13;
-    levelCntPosition13.x = 320;
-    levelCntPosition13.y = 850;
-    Vector2 levelCntPosition14;
-    levelCntPosition14.x = 320;
-    levelCntPosition14.y = 850;
-
-    Vector2 levelCntPosition16;
-    levelCntPosition16.x = 320;
-    levelCntPosition16.y = 850;
-
 
     Texture2D levelCntImage2 = LoadTexture("resources/Graphics/level cnt.png");
     Vector2 levelCntPosition5;
@@ -290,11 +260,8 @@ int main(void)
             DrawTextureV(lifeImage, lifePosition3, WHITE);
             DrawTextureV(lifeImage, lifePosition4, WHITE);
 
-            DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
+
         }break;
         case LEVEL6:
         {
@@ -314,11 +281,8 @@ int main(void)
             DrawTextureV(lifeImage, lifePosition4, WHITE);
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition6, WHITE);
+
         }break;
         case LEVEL7:
         {
@@ -340,11 +304,8 @@ int main(void)
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition6, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition7, WHITE);
+
         }break;
         case LEVEL8:
         {
@@ -366,11 +327,8 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition6, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition7, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition8, WHITE);
+
         }break;
         case LEVEL9:
         {
@@ -394,10 +352,7 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition6, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition7, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition8, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition9, WHITE);
+
         }break;
         case LEVEL10:
         {
@@ -416,15 +371,7 @@ int main(void)
             DrawTextureV(lifeImage, lifePosition3, WHITE);
             DrawTextureV(lifeImage, lifePosition4, WHITE);
 
-            DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition6, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition7, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition8, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition9, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
         }break;
         case LEVEL11:
@@ -445,16 +392,8 @@ int main(void)
             DrawTextureV(lifeImage, lifePosition4, WHITE);
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition6, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition7, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition8, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition9, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition11, WHITE);
         }break;
         case LEVEL12:
         {
@@ -475,16 +414,8 @@ int main(void)
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition6, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition7, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition8, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition9, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition11, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition12, WHITE);
         }break;
         case LEVEL13:
         {
@@ -506,16 +437,8 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition6, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition7, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition8, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition9, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition11, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition12, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition13, WHITE);
         }break;
         case LEVEL14:
         {
@@ -539,15 +462,7 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition6, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition7, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition8, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition9, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition11, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition12, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition13, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition14, WHITE);
         }break;
         case LEVEL15:
         {
@@ -566,20 +481,8 @@ int main(void)
             DrawTextureV(lifeImage, lifePosition3, WHITE);
             DrawTextureV(lifeImage, lifePosition4, WHITE);
 
-            DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition6, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition7, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition8, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition9, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition11, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition12, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition13, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition14, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition15, WHITE);
         }break;
         case LEVEL16:
@@ -600,21 +503,9 @@ int main(void)
             DrawTextureV(lifeImage, lifePosition4, WHITE);
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition5, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition6, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition7, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition8, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition9, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition10, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition11, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition12, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition13, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition14, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition15, WHITE);
-            DrawTextureV(levelCntImage, levelCntPosition16, WHITE);
         }break;
         case GAMEOVER:
         {
