@@ -18,7 +18,6 @@ public:
 	const Rectangle& GetBorderTop() const;
 	const Rectangle& GetBorderBottom() const;
 	bool isActive;
-	int score = 0;
 	bool isStunned;
 	bool breakingMode;
 	float breakCooldown;

@@ -17,12 +17,14 @@ public:
 	std::vector<SnoBee>& GetSnoBees();
 	vector<SnoBee>SnoBees;
 	Pengo* pengo;
-	int GetScore();
+	int GetScore() const;
+	void addScore(int value);
 	int snobeesDefeated;
 	bool nextLevel;
 	bool gameOver;
 	int lives;
 private:
+	int score = 0;
 	Texture2D ice_block;
 	int speed;
 	Rectangle border;

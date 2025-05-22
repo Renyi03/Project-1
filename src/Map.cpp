@@ -191,7 +191,7 @@ void Map::Draw() {
                             }
 
                             PlaySound(b.Ice_Block_Destroyed);
-                            snobee.score += 400;
+                            addScore(400);
 
                         }
                     }
@@ -218,13 +218,15 @@ std::vector<Block>& Map::GetBlocks()
     return blocks;
 }
 
-int Map::GetScore() { //antes era "Map::GetScore() const"
-    int score = 0;
-    for (auto& snobees : GetSnoBees()) {
-        score += snobees.score;
-    }
+int Map::GetScore() const {
     return score;
 }
+
+void Map::addScore(int value)
+{
+    score += value;
+}
+
 
 std::vector<SnoBee>& Map::GetSnoBees()
 {

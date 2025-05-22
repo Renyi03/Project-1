@@ -55,6 +55,7 @@ void Pengo::Update() {
                                 isBlockAdjacent = true;
                                 b.isActive = false;
                                 PlaySound(b.Ice_Block_Destroyed);
+                                currentMap->addScore(30);
                                 break;
                             }
                         }
@@ -81,7 +82,7 @@ void Pengo::Update() {
                     position.x = borderRight.x - image.width;
                     target_position = position;
 
-                    if (snobees.position.x + image.width == borderRight.x && position.x + image.width > borderRight.x - 48) {
+                    if (snobees.current_position.x + image.width == borderRight.x && position.x + image.width > borderRight.x - 48) {
                         snobees.isStunned = true;
 
                         stunTimer = stunDuration;
@@ -114,6 +115,7 @@ void Pengo::Update() {
                                 isBlockAdjacent = true;
                                 b.isActive = false;
                                 PlaySound(b.Ice_Block_Destroyed);
+                                currentMap->addScore(30);
                                 break;
                             }
                         }
@@ -175,6 +177,7 @@ void Pengo::Update() {
                             if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y <= borderTop.y - borderTop.height + 48)) {
                                 isBlockAdjacent = true;
                                 b.isActive = false;
+                                currentMap->addScore(30);
                                 PlaySound(b.Ice_Block_Destroyed);
                                 break;
                             }
@@ -205,7 +208,7 @@ void Pengo::Update() {
                     target_position.x = position.x;
                 }
 
-                if (snobees.position.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) {
+                if (snobees.current_position.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) {
                     snobees.isStunned = true;
 
                     stunTimer = stunDuration;
@@ -239,6 +242,7 @@ void Pengo::Update() {
                                 isBlockAdjacent = true;
                                 b.isActive = false;
                                 PlaySound(b.Ice_Block_Destroyed);
+                                currentMap->addScore(30);
                                 break;
                             }
                         }
@@ -267,7 +271,7 @@ void Pengo::Update() {
                     target_position.y = position.y;
                     target_position.x = position.x;
 
-                    if (snobees.position.y + image.height == borderBottom.y && position.y + image.height >= borderBottom.y) {
+                    if (snobees.current_position.y + image.height == borderBottom.y && position.y + image.height >= borderBottom.y) {
                         snobees.isStunned = true;
 
                         stunTimer = stunDuration;
