@@ -65,6 +65,7 @@ void Pengo::Update() {
                             PlaySound(b.Push_Ice_Block);
                             if (blockCollision == true) {
                                 snobees.isActive = false;
+                                PlaySound(snobees.Snow_Bee_Squashed);
                             }
                         }
                         break;
@@ -84,6 +85,7 @@ void Pengo::Update() {
 
                     if (snobees.current_position.x + image.width == borderRight.x && position.x + image.width > borderRight.x - 48) {
                         snobees.isStunned = true;
+                        PlaySound(snobees.Snow_Bee_Stunned);
 
                         stunTimer = stunDuration;
                     }                
@@ -117,6 +119,7 @@ void Pengo::Update() {
                             PlaySound(b.Push_Ice_Block);
                             if (blockCollision == true) {
                                 snobees.isActive = false;
+                                PlaySound(snobees.Snow_Bee_Squashed);
                             }
                         }
                         break;
@@ -136,6 +139,7 @@ void Pengo::Update() {
 
                     if (snobees.current_position.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) {
                         snobees.isStunned = true;
+                        PlaySound(snobees.Snow_Bee_Stunned);
 
                         stunTimer = stunDuration;
                     }                   
@@ -169,6 +173,7 @@ void Pengo::Update() {
                             PlaySound(b.Push_Ice_Block);
                             if (blockCollision == true) {
                                 snobees.isActive = false;
+                                PlaySound(snobees.Snow_Bee_Squashed);
                             }
                         }
                         break;
@@ -190,6 +195,7 @@ void Pengo::Update() {
 
                 if (snobees.current_position.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) {
                     snobees.isStunned = true;
+                    PlaySound(snobees.Snow_Bee_Stunned);
 
                     stunTimer = stunDuration;
                 }               
@@ -223,6 +229,7 @@ void Pengo::Update() {
                             PlaySound(b.Push_Ice_Block);
                             if (blockCollision == true) {
                                 snobees.isActive = false;
+                                PlaySound(snobees.Snow_Bee_Squashed);
                             }
                         }
                         break;
@@ -243,6 +250,7 @@ void Pengo::Update() {
 
                     if (snobees.current_position.y + image.height == borderBottom.y && position.y + image.height >= borderBottom.y) {
                         snobees.isStunned = true;
+                        PlaySound(snobees.Snow_Bee_Stunned);
 
                         stunTimer = stunDuration;
                     }                   

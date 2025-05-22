@@ -92,6 +92,7 @@ void Map::Draw() {
                 snobee.isActive = false;
                 addScore(100);
                 snobeesDefeated++;
+                PlaySound(Touch_Snow_Bee);
                 if (snobeesDefeated >= 4) {
                     nextLevel = true;
                 }

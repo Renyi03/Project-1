@@ -23,6 +23,7 @@ public:
 	bool nextLevel;
 	bool gameOver;
 	int lives;
+	Sound Touch_Snow_Bee = LoadSound("resources/Pengo_Music/Touch_Snow-Bee.wav");
 private:
 	int score = 0;
 	Texture2D ice_block;
