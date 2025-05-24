@@ -22,8 +22,6 @@ public:
 	bool breakingMode;
 	float breakCooldown;
 	Vector2 current_position, position, target_position, start_position;
-	Sound Snow_Bee_Squashed = LoadSound("resources/Pengo_Music/Snow-Bee_Squashed.wav");
-	Sound Snow_Bee_Stunned = LoadSound("resources/Pengo_Music/Snow-Bee_Stunned.wav");
 protected:
 	Texture2D image;
 	float amount;
