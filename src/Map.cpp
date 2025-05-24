@@ -196,6 +196,7 @@ void Map::Draw() {
                         if (snobee.isActive && CheckCollisionRecs(b.rect, snobee.GetRect())) {
                             snobee.isActive = false;
                             snobeesDefeated++;
+                            PlaySound(snobee.Snow_Bee_Squashed);
                             if (snobeesDefeated >= 4) {
                                 nextLevel = true;
                             }

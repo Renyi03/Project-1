@@ -82,6 +82,7 @@ void Pengo::Update() {
                 if (position.x + image.width > borderRight.x - 48) {
                     position.x = borderRight.x - image.width;
                     target_position = position;
+                    PlaySound(Push_Outside_Walls);
 
                     if (snobees.current_position.x + image.width == borderRight.x && position.x + image.width > borderRight.x - 48) {
                         snobees.isStunned = true;
@@ -136,6 +137,7 @@ void Pengo::Update() {
                 if (position.x - 48 < borderLeft.x + borderLeft.width) {
                     position.x = borderLeft.x + borderLeft.width;
                     target_position = position;
+                    PlaySound(Push_Outside_Walls);
 
                     if (snobees.current_position.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) {
                         snobees.isStunned = true;
@@ -191,15 +193,15 @@ void Pengo::Update() {
                     position.y = borderTop.y + borderTop.height;
                     target_position.y = position.y;
                     target_position.x = position.x;
-                }
+                    PlaySound(Push_Outside_Walls);
 
-                if (snobees.current_position.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) {
-                    snobees.isStunned = true;
-                    PlaySound(snobees.Snow_Bee_Stunned);
+                    if (snobees.current_position.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) {
+                        snobees.isStunned = true;
+                        PlaySound(snobees.Snow_Bee_Stunned);
 
-                    stunTimer = stunDuration;
+                        stunTimer = stunDuration;
+                    }
                 }               
-
             }
 
             else if (IsKeyDown(KEY_DOWN)) {
@@ -247,6 +249,7 @@ void Pengo::Update() {
                     position.y = borderBottom.y - image.height;
                     target_position.y = position.y;
                     target_position.x = position.x;
+                    PlaySound(Push_Outside_Walls);
 
                     if (snobees.current_position.y + image.height == borderBottom.y && position.y + image.height >= borderBottom.y) {
                         snobees.isStunned = true;

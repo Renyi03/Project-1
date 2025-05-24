@@ -181,6 +181,7 @@ int main(void)
     GameScreen currentScreen = INITIAL;
 
     Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
+    Sound Time_Bonus = LoadSound("resources/Pengo_Music/Time_Bonus_Extend.wav");
 
     //PlayMusicStream(Main_BGM);
 
@@ -954,7 +955,7 @@ int main(void)
             DrawText(TextFormat("ACT  1"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL2;
+                currentScreen = POINTS;
             }
 
         } break;
@@ -996,7 +997,7 @@ int main(void)
             DrawText(TextFormat("ACT  2"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL3;
+                currentScreen = POINTS;
             }
 
         } break;
@@ -1037,7 +1038,7 @@ int main(void)
             DrawText(TextFormat("ACT  3"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL4;
+                currentScreen = POINTS;
             }
         } break;
         case LEVEL4:
@@ -1077,7 +1078,7 @@ int main(void)
             DrawText(TextFormat("ACT  4"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL5;
+                currentScreen = POINTS;
             }
         } break;
         case LEVEL5:
@@ -1117,7 +1118,7 @@ int main(void)
             DrawText(TextFormat("ACT  5"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL6;
+                currentScreen = POINTS;
             }
         } break;
         case LEVEL6:
@@ -1157,7 +1158,7 @@ int main(void)
             DrawText(TextFormat("ACT  6"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL7;
+                currentScreen = POINTS;
             }
         } break;
         case LEVEL7:
@@ -1197,7 +1198,7 @@ int main(void)
             DrawText(TextFormat("ACT  7"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL8;
+                currentScreen = POINTS;
             }
         } break;
         case LEVEL8:
@@ -1237,7 +1238,7 @@ int main(void)
             DrawText(TextFormat("ACT  8"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL9;
+                currentScreen = POINTS;
             }
         } break;
         case LEVEL9:
@@ -1277,7 +1278,7 @@ int main(void)
             DrawText(TextFormat("ACT  9"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL10;
+                currentScreen = POINTS;
             }
         } break;
         case LEVEL10:
@@ -1317,7 +1318,7 @@ int main(void)
             DrawText(TextFormat("ACT  10"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL11;
+                currentScreen = POINTS;
             }
         } break;
         case LEVEL11:
@@ -1357,7 +1358,7 @@ int main(void)
             DrawText(TextFormat("ACT  11"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL12;
+                currentScreen = POINTS;
             }
         } break;
         case LEVEL12:
@@ -1397,7 +1398,7 @@ int main(void)
             DrawText(TextFormat("ACT  12"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL13;
+                currentScreen = POINTS;
             }
 
         } break;
@@ -1438,7 +1439,7 @@ int main(void)
             DrawText(TextFormat("ACT  13"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL14;
+                currentScreen = POINTS;
             }
         } break;
         case LEVEL14:
@@ -1478,7 +1479,7 @@ int main(void)
             DrawText(TextFormat("ACT  14"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL15;
+                currentScreen = POINTS;
             }
         } break;
         case LEVEL15:
@@ -1518,7 +1519,7 @@ int main(void)
             DrawText(TextFormat("ACT  15"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
-                currentScreen = LEVEL16;
+                currentScreen = POINTS;
             }
         } break;
         case LEVEL16:
@@ -1565,6 +1566,8 @@ int main(void)
 
         case POINTS:
         {
+            PlaySound(Time_Bonus);
+
             DrawRectangle(0, 0, 800, 900, BLACK);
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
             DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
@@ -1705,6 +1708,9 @@ int main(void)
     } 
 
     UnloadMusicStream(Main_BGM);
+    UnloadSound(Time_Bonus);
+    //Hacer unload de todos los sonidos
+
     UnloadTexture(imgPengo);
     UnloadTexture(imgSnobee);
     UnloadTexture(ice_block);
