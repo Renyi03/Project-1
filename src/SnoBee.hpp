@@ -5,7 +5,7 @@ class Map;
 
 class SnoBee {
 public:
-	SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img);
+	SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned);
 	~SnoBee();
 	void Draw();
 	void Update();
@@ -22,6 +22,8 @@ public:
 	bool breakingMode;
 	float breakCooldown;
 	Vector2 current_position, position, target_position, start_position;
+	Sound Snow_Bee_Squashed;
+	Sound Snow_Bee_Stunned;
 protected:
 	Texture2D image;
 	float amount;

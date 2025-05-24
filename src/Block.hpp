@@ -13,7 +13,10 @@ public:
 	Sound Push_Ice_Block;
 	Sound Block_Stopped;
 
-	Block(Rectangle r) {
+	Block(Rectangle r, Sound S_Ice_Block_Destroyed, Sound S_Push_Ice_Block, Sound S_Block_Stopped) {
+		Ice_Block_Destroyed = S_Ice_Block_Destroyed;
+		Push_Ice_Block = S_Push_Ice_Block;
+		Block_Stopped = S_Block_Stopped;
 		rect = r;
 		isActive = true;
 		direction = none;

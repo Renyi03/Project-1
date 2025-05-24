@@ -8,14 +8,14 @@
 #include "SnoBee.hpp"
 using namespace std;
 
-Pengo::Pengo(Rectangle screenBorder, Map* map, Texture2D img)
+Pengo::Pengo(Rectangle screenBorder, Map* map, Texture2D img, Sound S_Push_Outside_Walls)
 {
     borderTop = Rectangle{ 88, 80, 624, 10 };
     borderBottom = Rectangle{ 88, 810, 624, 10 };
     borderLeft = Rectangle{ 78, 90, 10, 720 };
     borderRight = Rectangle{ 712, 90, 10, 720 };
-    //image = LoadTexture("resources/Graphics/Pengo_front.png");
     image = img;
+    Push_Outside_Walls = S_Push_Outside_Walls;
     position.x = 376;
     position.y = 378;
     target_position = position;
@@ -24,7 +24,6 @@ Pengo::Pengo(Rectangle screenBorder, Map* map, Texture2D img)
     currentMap = map;
     stunTimer = 0;
     stunDuration = 2.5;
-
 }
 
 Pengo::~Pengo()
