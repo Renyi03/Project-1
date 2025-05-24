@@ -5,7 +5,7 @@ class SnoBee;
 
 class Pengo {
 public:
-	Pengo(Rectangle screenBorder, Map* map, Texture2D img);
+	Pengo(Rectangle screenBorder, Map* map, Texture2D img, Sound S_Push_Outside_Walls);
 	~Pengo();
 	void Draw();
 	void Update();
@@ -17,6 +17,7 @@ public:
 	const Rectangle& GetBorderTop() const;
 	const Rectangle& GetBorderBottom() const;
 	void resetPosition();
+	Sound Push_Outside_Walls;
 protected:
 	Texture2D image;
 	Vector2 position, target_position, start_position;

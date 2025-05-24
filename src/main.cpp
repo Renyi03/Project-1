@@ -121,6 +121,7 @@ int main(void)
 
     Sound Snow_Bee_Squashed = LoadSound("resources/Pengo_Music/Snow-Bee_Squashed.wav");
     Sound Snow_Bee_Stunned = LoadSound("resources/Pengo_Music/Snow-Bee_Stunned.wav");
+    Sound Touch_Snow_Bee = LoadSound("resources/Pengo_Music/Touch_Snow-Bee.wav");
     Sound Push_Outside_Walls = LoadSound("resources/Pengo_Music/Push_Outside_Walls.wav");
     Sound Ice_Block_Destroyed = LoadSound("resources/Pengo_Music/Ice_Block_Destroyed.wav");
     Sound Push_Ice_Block = LoadSound("resources/Pengo_Music/Push_Ice_Block.wav");
@@ -130,24 +131,24 @@ int main(void)
 
 
     Map* map;
-    Map* map1 = new Map{ border, map1file, imgSnobee, imgPengo, ice_block };
-    Map* map2 = new Map{ border, map2file, imgSnobee, imgPengo, ice_block };
-    Map* map3 = new Map{ border, map3file, imgSnobee, imgPengo, ice_block };
-    Map* map4 = new Map{ border, map4file, imgSnobee, imgPengo, ice_block };
-    Map* map5 = new Map{ border, map5file, imgSnobee, imgPengo, ice_block };
-    Map* map6 = new Map{ border, map6file, imgSnobee, imgPengo, ice_block };
-    Map* map7 = new Map{ border, map7file, imgSnobee, imgPengo, ice_block };
-    Map* map8 = new Map{ border, map8file, imgSnobee, imgPengo, ice_block };
-    Map* map9 = new Map{ border, map9file, imgSnobee, imgPengo, ice_block };
-    Map* map10 = new Map{ border, map10file, imgSnobee, imgPengo, ice_block };
-    Map* map11 = new Map{ border, map11file, imgSnobee, imgPengo, ice_block };
-    Map* map12 = new Map{ border, map12file, imgSnobee, imgPengo, ice_block };
-    Map* map13 = new Map{ border, map13file, imgSnobee, imgPengo, ice_block };
-    Map* map14 = new Map{ border, map14file, imgSnobee, imgPengo, ice_block };
-    Map* map15 = new Map{ border, map15file, imgSnobee, imgPengo, ice_block };
-    Map* map16 = new Map{ border, map16file, imgSnobee, imgPengo, ice_block };
+    Map* map1 = new Map{ border, map1file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map2 = new Map{ border, map2file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map3 = new Map{ border, map3file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map4 = new Map{ border, map4file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map5 = new Map{ border, map5file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map6 = new Map{ border, map6file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map7 = new Map{ border, map7file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map8 = new Map{ border, map8file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map9 = new Map{ border, map9file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map10 = new Map{ border, map10file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map11 = new Map{ border, map11file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map12 = new Map{ border, map12file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map13 = new Map{ border, map13file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map14 = new Map{ border, map14file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map15 = new Map{ border, map15file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+    Map* map16 = new Map{ border, map16file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
 
-    map1->gameOver = false;
+    /*map1->gameOver = false;
     map2->gameOver = false;
     map3->gameOver = false;
     map4->gameOver = false;
@@ -162,7 +163,7 @@ int main(void)
     map13->gameOver = false;
     map14->gameOver = false;
     map15->gameOver = false;
-    map16->gameOver = false;
+    map16->gameOver = false;*/
 
     /*Pengo pengo{ border, &map };*/
     /*map.pengo = &pengo;*/
@@ -210,7 +211,7 @@ int main(void)
     GameScreen currentScreen = INITIAL;
 
 
-  
+    PlayMusicStream(Main_BGM);
 
     //Game Loop
 
@@ -236,7 +237,6 @@ int main(void)
         }break;
         case LEVEL1:
         {
-            UpdateMusicStream(Main_BGM);
             level = 1;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -275,7 +275,6 @@ int main(void)
         }break;
         case LEVEL2:
         {
-            UpdateMusicStream(Main_BGM);
             level = 2;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -317,7 +316,6 @@ int main(void)
 
         case LEVEL3:
         {
-            UpdateMusicStream(Main_BGM);
             level = 3;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -355,7 +353,6 @@ int main(void)
         }break;
         case LEVEL4:
         {
-            UpdateMusicStream(Main_BGM);
             level = 4;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -394,7 +391,6 @@ int main(void)
         }break;
         case LEVEL5:
         {
-            UpdateMusicStream(Main_BGM);
             level = 5;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -431,7 +427,6 @@ int main(void)
         }break;
         case LEVEL6:
         {
-            UpdateMusicStream(Main_BGM);
             level = 6;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -469,7 +464,6 @@ int main(void)
         }break;
         case LEVEL7:
         {
-            UpdateMusicStream(Main_BGM);
             level = 7;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -509,7 +503,6 @@ int main(void)
         }break;
         case LEVEL8:
         {
-            UpdateMusicStream(Main_BGM);
             level = 8;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -549,7 +542,6 @@ int main(void)
         }break;
         case LEVEL9:
         {
-            UpdateMusicStream(Main_BGM);
             level = 9;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -590,7 +582,6 @@ int main(void)
         }break;
         case LEVEL10:
         {
-            UpdateMusicStream(Main_BGM);
             level = 10;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -627,7 +618,6 @@ int main(void)
         }break;
         case LEVEL11:
         {
-            UpdateMusicStream(Main_BGM);
             level = 11;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -665,7 +655,6 @@ int main(void)
         }break;
         case LEVEL12:
         {
-            UpdateMusicStream(Main_BGM);
             level = 12;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -704,7 +693,6 @@ int main(void)
         }break;
         case LEVEL13:
         {
-            UpdateMusicStream(Main_BGM);
             level = 13;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -744,7 +732,6 @@ int main(void)
         }break;
         case LEVEL14:
         {
-            UpdateMusicStream(Main_BGM);
             level = 14;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -785,7 +772,6 @@ int main(void)
         }break;
         case LEVEL15:
         {
-            UpdateMusicStream(Main_BGM);
             level = 15;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -823,7 +809,6 @@ int main(void)
         }break;
         case LEVEL16:
         {
-            UpdateMusicStream(Main_BGM);
             level = 16;
 
             /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
@@ -867,37 +852,37 @@ int main(void)
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
                 delete map1;
-                map1 = new Map{ border, map1file, imgSnobee, imgPengo, ice_block };
+                map1 = new Map{ border, map1file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map2;
-                map2 = new Map{ border, map2file, imgSnobee, imgPengo, ice_block };
+                map2 = new Map{ border, map2file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map3;
-                map3 = new Map{ border, map3file, imgSnobee, imgPengo, ice_block };
+                map3 = new Map{ border, map3file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map4;
-                map4 = new Map{ border, map4file, imgSnobee, imgPengo, ice_block };
+                map4 = new Map{ border, map4file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map5;
-                map5 = new Map{ border, map5file, imgSnobee, imgPengo, ice_block };
+                map5 = new Map{ border, map5file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map6;
-                map6 = new Map{ border, map6file, imgSnobee, imgPengo, ice_block };
+                map6 = new Map{ border, map6file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map7;
-                map7 = new Map{ border, map7file, imgSnobee, imgPengo, ice_block };
+                map7 = new Map{ border, map7file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map8;
-                map8 = new Map{ border, map8file, imgSnobee, imgPengo, ice_block };
+                map8 = new Map{ border, map8file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map9;
-                map9 = new Map{ border, map9file, imgSnobee, imgPengo, ice_block };
+                map9 = new Map{ border, map9file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map10;
-                map10 = new Map{ border, map10file, imgSnobee, imgPengo, ice_block };
+                map10 = new Map{ border, map10file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map11;
-                map11 = new Map{ border, map11file, imgSnobee, imgPengo, ice_block };
+                map11 = new Map{ border, map11file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map12;
-                map12 = new Map{ border, map12file, imgSnobee, imgPengo, ice_block };
+                map12 = new Map{ border, map12file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map13;
-                map13 = new Map{ border, map13file, imgSnobee, imgPengo, ice_block };
+                map13 = new Map{ border, map13file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map14;
-                map14 = new Map{ border, map14file, imgSnobee, imgPengo, ice_block };
+                map14 = new Map{ border, map14file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map15;
-                map15 = new Map{ border, map15file, imgSnobee, imgPengo, ice_block };
+                map15 = new Map{ border, map15file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 delete map16;
-                map16 = new Map{ border, map16file, imgSnobee, imgPengo, ice_block };
+                map16 = new Map{ border, map16file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
                 map1->gameOver = false;
                 map2->gameOver = false;
                 map3->gameOver = false;
@@ -944,7 +929,7 @@ int main(void)
         case LEVEL1:
         {
             map1->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map1->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -971,7 +956,9 @@ int main(void)
                 map1->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map1->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
             
@@ -984,6 +971,7 @@ int main(void)
             DrawText(TextFormat("ACT  1"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -991,7 +979,7 @@ int main(void)
         case LEVEL2:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1018,7 +1006,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1028,6 +1018,7 @@ int main(void)
             DrawText(TextFormat("ACT  2"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1035,7 +1026,7 @@ int main(void)
         case LEVEL3:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1062,7 +1053,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1071,13 +1064,14 @@ int main(void)
             DrawText(TextFormat("ACT  3"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL4:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1104,7 +1098,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1113,13 +1109,14 @@ int main(void)
             DrawText(TextFormat("ACT  4"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL5:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1146,7 +1143,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1155,13 +1154,14 @@ int main(void)
             DrawText(TextFormat("ACT  5"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL6:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1188,7 +1188,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1197,13 +1199,14 @@ int main(void)
             DrawText(TextFormat("ACT  6"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL7:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1230,7 +1233,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1239,13 +1244,14 @@ int main(void)
             DrawText(TextFormat("ACT  7"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL8:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1272,7 +1278,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1281,13 +1289,14 @@ int main(void)
             DrawText(TextFormat("ACT  8"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL9:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1314,7 +1323,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1323,13 +1334,14 @@ int main(void)
             DrawText(TextFormat("ACT  9"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL10:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1356,7 +1368,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1365,13 +1379,14 @@ int main(void)
             DrawText(TextFormat("ACT  10"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL11:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1398,7 +1413,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1407,13 +1424,14 @@ int main(void)
             DrawText(TextFormat("ACT  11"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL12:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1440,7 +1458,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1449,6 +1469,7 @@ int main(void)
             DrawText(TextFormat("ACT  12"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1456,7 +1477,7 @@ int main(void)
         case LEVEL13:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1483,7 +1504,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1492,13 +1515,14 @@ int main(void)
             DrawText(TextFormat("ACT  13"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL14:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1525,7 +1549,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1534,13 +1560,14 @@ int main(void)
             DrawText(TextFormat("ACT  14"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL15:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1567,7 +1594,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1576,13 +1605,14 @@ int main(void)
             DrawText(TextFormat("ACT  15"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL16:
         {
             map->Draw();
-            PlayMusicStream(Main_BGM);
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1609,7 +1639,9 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1618,6 +1650,7 @@ int main(void)
             DrawText(TextFormat("ACT  16"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = GAMEOVER;
             }
         } break;
@@ -1625,7 +1658,7 @@ int main(void)
 
         case POINTS:
         {
-            PlaySound(Time_Bonus);
+            
 
             DrawRectangle(0, 0, 800, 900, BLACK);
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
@@ -1767,17 +1800,22 @@ int main(void)
     } 
 
     UnloadMusicStream(Main_BGM);
+    UnloadSound(Snow_Bee_Squashed);
+    UnloadSound(Snow_Bee_Stunned);
+    UnloadSound(Push_Outside_Walls);
+    UnloadSound(Ice_Block_Destroyed);
+    UnloadSound(Push_Ice_Block);
+    UnloadSound(Block_Stopped);
     UnloadSound(Time_Bonus);
-    //Hacer unload de todos los sonidos
 
     UnloadTexture(imgPengo);
     UnloadTexture(imgSnobee);
     UnloadTexture(ice_block);
     UnloadTexture(levelCntImage);
     UnloadTexture(lifeImage);
+
     CloseAudioDevice();
     CloseWindow();
 
     return 0;
 }
-

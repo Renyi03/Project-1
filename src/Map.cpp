@@ -10,8 +10,18 @@
 #include "SnoBee.hpp"
 using namespace std;
 
-Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, Texture2D imgIceBlock)
+Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, Texture2D imgIceBlock, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned, Sound S_Touch_Snow_Bee, Sound S_Push_Outside_Walls, Sound S_Ice_Block_Destroyed, Sound S_Push_Ice_Block, Sound S_Block_Stopped)
 {
+    Snow_Bee_Squashed = S_Snow_Bee_Squashed;
+    Snow_Bee_Stunned = S_Snow_Bee_Stunned;
+    Touch_Snow_Bee = S_Touch_Snow_Bee;
+    Push_Outside_Walls = S_Push_Outside_Walls;
+    Ice_Block_Destroyed = S_Ice_Block_Destroyed;
+    Push_Ice_Block = S_Push_Ice_Block;
+    Block_Stopped = S_Block_Stopped;
+
+    gameOver = false;
+
     ice_block = imgIceBlock;
     snobeesDefeated = 0;
 
@@ -20,11 +30,11 @@ Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, 
     };
     
     for (auto &v : SpawnPositions) {
-        auto& s = SnoBee{ border, this, v, imgSnobee };
+        auto& s = SnoBee{ border, this, v, imgSnobee, S_Snow_Bee_Squashed, S_Snow_Bee_Stunned };
         SnoBees.push_back(s);
     }
 
-    pengo = new Pengo{ border, this, imgPengo }; //this: referencia al objeto de la clase (en este caso, el mapa)
+    pengo = new Pengo{ border, this, imgPengo, S_Push_Outside_Walls }; //this: referencia al objeto de la clase (en este caso, el mapa)
     
     lives = 5;
 
@@ -44,7 +54,7 @@ Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, 
             break;
         case '1':
             matrix.push_back(1);           
-            blocks.push_back(Block{ Rectangle{88 + col * 24, 90 + row * 48, 48, 48} });
+            blocks.push_back(Block{ Rectangle{88 + col * 24, 90 + row * 48, 48, 48}, S_Ice_Block_Destroyed, S_Push_Ice_Block, S_Block_Stopped });
             break;
         }
         ++col;

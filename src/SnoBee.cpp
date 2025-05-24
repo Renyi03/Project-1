@@ -10,13 +10,15 @@
 #include "Block.hpp"
 using namespace std;
 
-SnoBee::SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img)
+SnoBee::SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned)
 {
+    Snow_Bee_Squashed = S_Snow_Bee_Squashed;
+    Snow_Bee_Stunned = S_Snow_Bee_Stunned;
+
 	borderTop = Rectangle{ 88, 80, 624, 10 };
 	borderBottom = Rectangle{ 88, 810, 624, 10 };
 	borderLeft = Rectangle{ 78, 90, 10, 720 };
 	borderRight = Rectangle{ 712, 90, 10, 720 };
-	//image = LoadTexture("resources/Graphics/Snobee.png");
     image = img;
 	target_position = position;
     current_position = position;
