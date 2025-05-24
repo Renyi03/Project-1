@@ -995,6 +995,7 @@ int main(void)
             DrawText(TextFormat("ACT  2"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1002,6 +1003,7 @@ int main(void)
         case LEVEL3:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1028,7 +1030,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1038,12 +1041,14 @@ int main(void)
             DrawText(TextFormat("ACT  3"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL4:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1070,7 +1075,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1080,12 +1086,14 @@ int main(void)
             DrawText(TextFormat("ACT  4"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL5:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1112,7 +1120,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1122,12 +1131,14 @@ int main(void)
             DrawText(TextFormat("ACT  5"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL6:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1154,7 +1165,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1164,12 +1176,14 @@ int main(void)
             DrawText(TextFormat("ACT  6"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL7:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1196,7 +1210,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1206,12 +1221,14 @@ int main(void)
             DrawText(TextFormat("ACT  7"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL8:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1238,7 +1255,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1248,12 +1266,14 @@ int main(void)
             DrawText(TextFormat("ACT  8"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL9:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1280,7 +1300,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1290,12 +1311,14 @@ int main(void)
             DrawText(TextFormat("ACT  9"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL10:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1322,7 +1345,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1332,12 +1356,14 @@ int main(void)
             DrawText(TextFormat("ACT  10"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL11:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1364,7 +1390,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1374,12 +1401,14 @@ int main(void)
             DrawText(TextFormat("ACT  11"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL12:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1406,7 +1435,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1416,6 +1446,7 @@ int main(void)
             DrawText(TextFormat("ACT  12"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
 
@@ -1423,6 +1454,7 @@ int main(void)
         case LEVEL13:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1449,7 +1481,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1459,12 +1492,14 @@ int main(void)
             DrawText(TextFormat("ACT  13"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL14:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1491,7 +1526,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1501,12 +1537,14 @@ int main(void)
             DrawText(TextFormat("ACT  14"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL15:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1533,7 +1571,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1543,12 +1582,14 @@ int main(void)
             DrawText(TextFormat("ACT  15"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
         } break;
         case LEVEL16:
         {
             map->Draw();
+            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1575,7 +1616,8 @@ int main(void)
                 map->addScore(bonusPoints);
                 totalScore += bonusPoints;
                 map->nextLevel = false;
-                StopMusicStream(Main_BGM);
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1585,6 +1627,7 @@ int main(void)
             DrawText(TextFormat("ACT  16"), 88, 850, 30, WHITE);
 
             if (IsKeyPressed(KEY_N)) {
+                PlaySound(Time_Bonus);
                 currentScreen = GAMEOVER;
             }
         } break;
