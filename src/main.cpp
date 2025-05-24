@@ -81,13 +81,36 @@ int main(void)
 
 
     Rectangle border{88, 90, 624, 720};
-    Texture2D imgPengo = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_down_1.png");
+    
+    Texture2D imgPengoLeft = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_left.png");
+    Texture2D imgPengoRight = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_right.png");
+    Texture2D imgPengoUp = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_up.png");
+    Texture2D imgPengoDown = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_down.png");
+    Texture2D imgPengoPushLeft = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_push_left.png");
+    Texture2D imgPengoPushRight = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_push_right.png");
+    Texture2D imgPengoPushUp = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_push_up.png");
+    Texture2D imgPengoPushDown = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_push_down.png");
+    
     Texture2D ice_block = LoadTexture("resources/Graphics/ice_block.png");
     Texture2D levelCntImage = LoadTexture("resources/Graphics/level_cnt.png");
     Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo_life.png");
-    Texture2D imgSnobee = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_down_1.png");
     Texture2D levelCntBigImage = LoadTexture("resources/Graphics/level_cnt_big.png");
-    Texture2D borderTopImage = LoadTexture("resources/Graphics/Border_top.png");
+
+    Texture2D imgSnobeeLeft = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_left.png");
+    Texture2D imgSnobeeRight = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_right.png");
+    Texture2D imgSnobeeUp = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_up.png");
+    Texture2D imgSnobeeDown = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_down.png");
+    Texture2D imgSnobeeBreakLeft = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_break_left.png");
+    Texture2D imgSnobeeBreakRight = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_break_right.png");
+    Texture2D imgSnobeeBreakUp = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_break_up.png");
+    Texture2D imgSnobeeBreakDown = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_break_down.png");
+    Texture2D imgSnobeeStunned = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_stunned.png");
+    
+    Texture2D imgBorderLeft = LoadTexture("resources/Graphics/Border_left_shaking.png");
+    Texture2D imgBorderRight = LoadTexture("resources/Graphics/Border_right_shaking.png");
+    Texture2D imgBorderTop = LoadTexture("resources/Graphics/Border_top_shaking.png");
+    Texture2D imgBorderBottom = LoadTexture("resources/Graphics/Border_bottom_shaking.png");
+
     Texture2D borderBottomImage = LoadTexture("resources/Graphics/Border_bottom.png");
     Texture2D borderLeftImage = LoadTexture("resources/Graphics/Border_left.png");
     Texture2D borderRightImage = LoadTexture("resources/Graphics/Border_right.png");
