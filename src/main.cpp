@@ -111,13 +111,11 @@ int main(void)
     Texture2D imgBorderTop = LoadTexture("resources/Graphics/Border_top_shaking.png");
     Texture2D imgBorderBottom = LoadTexture("resources/Graphics/Border_bottom_shaking.png");
 
+    Texture2D borderTopImage = LoadTexture("resources/Graphics/Border_top.png");
     Texture2D borderBottomImage = LoadTexture("resources/Graphics/Border_bottom.png");
     Texture2D borderLeftImage = LoadTexture("resources/Graphics/Border_left.png");
     Texture2D borderRightImage = LoadTexture("resources/Graphics/Border_right.png");
-    Texture2D borderTopMovingImage = LoadTexture("resources/Graphics/Border_top_moving.png");
-    Texture2D borderBottomMovingImage = LoadTexture("resources/Graphics/Border_bottom_moving.png");
-    Texture2D borderLeftMovingImage = LoadTexture("resources/Graphics/Border_left_moving.png");
-    Texture2D borderRightMovingImage = LoadTexture("resources/Graphics/Border_right_moving.png");
+
 
     Sound Snow_Bee_Squashed = LoadSound("resources/Pengo_Music/Snow-Bee_Squashed.wav");
     Sound Snow_Bee_Stunned = LoadSound("resources/Pengo_Music/Snow-Bee_Stunned.wav");
