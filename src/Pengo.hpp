@@ -17,7 +17,6 @@ public:
 	const Rectangle& GetBorderTop() const;
 	const Rectangle& GetBorderBottom() const;
 	void resetPosition();
-	Sound Push_Outside_Walls = LoadSound("resources/Pengo_Music/Push_Outside_Walls.wav");
 protected:
 	Texture2D image;
 	Vector2 position, target_position, start_position;
