@@ -32,6 +32,7 @@ SOFTWARE.
 #include "Block.hpp"
 #include "Pengo.hpp"
 #include "SnoBee.hpp"
+#include "Anims.hpp"
 #include <ctime>
 #include <string>
 #include <iostream>
