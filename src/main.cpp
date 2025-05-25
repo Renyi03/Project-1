@@ -37,10 +37,10 @@ SOFTWARE.
 #include <iostream>
 using namespace std;
 
+//Define all the screens
 typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, LEVEL3, LEVEL4, LEVEL5, LEVEL6, LEVEL7, LEVEL8, LEVEL9, LEVEL10, LEVEL11, LEVEL12, LEVEL13, LEVEL14, LEVEL15, LEVEL16, GAMEOVER, POINTS } GameScreen;
 
-
-//Function to use a random map among all the 16 posible maps
+//Function to use a random map among all the 16 posible maps, called in the points screen
 Map* GetRandomMap(Map* map2, Map* map3, Map* map4, Map* map5, Map* map6, Map* map7, Map* map8, Map* map9, Map* map10, Map* map11, Map* map12, Map* map13, Map* map14, Map* map15, Map* map16) { 
     Map* map = nullptr;
     int num_map = GetRandomValue(2, 16);
@@ -278,6 +278,7 @@ int main(void)
     map16->gameOver = false;*/
 
     //Coords of the elements of the UI
+    //Life counter images
     Vector2 lifePosition1;
     lifePosition1.x = 88;
     lifePosition1.y = 30;
@@ -291,6 +292,7 @@ int main(void)
     lifePosition4.x = 232;
     lifePosition4.y = 30;
 
+    //Level counter images
     Vector2 levelCntPosition1;
     levelCntPosition1.x = 220;
     levelCntPosition1.y = 850;
@@ -304,6 +306,7 @@ int main(void)
     levelCntPosition4.x = 370;
     levelCntPosition4.y = 850;
 
+    //Level counter images (for levels 5, 10 and 15)
     Vector2 levelCntPosition5;
     levelCntPosition5.x = 572;
     levelCntPosition5.y = 30;
@@ -318,7 +321,6 @@ int main(void)
     srand(time(NULL));
  
     GameScreen currentScreen = INITIAL;
-
 
     PlayMusicStream(Main_BGM);
 
@@ -360,7 +362,7 @@ int main(void)
             }
         }break;
 
-        //Case for every level
+        //Case for each level
         case LEVEL1:
         {
             level = 1;
@@ -1647,7 +1649,7 @@ int main(void)
             }
         }break;
 
-
+        //Case for the game over screen, when all the lives are lost
         case GAMEOVER:
         {
             totalScore = 0;
@@ -1711,6 +1713,7 @@ int main(void)
             }
         }break;
 
+        //Case for the points screen, after every level
         case POINTS:
         {
             DrawRectangle(0, 0, 800, 900, BLACK);
@@ -1799,6 +1802,7 @@ int main(void)
         EndDrawing();
     } 
 
+    //Unload all the audio resources
     UnloadMusicStream(Main_BGM);
     UnloadSound(Snow_Bee_Squashed);
     UnloadSound(Snow_Bee_Stunned);
@@ -1808,6 +1812,7 @@ int main(void)
     UnloadSound(Block_Stopped);
     UnloadSound(Time_Bonus);
 
+    //Unload all the image resources
     UnloadTexture(imgPengo);
     UnloadTexture(imgSnobee);
     UnloadTexture(ice_block);

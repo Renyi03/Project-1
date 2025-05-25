@@ -35,7 +35,7 @@ SnoBee::~SnoBee()
 {
 }
 
-int SnoBee::countSurroundingBlocks() {
+int SnoBee::countSurroundingBlocks() { //Function for letting the snobees know how many blocks they have arround them
     auto& blocks = currentMap->GetBlocks();
     int ctr = 0;
     Vector2 directions[4] = { {48, 0}, {-48, 0}, {0, -48}, {0, 48} }; //right, left, up, down
@@ -65,26 +65,26 @@ void SnoBee::Update() {
         breakCooldown -= GetFrameTime();
     }
 
-    if (!isStunned) {
+    if (!isStunned) { //The snobee will do all this only if it is not stunned. If it is stunned, it will not do anything
         if (current_position.x == target_position.x && current_position.y == target_position.y) {
             auto i = countSurroundingBlocks();
-            if (!breakingMode && i >= 2) {
+            if (!breakingMode && i >= 3) { //If the snobee is surrounded by 3 blocks or more, it will enter the breaking mode state
                 breakingMode = true;
             }
             int direction = rand() % 4 + 1;
 
             switch (direction) {
-            case Block::MovingDirection::up: {
+            case Block::MovingDirection::up: { //Actions when moving upwards
 
                 bool isABlock{};
                 Vector2 v3{ current_position.x, current_position.y - 48 };
                 auto& blocks = currentMap->GetBlocks();
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& blck = blocks[i];
-                    if (blck.isActive == true && blck.rect.x == v3.x && blck.rect.y == v3.y) {
+                    if (blck.isActive == true && blck.rect.x == v3.x && blck.rect.y == v3.y) { //Perform only for an active block next to the snobee
                         isABlock = true;
                         if (breakingMode == true && breakCooldown <= 0.0f) {
-                            if ((rand() % 4 + 1) == 1) {
+                            if ((rand() % 4 + 1) == 1) { //There is a 25% chance of breaking a block if the snobee is in breaking mode state
                                 breakCooldown = 3.0f;
                                 blck.isActive = false;
                             }
@@ -93,14 +93,14 @@ void SnoBee::Update() {
                     }
                 }
 
-                if (!isABlock) {
+                if (!isABlock) { //Move to the next position if there is not a block
                     target_position.x = v3.x;
                     target_position.y = v3.y;
                 }
 
                 start_position = current_position;
                 amount = 0;
-                if (current_position.y <= borderTop.y - borderTop.height + 48) {
+                if (current_position.y <= borderTop.y - borderTop.height + 48) {  //Make the snobee unable of trespassing a border
                     current_position.y = borderTop.y + borderTop.height;
                     target_position.y = current_position.y;
                     target_position.x = current_position.x;
@@ -108,17 +108,17 @@ void SnoBee::Update() {
                 break;
             }
 
-            case Block::MovingDirection::down: {
+            case Block::MovingDirection::down: { //Actions when moving downwards
 
                 bool isABlock{};
                 Vector2 v3{ current_position.x, current_position.y + 48 };
                 auto& blocks = currentMap->GetBlocks();
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& blck = blocks[i];
-                    if (blck.isActive == true && blck.rect.x == v3.x && blck.rect.y == v3.y) {
+                    if (blck.isActive == true && blck.rect.x == v3.x && blck.rect.y == v3.y) { //Perform only for an active block next to the snobee
                         isABlock = true;
                         if (breakingMode == true && breakCooldown <= 0.0f) {
-                            if ((rand() % 4 + 1) == 1) {
+                            if ((rand() % 4 + 1) == 1) { //There is a 25% chance of breaking a block if the snobee is in breaking mode state
                                 breakCooldown = 3.0f;
                                 blck.isActive = false;
                             }
@@ -127,31 +127,31 @@ void SnoBee::Update() {
                     }
                 }
 
-                if (!isABlock) {
+                if (!isABlock) { //Move to the next position if there is not a block
                     target_position.x = v3.x;
                     target_position.y = v3.y;
                 }
 
                 start_position = current_position;
                 amount = 0;
-                if (current_position.y + image.height >= borderBottom.y) {
+                if (current_position.y + image.height >= borderBottom.y) { //Make the snobee unable of trespassing a border
                     current_position.y = borderBottom.y - image.height;
                     target_position.y = current_position.y;
                     target_position.x = current_position.x;
                 }
                 break;
             }
-            case Block::MovingDirection::left: {
+            case Block::MovingDirection::left: { //Actions when moving left
 
                 bool isABlock{};
                 Vector2 v3{ current_position.x - 48, current_position.y };
                 auto& blocks = currentMap->GetBlocks();
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& blck = blocks[i];
-                    if (blck.isActive == true && blck.rect.x == v3.x && blck.rect.y == v3.y) {
+                    if (blck.isActive == true && blck.rect.x == v3.x && blck.rect.y == v3.y) { //Perform only for an active block next to the snobee
                         isABlock = true;
                         if (breakingMode == true && breakCooldown <= 0.0f) {
-                            if ((rand() % 4 + 1) == 1) {
+                            if ((rand() % 4 + 1) == 1) { //There is a 25% chance of breaking a block if the snobee is in breaking mode state
                                 breakCooldown = 3.0f;
                                 blck.isActive = false;
                             }
@@ -160,30 +160,30 @@ void SnoBee::Update() {
                     }
                 }
 
-                if (!isABlock) {
+                if (!isABlock) { //Move to the next position if there is not a block
                     target_position.x = v3.x;
                     target_position.y = v3.y;
                 }
 
                 start_position = current_position;
                 amount = 0;
-                if (current_position.x - 48 < borderLeft.x + borderLeft.width) {
+                if (current_position.x - 48 < borderLeft.x + borderLeft.width) { //Make the snobee unable of trespassing a border
                     current_position.x = borderLeft.x + borderLeft.width;
                     target_position = current_position;
                 }
                 break;
             }
-            case Block::MovingDirection::right: {
+            case Block::MovingDirection::right: { //Actions when moving right
 
                 bool isABlock{};
                 Vector2 v3{ current_position.x + 48, current_position.y };
                 auto& blocks = currentMap->GetBlocks();
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& blck = blocks[i];
-                    if (blck.isActive == true && blck.rect.x == v3.x && blck.rect.y == v3.y) {
+                    if (blck.isActive == true && blck.rect.x == v3.x && blck.rect.y == v3.y) { //Perform only for an active block next to the snobee
                         isABlock = true;
                         if (breakingMode == true && breakCooldown <= 0.0f) {
-                            if ((rand() % 4 + 1) == 1) {
+                            if ((rand() % 4 + 1) == 1) { //There is a 25% chance of breaking a block if the snobee is in breaking mode state
                                 breakCooldown = 3.0f;
                                 blck.isActive = false;
                             }
@@ -192,14 +192,14 @@ void SnoBee::Update() {
                     }
                 }
 
-                if (!isABlock) {
+                if (!isABlock) { //Move to the next position if there is not a block
                     target_position.x = v3.x;
                     target_position.y = v3.y;
                 }
 
                 start_position = current_position;
                 amount = 0;
-                if (current_position.x + image.width > borderRight.x - 48) {
+                if (current_position.x + image.width > borderRight.x - 48) { //Make the snobee unable of trespassing a border
                     current_position.x = borderRight.x - image.width;
                     target_position = current_position;
                 }
@@ -207,7 +207,7 @@ void SnoBee::Update() {
             }
             }
         }
-        else {
+        else { //Set the movment speed of the snobee
             float s = speed * GetFrameTime();
             amount += s;
             current_position = Vector2Lerp(start_position, target_position, amount);
@@ -218,36 +218,36 @@ void SnoBee::Update() {
     }
 }
 
-Rectangle SnoBee::GetRect()
+Rectangle SnoBee::GetRect() //Get the position of a snobee
 {
-    if (!isActive) {
+    if (!isActive) { //When a snobee is defeated, its position and size will set to 0
         return Rectangle{ 0, 0, 0, 0 };
     }
     return Rectangle{ current_position.x, current_position.y, float(image.width), float(image.height) };
 }
 
-void SnoBee::DrawHitbox(bool isColliding)
+void SnoBee::DrawHitbox(bool isColliding) //Draw the witbox of a snobee, red if colliding, white if not (only for debugging, not activated in the actual game)
 {
     Color outlineColor = isColliding ? RED : WHITE;
     DrawRectangleLinesEx(GetRect(), 3, outlineColor);
 }
 
-const Rectangle& SnoBee::GetBorderRight() const
+const Rectangle& SnoBee::GetBorderRight() const //Get the right side of a snobee
 {
     return borderRight;
 }
 
-const Rectangle& SnoBee::GetBorderLeft() const
+const Rectangle& SnoBee::GetBorderLeft() const //Get the left side of a snobee
 {
     return borderLeft;
 }
 
-const Rectangle& SnoBee::GetBorderTop() const
+const Rectangle& SnoBee::GetBorderTop() const //Get the top side of a snobee
 {
     return borderTop;
 }
 
-const Rectangle& SnoBee::GetBorderBottom() const
+const Rectangle& SnoBee::GetBorderBottom() const //Get the bottom side of a snobee
 {
     return borderBottom;
 }
