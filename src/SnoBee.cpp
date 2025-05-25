@@ -6,11 +6,12 @@
 #include <algorithm>
 #include <raymath.h>
 #include <iostream>
+//#include "Anims.hpp"
 #include "Map.hpp"
 #include "Block.hpp"
 using namespace std;
 
-SnoBee::SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned)
+SnoBee::SnoBee(Anims* anims, Rectangle screenBorder, Map* map, Vector2 position, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned)
 {
     Snow_Bee_Squashed = S_Snow_Bee_Squashed;
     Snow_Bee_Stunned = S_Snow_Bee_Stunned;
@@ -19,7 +20,6 @@ SnoBee::SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img
 	borderBottom = Rectangle{ 88, 810, 624, 10 };
 	borderLeft = Rectangle{ 78, 90, 10, 720 };
 	borderRight = Rectangle{ 712, 90, 10, 720 };
-    image = img;
 	target_position = position;
     current_position = position;
 	speed = 3;
@@ -29,6 +29,7 @@ SnoBee::SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img
     isStunned = false;
     breakingMode = false;
     breakCooldown = 0.0f;
+    animations = anims;
 }
 
 SnoBee::~SnoBee()
@@ -52,7 +53,7 @@ int SnoBee::countSurroundingBlocks() {
 
 void SnoBee::Draw() {
     if (isActive == true) {
-       DrawTextureV(image, current_position, WHITE);
+        auto img = animations->;
     }
 }
 
@@ -134,8 +135,8 @@ void SnoBee::Update() {
 
                 start_position = current_position;
                 amount = 0;
-                if (current_position.y + image.height >= borderBottom.y) {
-                    current_position.y = borderBottom.y - image.height;
+                if (current_position.y + 48 >= borderBottom.y) {
+                    current_position.y = borderBottom.y - 48;
                     target_position.y = current_position.y;
                     target_position.x = current_position.x;
                 }
@@ -199,8 +200,8 @@ void SnoBee::Update() {
 
                 start_position = current_position;
                 amount = 0;
-                if (current_position.x + image.width > borderRight.x - 48) {
-                    current_position.x = borderRight.x - image.width;
+                if (current_position.x + 48 > borderRight.x - 48) {
+                    current_position.x = borderRight.x - 48;
                     target_position = current_position;
                 }
                 break;
@@ -223,7 +224,7 @@ Rectangle SnoBee::GetRect()
     if (!isActive) {
         return Rectangle{ 0, 0, 0, 0 };
     }
-    return Rectangle{ current_position.x, current_position.y, float(image.width), float(image.height) };
+    return Rectangle{ current_position.x, current_position.y, float(48), float(48) };
 }
 
 void SnoBee::DrawHitbox(bool isColliding)

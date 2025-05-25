@@ -6,15 +6,15 @@
 #include "Map.hpp"
 #include "Block.hpp"
 #include "SnoBee.hpp"
+#include "Anims.hpp"
 using namespace std;
 
-Pengo::Pengo(Rectangle screenBorder, Map* map, Texture2D img, Sound S_Push_Outside_Walls)
+Pengo::Pengo(Anims* anims, Rectangle screenBorder, Map* map, Sound S_Push_Outside_Walls)
 {
     borderTop = Rectangle{ 88, 80, 624, 10 };
     borderBottom = Rectangle{ 88, 810, 624, 10 };
     borderLeft = Rectangle{ 78, 90, 10, 720 };
     borderRight = Rectangle{ 712, 90, 10, 720 };
-    image = img;
     Push_Outside_Walls = S_Push_Outside_Walls;
     position.x = 376;
     position.y = 378;
@@ -24,6 +24,7 @@ Pengo::Pengo(Rectangle screenBorder, Map* map, Texture2D img, Sound S_Push_Outsi
     currentMap = map;
     stunTimer = 0;
     stunDuration = 2.5;
+    animations = anims;
 }
 
 Pengo::~Pengo()
@@ -31,7 +32,22 @@ Pengo::~Pengo()
 }
 
 void Pengo::Draw() {
-	DrawTextureV(image, position, WHITE);
+    int rightFramesCtr = 0;
+    int currentRightX = 0;
+    /*auto img = animations->imgPengoLeft;*/
+    /*Rectangle rightFrameRec = { 0.0f, 0.0f, img.width, img.height };*/
+    /*rightFramesCtr++;
+    if (IsKeyDown(KEY_RIGHT)) {
+        if (rightFramesCtr >= 1) {
+            DrawTextureRec(animations->imgPengoRight, rightFrameRec, { 0, 0 }, WHITE);
+            rightFramesCtr = 0;
+            currentRightX += 48;
+            if (currentRightX == 96) {
+                DrawTextureRec(animations->imgPengoRight, rightFrameRec, { 0, 0 }, WHITE);
+                currentRightX = 0;
+            }
+        }
+    }*/
 }
 
 void Pengo::Update() {
@@ -50,7 +66,7 @@ void Pengo::Update() {
                         bool isBlockAdjacent{};
                         for (int j = 0; j < blocks.size(); ++j) {
                             auto& b2 = blocks[j];
-                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x + image.width > borderRight.x - 48)) {
+                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x + 48 > borderRight.x - 48)) {
                                 isBlockAdjacent = true;
                                 b.isActive = false;
                                 PlaySound(b.Ice_Block_Destroyed);
@@ -78,12 +94,12 @@ void Pengo::Update() {
 
                 start_position = position;
                 amount = 0;
-                if (position.x + image.width > borderRight.x - 48) {
-                    position.x = borderRight.x - image.width;
+                if (position.x + 48 > borderRight.x - 48) {
+                    position.x = borderRight.x - 48;
                     target_position = position;
                     PlaySound(Push_Outside_Walls);
 
-                    if (snobees.current_position.x + image.width == borderRight.x && position.x + image.width > borderRight.x - 48) {
+                    if (snobees.current_position.x + 48 == borderRight.x && position.x + 48 > borderRight.x - 48) {
                         snobees.isStunned = true;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
@@ -216,7 +232,7 @@ void Pengo::Update() {
                         bool isBlockAdjacent{};
                         for (int j = 0; j < blocks.size(); ++j) {
                             auto& b2 = blocks[j];
-                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y + image.height >= borderBottom.y)) {
+                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y + 48 >= borderBottom.y)) {
                                 isBlockAdjacent = true;
                                 b.isActive = false;
                                 PlaySound(b.Ice_Block_Destroyed);
@@ -244,13 +260,13 @@ void Pengo::Update() {
 
                 start_position = position;
                 amount = 0;
-                if (position.y + image.height >= borderBottom.y) {
-                    position.y = borderBottom.y - image.height;
+                if (position.y + 48 >= borderBottom.y) {
+                    position.y = borderBottom.y - 48;
                     target_position.y = position.y;
                     target_position.x = position.x;
                     PlaySound(Push_Outside_Walls);
 
-                    if (snobees.current_position.y + image.height == borderBottom.y && position.y + image.height >= borderBottom.y) {
+                    if (snobees.current_position.y + 48 == borderBottom.y && position.y + 48 >= borderBottom.y) {
                         snobees.isStunned = true;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
@@ -286,7 +302,7 @@ void Pengo::resetPosition() {
 
 Rectangle Pengo::GetRect()
 {
-    return Rectangle{position.x, position.y, float(image.width), float(image.height)};
+    return Rectangle{position.x, position.y, float(48), float(48)};
 }
 
 void Pengo::DrawHitbox(bool isColliding)

@@ -2,10 +2,11 @@
 #include <raylib.h>
 class Map;
 class SnoBee;
+class Anims;
 
 class Pengo {
 public:
-	Pengo(Rectangle screenBorder, Map* map, Texture2D img, Sound S_Push_Outside_Walls);
+	Pengo(Anims* anims, Rectangle screenBorder, Map* map, Sound S_Push_Outside_Walls);
 	~Pengo();
 	void Draw();
 	void Update();
@@ -18,8 +19,8 @@ public:
 	const Rectangle& GetBorderBottom() const;
 	void resetPosition();
 	Sound Push_Outside_Walls;
+	Anims* animations;
 protected:
-	Texture2D image;
 	Vector2 position, target_position, start_position;
 	Vector2 respawn_position = { 376, 378 };
 	float amount;
@@ -28,5 +29,3 @@ protected:
 	float stunTimer = 0;
 	float stunDuration = 2.5;
 };
-
-

@@ -5,12 +5,13 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include "Anims.hpp"
 #include "Pengo.hpp"
 #include "Block.hpp"
 #include "SnoBee.hpp"
 using namespace std;
 
-Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, Texture2D imgIceBlock, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned, Sound S_Touch_Snow_Bee, Sound S_Push_Outside_Walls, Sound S_Ice_Block_Destroyed, Sound S_Push_Ice_Block, Sound S_Block_Stopped)
+Map::Map(Anims* anims, Rectangle border, string map, Texture2D imgIceBlock, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned, Sound S_Touch_Snow_Bee, Sound S_Push_Outside_Walls, Sound S_Ice_Block_Destroyed, Sound S_Push_Ice_Block, Sound S_Block_Stopped)
 {
     Snow_Bee_Squashed = S_Snow_Bee_Squashed;
     Snow_Bee_Stunned = S_Snow_Bee_Stunned;
@@ -19,6 +20,7 @@ Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, 
     Ice_Block_Destroyed = S_Ice_Block_Destroyed;
     Push_Ice_Block = S_Push_Ice_Block;
     Block_Stopped = S_Block_Stopped;
+    animations = anims;
 
     gameOver = false;
 
@@ -30,11 +32,11 @@ Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, 
     };
     
     for (auto &v : SpawnPositions) {
-        auto& s = SnoBee{ border, this, v, imgSnobee, S_Snow_Bee_Squashed, S_Snow_Bee_Stunned };
+        auto& s = SnoBee{ anims, border, this, v, S_Snow_Bee_Squashed, S_Snow_Bee_Stunned };
         SnoBees.push_back(s);
     }
 
-    pengo = new Pengo{ border, this, imgPengo, S_Push_Outside_Walls }; //this: referencia al objeto de la clase (en este caso, el mapa)
+    pengo = new Pengo{ anims, border, this, S_Push_Outside_Walls }; //this: referencia al objeto de la clase (en este caso, el mapa)
     
     lives = 5;
 
