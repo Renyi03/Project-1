@@ -261,23 +261,6 @@ int main(void)
     Map* map15 = new Map{ border, map15file, imgSnobee, imgPengo, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
     Map* map16 = new Map{ border, map16file, imgSnobee, imgPengo, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
 
-    /*map1->gameOver = false;
-    map2->gameOver = false;
-    map3->gameOver = false;
-    map4->gameOver = false;
-    map5->gameOver = false;
-    map6->gameOver = false;
-    map7->gameOver = false;
-    map8->gameOver = false;
-    map9->gameOver = false;
-    map10->gameOver = false;
-    map11->gameOver = false;
-    map12->gameOver = false;
-    map13->gameOver = false;
-    map14->gameOver = false;
-    map15->gameOver = false;
-    map16->gameOver = false;*/
-
     //Coords of the elements of the UI
     //Life counter images
     Vector2 lifePosition1;
