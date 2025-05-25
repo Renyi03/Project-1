@@ -26,23 +26,23 @@ Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, 
     ice_block = imgIceBlock;
     snobeesDefeated = 0;
 
-    vector<Vector2>SpawnPositions = {
+    vector<Vector2>SpawnPositions = { //Vector that contains the position of all snobees
         {232, 282}, {328, 282}, {184, 474}, {184, 666}
     };
     
-    for (auto &v : SpawnPositions) {
+    for (auto &v : SpawnPositions) { //Creates a vector to contain all the snobees, using the positions of previous vector, "SpawnPositions"
         auto& s = SnoBee{ border, this, v, imgSnobee, S_Snow_Bee_Squashed, S_Snow_Bee_Stunned };
         SnoBees.push_back(s);
     }
 
-    pengo = new Pengo{ border, this, imgPengo, S_Push_Outside_Walls }; //this: referencia al objeto de la clase (en este caso, el mapa)
+    pengo = new Pengo{ border, this, imgPengo, S_Push_Outside_Walls }; //Creates a Pengo
     
-    lives = 5;
+    lives = 5; //Initial number of lives, resetted at the beginning of each level
 
     float row{};
     float col{};
 
-    for (int i = 0; i < map.size(); ++i) {
+    for (int i = 0; i < map.size(); ++i) { //Creates a map, according to the data in the .txt files
         auto ch = map[i];
         switch (ch) {
         case '0':
@@ -63,7 +63,7 @@ Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, 
     }
 }
 
-Map::~Map()
+Map::~Map() //Destructor to reset pengo
 {
     delete pengo;
     pengo = nullptr;
@@ -74,7 +74,7 @@ void Map::Draw() {
     pengo->Draw();
     
 
-    for (auto& snobee : GetSnoBees()) {
+    for (auto& snobee : GetSnoBees()) { //Draws every snobee contained in the vector of snobees
         Vector2 map_iceblock_position;
         map_iceblock_position.x = 88;
         map_iceblock_position.y = 90;
@@ -85,7 +85,7 @@ void Map::Draw() {
 
         bool hasCollided = false;
 
-        //losing lives
+        //Losing lives
         if (snobee.isActive && CheckCollisionRecs(pengo->GetRect(), snobee.GetRect())) {
             if (!hasCollided && snobee.isStunned == false) {
                 --lives;
@@ -115,29 +115,7 @@ void Map::Draw() {
         }
 
 
-        //crear un map::Update()
-
-        /*pengo.DrawHitbox(isColliding);
-        snoBee.DrawHitbox(isAColliding);*/
-
-
-        /* for (int i = 0; i < matrix.size(); ++i) {
-             auto ch = matrix[i];
-             if (ch == 0) {
-                 map_iceblock_position.x += 48;
-             }
-             else if (ch == 1) {
-                 DrawTextureV(ice_block, map_iceblock_position, WHITE);
-
-                 map_iceblock_position.x += 48;
-             }
-             else if (ch == -1) {
-                 map_iceblock_position.y += 48;
-                 map_iceblock_position.x = 88;
-             }
-         }*/
-
-        for (auto& b : blocks) { //iterates over each element inside the vector internally
+        for (auto& b : blocks) { //Iterates over each element (blocks) of the map
             if (b.isActive) {
                 if (b.direction != Block::MovingDirection::none) {
                     auto& borderRight = pengo->GetBorderRight();
@@ -147,9 +125,9 @@ void Map::Draw() {
 
                     Vector2 blockTargetPosition{ b.rect.x, b.rect.y };
                     Vector2 displacement{ blockTargetPosition };
-                    float step{ 1 }; //another way of declaring a variable
+                    float step{ 1 }; 
                     switch (b.direction) {
-                    case Block::MovingDirection::right:
+                    case Block::MovingDirection::right: //Movement of the blocks
                         if (b.rect.x + b.rect.width <= borderRight.x - step) {
                             blockTargetPosition.x += 48;
                             displacement.x += step;
@@ -159,7 +137,7 @@ void Map::Draw() {
                             b.direction = Block::MovingDirection::none;
                         }
                         break;
-                    case Block::MovingDirection::left:
+                    case Block::MovingDirection::left: //Movement of the blocks
                         if (b.rect.x >= borderLeft.x + borderLeft.width + step) {
                             blockTargetPosition.x -= 48;
                             displacement.x -= step;
@@ -169,7 +147,7 @@ void Map::Draw() {
                             b.direction = Block::MovingDirection::none;
                         }
                         break;
-                    case Block::MovingDirection::up:
+                    case Block::MovingDirection::up: //Movement of the blocks
                         if (b.rect.y >= borderTop.y + borderTop.height + step) {
                             blockTargetPosition.y -= 48;
                             displacement.y -= step;
@@ -179,7 +157,7 @@ void Map::Draw() {
                             b.direction = Block::MovingDirection::none;
                         }
                         break;
-                    case Block::MovingDirection::down:
+                    case Block::MovingDirection::down: //Movement of the blocks
                         if (b.rect.y + b.rect.height <= borderBottom.y - step) {
                             blockTargetPosition.y += 48;
                             displacement.y += step;
@@ -195,7 +173,7 @@ void Map::Draw() {
                     for (int i = 0; i < blocks.size(); ++i) {
                         auto& b2 = blocks[i];
                         if (b2.isActive == true && b2.rect.x == blockTargetPosition.x && b2.rect.y == blockTargetPosition.y) {
-                            isBlock = true;
+                            isBlock = true; //Sets isBlock to true for every block in the map
                             break;
                         }
                     }
@@ -203,8 +181,8 @@ void Map::Draw() {
                     if (!isBlock) {
                         b.rect.x = displacement.x;
                         b.rect.y = displacement.y;
-                        
-                        if (snobee.isActive && CheckCollisionRecs(b.rect, snobee.GetRect())) {
+                         
+                        if (snobee.isActive && CheckCollisionRecs(b.rect, snobee.GetRect())) { //Defeat a snobee by squashing it with a block
                             snobee.isActive = false;
                             snobeesDefeated++;
                             PlaySound(snobee.Snow_Bee_Squashed);
@@ -214,7 +192,6 @@ void Map::Draw() {
 
                             PlaySound(b.Ice_Block_Destroyed);
                             addScore(400);
-
                         }
                     }
                     else {
@@ -227,28 +204,21 @@ void Map::Draw() {
     }
 }
 
-std::vector<Block>& Map::GetBlocks()
+std::vector<Block>& Map::GetBlocks() //Get all the blocks contained in the map
 {
     return blocks;
 }
 
-int Map::GetScore() const {
+int Map::GetScore() const { //Get the score accumulated
     return score;
 }
 
-void Map::addScore(int value)
+void Map::addScore(int value) //Add points to the score
 {
     score += value;
 }
 
-std::vector<SnoBee>& Map::GetSnoBees()
+std::vector<SnoBee>& Map::GetSnoBees() //Get the vector of snobees
 {
     return SnoBees;
 }
-
-//Rectangle Map::GetRectMap()
-//{
-//    return Rectangle{ (50 + row * 80), (98 + col * 80), float(ice_block.width), float(ice_block.height) };
-//    return Rectangle();
-//}
-

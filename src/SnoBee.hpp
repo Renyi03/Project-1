@@ -5,7 +5,7 @@ class Map;
 
 class SnoBee {
 public:
-	SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned);
+	SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned); //Constructor
 	~SnoBee();
 	void Draw();
 	void Update();

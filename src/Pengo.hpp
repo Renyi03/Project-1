@@ -5,7 +5,7 @@ class SnoBee;
 
 class Pengo {
 public:
-	Pengo(Rectangle screenBorder, Map* map, Texture2D img, Sound S_Push_Outside_Walls);
+	Pengo(Rectangle screenBorder, Map* map, Texture2D img, Sound S_Push_Outside_Walls); //Constructor
 	~Pengo();
 	void Draw();
 	void Update();

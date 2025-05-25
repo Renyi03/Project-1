@@ -10,7 +10,7 @@ class SnoBee;
 class Map {
 
 public:
-	Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, Texture2D imgIceBlock, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned, Sound S_Touch_Snow_Bee, Sound S_Push_Outside_Walls, Sound S_Ice_Block_Destroyed, Sound S_Push_Ice_Block, Sound S_Block_Stopped);
+	Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, Texture2D imgIceBlock, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned, Sound S_Touch_Snow_Bee, Sound S_Push_Outside_Walls, Sound S_Ice_Block_Destroyed, Sound S_Push_Ice_Block, Sound S_Block_Stopped); //Constructor
 	~Map();
 	void Draw();
 	std::vector<Block>& GetBlocks();

@@ -38,7 +38,7 @@ SnoBee::~SnoBee()
 int SnoBee::countSurroundingBlocks() { //Function for letting the snobees know how many blocks they have arround them
     auto& blocks = currentMap->GetBlocks();
     int ctr = 0;
-    Vector2 directions[4] = { {48, 0}, {-48, 0}, {0, -48}, {0, 48} }; //right, left, up, down
+    Vector2 directions[4] = { {48, 0}, {-48, 0}, {0, -48}, {0, 48} }; //Right, left, up, down directions
     for (auto& d : directions) {
         for (auto& b : blocks) {
             if (b.isActive && b.rect.x == current_position.x + d.x && b.rect.y == current_position.y + d.y) {
