@@ -20,8 +20,8 @@ public:
 	Sound Push_Outside_Walls;
 protected:
 	Texture2D image;
-	Vector2 position, target_position, start_position;
-	Vector2 respawn_position = { 376, 378 };
+	Vector2 position, targetPosition, startPosition;
+	Vector2 respawnPosition = { 376, 378 };
 	float amount;
 	float speed;
 	Rectangle border, borderRight, borderLeft, borderTop, borderBottom;

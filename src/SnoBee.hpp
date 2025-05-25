@@ -21,7 +21,7 @@ public:
 	bool isStunned;
 	bool breakingMode;
 	float breakCooldown;
-	Vector2 current_position, position, target_position, start_position;
+	Vector2 currentPosition, position, targetPosition, startPosition;
 	Sound Snow_Bee_Squashed;
 	Sound Snow_Bee_Stunned;
 protected:

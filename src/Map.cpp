@@ -10,20 +10,20 @@
 #include "SnoBee.hpp"
 using namespace std;
 
-Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, Texture2D imgIceBlock, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned, Sound S_Touch_Snow_Bee, Sound S_Push_Outside_Walls, Sound S_Ice_Block_Destroyed, Sound S_Push_Ice_Block, Sound S_Block_Stopped)
+Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, Texture2D imgIceBlock, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned, Sound S_Touch_Snow_Bee, Sound S_Push_Outside_Walls, Sound S_iceBlock_Destroyed, Sound S_Push_iceBlock, Sound S_Block_Stopped)
 {
     Snow_Bee_Squashed = S_Snow_Bee_Squashed;
     Snow_Bee_Stunned = S_Snow_Bee_Stunned;
     Touch_Snow_Bee = S_Touch_Snow_Bee;
     Push_Outside_Walls = S_Push_Outside_Walls;
-    Ice_Block_Destroyed = S_Ice_Block_Destroyed;
-    Push_Ice_Block = S_Push_Ice_Block;
+    iceBlock_Destroyed = S_iceBlock_Destroyed;
+    Push_iceBlock = S_Push_iceBlock;
     Block_Stopped = S_Block_Stopped;
 
     gameOver = false;
     isMapUsed = false;
 
-    ice_block = imgIceBlock;
+    iceBlock = imgIceBlock;
     snobeesDefeated = 0;
 
     vector<Vector2>SpawnPositions = { //Vector that contains the position of all snobees
@@ -55,7 +55,7 @@ Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, 
             break;
         case '1':
             matrix.push_back(1);           
-            blocks.push_back(Block{ Rectangle{88 + col * 24, 90 + row * 48, 48, 48}, S_Ice_Block_Destroyed, S_Push_Ice_Block, S_Block_Stopped });
+            blocks.push_back(Block{ Rectangle{88 + col * 24, 90 + row * 48, 48, 48}, S_iceBlock_Destroyed, S_Push_iceBlock, S_Block_Stopped });
             break;
         }
         ++col;
@@ -190,7 +190,7 @@ void Map::Draw() {
                                 nextLevel = true;
                             }
 
-                            PlaySound(b.Ice_Block_Destroyed);
+                            PlaySound(b.iceBlock_Destroyed);
                             addScore(400);
                         }
                     }
@@ -198,7 +198,7 @@ void Map::Draw() {
                         b.direction = Block::MovingDirection::none;
                     }                   
                 }
-                DrawTextureV(ice_block, { b.rect.x, b.rect.y }, WHITE);
+                DrawTextureV(iceBlock, { b.rect.x, b.rect.y }, WHITE);
             }
         }
     }

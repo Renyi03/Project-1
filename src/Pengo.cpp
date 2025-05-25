@@ -18,7 +18,7 @@ Pengo::Pengo(Rectangle screenBorder, Map* map, Texture2D img, Sound S_Push_Outsi
     Push_Outside_Walls = S_Push_Outside_Walls;
     position.x = 376;
     position.y = 378;
-    target_position = position;
+    targetPosition = position;
     speed = 1;
     border = screenBorder;
     currentMap = map;
@@ -36,7 +36,7 @@ void Pengo::Draw() {
 
 void Pengo::Update() {
     for (auto& snobees : currentMap->GetSnoBees()) { //This will have checked every snobee of the vector of snobees every time there is a snobe.anything
-        if (position.x == target_position.x && position.y == target_position.y) {
+        if (position.x == targetPosition.x && position.y == targetPosition.y) {
             if (IsKeyDown(KEY_RIGHT)) { //Actions when moving right, pressing the RIGHT key
 
                 bool isBlock{};
@@ -53,7 +53,7 @@ void Pengo::Update() {
                             if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x + image.width > borderRight.x - 48)) { //Checks if the block has another block behind, to decide if it will be moved or destroyed
                                 isBlockAdjacent = true;
                                 b.isActive = false; //Destroys the block
-                                PlaySound(b.Ice_Block_Destroyed);
+                                PlaySound(b.iceBlock_Destroyed);
                                 currentMap->addScore(30); //Adds 30 points to the score for breaking a block
                                 break;
                             }
@@ -61,7 +61,7 @@ void Pengo::Update() {
                         if (!isBlockAdjacent) {
                             bool blockCollision = CheckCollisionRecs(b.rect, snobees.GetRect());
                             b.direction = Block::MovingDirection::right; //Move the block
-                            PlaySound(b.Push_Ice_Block);
+                            PlaySound(b.Push_iceBlock);
                             if (blockCollision == true) {
                                 snobees.isActive = false; //Squashes any snobee in the trajectory of the block
                                 PlaySound(snobees.Snow_Bee_Squashed);
@@ -72,18 +72,18 @@ void Pengo::Update() {
                 }
 
                 if (!isBlock) { //Moves to the next position if there is not a block
-                    target_position.x = v.x;
-                    target_position.y = v.y;
+                    targetPosition.x = v.x;
+                    targetPosition.y = v.y;
                 }
 
-                start_position = position;
+                startPosition = position;
                 amount = 0;
                 if (position.x + image.width > borderRight.x - 48) { //When next to a border, if you try to trespass it (pressing the moving key again), Pengo will push the wall, and will not be able to pass through the border
                     position.x = borderRight.x - image.width;
-                    target_position = position;
+                    targetPosition = position;
                     PlaySound(Push_Outside_Walls);
 
-                    if (snobees.current_position.x + image.width == borderRight.x && position.x + image.width > borderRight.x - 48) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
+                    if (snobees.currentPosition.x + image.width == borderRight.x && position.x + image.width > borderRight.x - 48) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
                         snobees.isStunned = true;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
@@ -108,7 +108,7 @@ void Pengo::Update() {
                             if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x - 48 < borderLeft.x + borderLeft.width)) { //Checks if the block has another block behind, to decide if it will be moved or destroyed
                                 isBlockAdjacent = true;
                                 b.isActive = false; //Destroys the block
-                                PlaySound(b.Ice_Block_Destroyed);
+                                PlaySound(b.iceBlock_Destroyed);
                                 currentMap->addScore(30); //Adds 30 points to the score for breaking a block
                                 break;
                             }
@@ -116,7 +116,7 @@ void Pengo::Update() {
                         if (!isBlockAdjacent) {
                             bool blockCollision = CheckCollisionRecs(b.rect, snobees.GetRect());
                             b.direction = Block::MovingDirection::left; //Move the block
-                            PlaySound(b.Push_Ice_Block);
+                            PlaySound(b.Push_iceBlock);
                             if (blockCollision == true) {
                                 snobees.isActive = false; //Squashes any snobee in the trajectory of the block
                                 PlaySound(snobees.Snow_Bee_Squashed);
@@ -127,18 +127,18 @@ void Pengo::Update() {
                 }
 
                 if (!isBlock) { //Moves to the next position if there is not a block
-                    target_position.x = v.x;
-                    target_position.y = v.y;
+                    targetPosition.x = v.x;
+                    targetPosition.y = v.y;
                 }
 
-                start_position = position;
+                startPosition = position;
                 amount = 0;
                 if (position.x - 48 < borderLeft.x + borderLeft.width) { //When next to a border, if you try to trespass it (pressing the moving key again), Pengo will push the wall, and will not be able to pass through the border
                     position.x = borderLeft.x + borderLeft.width;
-                    target_position = position;
+                    targetPosition = position;
                     PlaySound(Push_Outside_Walls);
 
-                    if (snobees.current_position.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
+                    if (snobees.currentPosition.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
                         snobees.isStunned = true;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
@@ -164,14 +164,14 @@ void Pengo::Update() {
                                 isBlockAdjacent = true;
                                 b.isActive = false; //Destroys the block
                                 currentMap->addScore(30); //Adds 30 points to the score for breaking a block
-                                PlaySound(b.Ice_Block_Destroyed);
+                                PlaySound(b.iceBlock_Destroyed);
                                 break;
                             }
                         }
                         if (!isBlockAdjacent) {
                             bool blockCollision = CheckCollisionRecs(b.rect, snobees.GetRect());
                             b.direction = Block::MovingDirection::up; //Move the block
-                            PlaySound(b.Push_Ice_Block);
+                            PlaySound(b.Push_iceBlock);
                             if (blockCollision == true) {
                                 snobees.isActive = false; //Squashes any snobee in the trajectory of the block
                                 PlaySound(snobees.Snow_Bee_Squashed);
@@ -182,19 +182,19 @@ void Pengo::Update() {
                 }
 
                 if (!isBlock) { //Moves to the next position if there is not a block
-                    target_position.x = v.x;
-                    target_position.y = v.y;
+                    targetPosition.x = v.x;
+                    targetPosition.y = v.y;
                 }
 
-                start_position = position;
+                startPosition = position;
                 amount = 0;
                 if (position.y <= borderTop.y - borderTop.height + 48) { //When next to a border, if you try to trespass it (pressing the moving key again), Pengo will push the wall, and will not be able to pass through the border
                     position.y = borderTop.y + borderTop.height;
-                    target_position.y = position.y;
-                    target_position.x = position.x;
+                    targetPosition.y = position.y;
+                    targetPosition.x = position.x;
                     PlaySound(Push_Outside_Walls);
 
-                    if (snobees.current_position.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
+                    if (snobees.currentPosition.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
                         snobees.isStunned = true;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
@@ -219,7 +219,7 @@ void Pengo::Update() {
                             if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y + image.height >= borderBottom.y)) { //Checks if the block has another block behind, to decide if it will be moved or destroyed
                                 isBlockAdjacent = true;
                                 b.isActive = false; //Destroys the block
-                                PlaySound(b.Ice_Block_Destroyed);
+                                PlaySound(b.iceBlock_Destroyed);
                                 currentMap->addScore(30); //Adds 30 points to the score for breaking a block
                                 break;
                             }
@@ -227,7 +227,7 @@ void Pengo::Update() {
                         if (!isBlockAdjacent) { 
                             bool blockCollision = CheckCollisionRecs(b.rect, snobees.GetRect());
                             b.direction = Block::MovingDirection::down; //Move the block
-                            PlaySound(b.Push_Ice_Block);
+                            PlaySound(b.Push_iceBlock);
                             if (blockCollision == true) {
                                 snobees.isActive = false; //Squashes any snobee in the trajectory of the block
                                 PlaySound(snobees.Snow_Bee_Squashed);
@@ -238,19 +238,19 @@ void Pengo::Update() {
                 }
 
                 if (!isBlock) { //Moves to the next position if there is not a block
-                    target_position.x = v.x;
-                    target_position.y = v.y;
+                    targetPosition.x = v.x;
+                    targetPosition.y = v.y;
                 }
 
-                start_position = position;
+                startPosition = position;
                 amount = 0;
                 if (position.y + image.height >= borderBottom.y) { //When next to a border, if you try to trespass it (pressing the moving key again), Pengo will push the wall, and will not be able to pass through the border
                     position.y = borderBottom.y - image.height;
-                    target_position.y = position.y;
-                    target_position.x = position.x;
+                    targetPosition.y = position.y;
+                    targetPosition.x = position.x;
                     PlaySound(Push_Outside_Walls);
 
-                    if (snobees.current_position.y + image.height == borderBottom.y && position.y + image.height >= borderBottom.y) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
+                    if (snobees.currentPosition.y + image.height == borderBottom.y && position.y + image.height >= borderBottom.y) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
                         snobees.isStunned = true;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
@@ -262,9 +262,9 @@ void Pengo::Update() {
         else { //Sets the speed of Pengo
             float s = speed * GetFrameTime();
             amount += s;
-            position = Vector2Lerp(start_position, target_position, amount);
+            position = Vector2Lerp(startPosition, targetPosition, amount);
             if (amount >= 1) {
-                position = target_position;
+                position = targetPosition;
             }
         }
         if (snobees.isStunned) { //Time while the snobee will be stunned
@@ -279,9 +279,9 @@ void Pengo::Update() {
 }
 
 void Pengo::resetPosition() { //Reset the position of Pengo when it dies or the level changes
-    position = respawn_position;
-    target_position = respawn_position;
-    start_position = respawn_position;
+    position = respawnPosition;
+    targetPosition = respawnPosition;
+    startPosition = respawnPosition;
 }
 
 Rectangle Pengo::GetRect() //Get the position of Pengo
