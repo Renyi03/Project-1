@@ -10,7 +10,7 @@ class SnoBee;
 class Map {
 
 public:
-	Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, Texture2D imgIceBlock);
+	Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, Texture2D imgIceBlock, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned, Sound S_Touch_Snow_Bee, Sound S_Push_Outside_Walls, Sound S_Ice_Block_Destroyed, Sound S_Push_Ice_Block, Sound S_Block_Stopped);
 	~Map();
 	void Draw();
 	std::vector<Block>& GetBlocks();
@@ -22,8 +22,15 @@ public:
 	int snobeesDefeated;
 	bool nextLevel;
 	bool gameOver;
+	bool isMapUsed;
 	int lives;
-	Sound Touch_Snow_Bee = LoadSound("resources/Pengo_Music/Touch_Snow-Bee.wav");
+	Sound Snow_Bee_Squashed;
+	Sound Snow_Bee_Stunned;
+	Sound Touch_Snow_Bee;
+	Sound Push_Outside_Walls;
+	Sound Ice_Block_Destroyed;
+	Sound Push_Ice_Block;
+	Sound Block_Stopped;
 private:
 	int score = 0;
 	Texture2D ice_block;
