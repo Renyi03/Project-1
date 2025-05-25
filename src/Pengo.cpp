@@ -25,13 +25,19 @@ Pengo::Pengo(Anims* anims, Rectangle screenBorder, Map* map, Sound S_Push_Outsid
     stunTimer = 0;
     stunDuration = 2.5;
     animations = anims;
-    pengoDirection;
+    pengoDirection = 4;
     leftFramesCtr = 0;
     rightFramesCtr = 0;
+    upFramesCtr = 0;
+    downFramesCtr = 0;
     currentLeftX = 0;
     currentRightX = 0;
+    currentUpX = 0;
+    currentDownX = 0;
     leftFrameRec = { 0, 0, 48, 48 };
     rightFrameRec = { 0, 0, 48, 48 };
+    upFrameRec = { 0, 0, 48, 48 };
+    downFrameRec = { 0, 0, 48, 48 };
 }
 
 Pengo::~Pengo()
@@ -42,50 +48,79 @@ void Pengo::Draw() {
     if (IsKeyDown(KEY_LEFT)) {
         pengoDirection = 1;
         leftFramesCtr++;
-        if (leftFramesCtr >= 7) {
-            /*leftFramesCtr = 0;*/
-            currentLeftX = currentLeftX + 48;
-            leftFrameRec.x = currentLeftX;
-            if (currentLeftX > 96) {
-                leftFrameRec.x = currentLeftX;
+        if (leftFramesCtr > 10) {
+            leftFramesCtr = 0;
+            if (currentLeftX == 0) {
+                currentLeftX = 1;
+            }
+            else if (currentLeftX == 1) {
                 currentLeftX = 0;
             }
-            if (leftFramesCtr > 14) {
-                leftFramesCtr = 0;
-            }
-        }    
-        else {
-            currentLeftX = 0;
-            leftFrameRec.x = 0;
         }
+        leftFrameRec.x = currentLeftX * 48;
         DrawTextureRec(animations->imgPengoLeft, leftFrameRec, { position.x, position.y }, WHITE);
     }
     else if (IsKeyDown(KEY_RIGHT)) {
         pengoDirection = 2;
         rightFramesCtr++;
-        if (rightFramesCtr >= 7) {
+        if (rightFramesCtr > 10) {
             rightFramesCtr = 0;
-            currentRightX = currentRightX + 48;
-            rightFrameRec.x = currentRightX;
-            if (currentRightX > 96) {
-                rightFrameRec.x = currentRightX;
+            if (currentRightX == 0) {
+                currentRightX = 1;
+            }
+            else if (currentRightX == 1) {
                 currentRightX = 0;
             }
         }
-        else {
-            currentRightX = 0;
-            rightFrameRec.x = 0;
-        }
+        rightFrameRec.x = currentRightX * 48;
         DrawTextureRec(animations->imgPengoRight, rightFrameRec, { position.x, position.y }, WHITE);
     }
+    else if (IsKeyDown(KEY_UP)) {
+        pengoDirection = 3;
+        upFramesCtr++;
+        if (upFramesCtr > 10) {
+            upFramesCtr = 0;
+            if (currentUpX == 0) {
+                currentUpX = 1;
+            }
+            else if (currentUpX == 1) {
+                currentUpX = 0;
+            }
+        }
+        upFrameRec.x = currentUpX * 48;
+        DrawTextureRec(animations->imgPengoUp, upFrameRec, { position.x, position.y }, WHITE);
+    }
+    else if (IsKeyDown(KEY_DOWN)) {
+        pengoDirection = 4;
+        downFramesCtr++;
+        if (downFramesCtr > 10) {
+            downFramesCtr = 0;
+            if (currentDownX == 0) {
+                currentDownX = 1;
+            }
+            else if (currentDownX == 1) {
+                currentDownX = 0;
+            }
+        }
+        downFrameRec.x = currentDownX * 48;
+        DrawTextureRec(animations->imgPengoDown, downFrameRec, { position.x, position.y }, WHITE);
+    }
     else {
-        if (pengoDirection = 1) {
+        if (pengoDirection == 1) {
             leftFrameRec.x = 48;
             DrawTextureRec(animations->imgPengoLeft, leftFrameRec, { position.x, position.y }, WHITE);
         }
-        else if (pengoDirection = 2) {
+        else if (pengoDirection == 2) {
             rightFrameRec.x = 48;
             DrawTextureRec(animations->imgPengoRight, rightFrameRec, { position.x, position.y }, WHITE);
+        }
+        else if (pengoDirection == 3) {
+            upFrameRec.x = 0;
+            DrawTextureRec(animations->imgPengoUp, upFrameRec, { position.x, position.y }, WHITE);
+        }
+        else if (pengoDirection == 4) {
+            downFrameRec.x = 0;
+            DrawTextureRec(animations->imgPengoDown, downFrameRec, { position.x, position.y }, WHITE);
         }
     }
 }
