@@ -25,6 +25,13 @@ Pengo::Pengo(Anims* anims, Rectangle screenBorder, Map* map, Sound S_Push_Outsid
     stunTimer = 0;
     stunDuration = 2.5;
     animations = anims;
+    pengoDirection;
+    leftFramesCtr = 0;
+    rightFramesCtr = 0;
+    currentLeftX = 0;
+    currentRightX = 0;
+    leftFrameRec = { 0, 0, 48, 48 };
+    rightFrameRec = { 0, 0, 48, 48 };
 }
 
 Pengo::~Pengo()
@@ -32,22 +39,55 @@ Pengo::~Pengo()
 }
 
 void Pengo::Draw() {
-    int rightFramesCtr = 0;
-    int currentRightX = 0;
-    /*auto img = animations->imgPengoLeft;*/
-    /*Rectangle rightFrameRec = { 0.0f, 0.0f, img.width, img.height };*/
-    /*rightFramesCtr++;
-    if (IsKeyDown(KEY_RIGHT)) {
-        if (rightFramesCtr >= 1) {
-            DrawTextureRec(animations->imgPengoRight, rightFrameRec, { 0, 0 }, WHITE);
+    if (IsKeyDown(KEY_LEFT)) {
+        pengoDirection = 1;
+        leftFramesCtr++;
+        if (leftFramesCtr >= 7) {
+            /*leftFramesCtr = 0;*/
+            currentLeftX = currentLeftX + 48;
+            leftFrameRec.x = currentLeftX;
+            if (currentLeftX > 96) {
+                leftFrameRec.x = currentLeftX;
+                currentLeftX = 0;
+            }
+            if (leftFramesCtr > 14) {
+                leftFramesCtr = 0;
+            }
+        }    
+        else {
+            currentLeftX = 0;
+            leftFrameRec.x = 0;
+        }
+        DrawTextureRec(animations->imgPengoLeft, leftFrameRec, { position.x, position.y }, WHITE);
+    }
+    else if (IsKeyDown(KEY_RIGHT)) {
+        pengoDirection = 2;
+        rightFramesCtr++;
+        if (rightFramesCtr >= 7) {
             rightFramesCtr = 0;
-            currentRightX += 48;
-            if (currentRightX == 96) {
-                DrawTextureRec(animations->imgPengoRight, rightFrameRec, { 0, 0 }, WHITE);
+            currentRightX = currentRightX + 48;
+            rightFrameRec.x = currentRightX;
+            if (currentRightX > 96) {
+                rightFrameRec.x = currentRightX;
                 currentRightX = 0;
             }
         }
-    }*/
+        else {
+            currentRightX = 0;
+            rightFrameRec.x = 0;
+        }
+        DrawTextureRec(animations->imgPengoRight, rightFrameRec, { position.x, position.y }, WHITE);
+    }
+    else {
+        if (pengoDirection = 1) {
+            leftFrameRec.x = 48;
+            DrawTextureRec(animations->imgPengoLeft, leftFrameRec, { position.x, position.y }, WHITE);
+        }
+        else if (pengoDirection = 2) {
+            rightFrameRec.x = 48;
+            DrawTextureRec(animations->imgPengoRight, rightFrameRec, { position.x, position.y }, WHITE);
+        }
+    }
 }
 
 void Pengo::Update() {

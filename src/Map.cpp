@@ -23,6 +23,7 @@ Map::Map(Anims* anims, Rectangle border, string map, Texture2D imgIceBlock, Soun
     animations = anims;
 
     gameOver = false;
+    isMapUsed = false;
 
     ice_block = imgIceBlock;
     snobeesDefeated = 0;
