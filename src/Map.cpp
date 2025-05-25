@@ -21,6 +21,7 @@ Map::Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, 
     Block_Stopped = S_Block_Stopped;
 
     gameOver = false;
+    isMapUsed = false;
 
     ice_block = imgIceBlock;
     snobeesDefeated = 0;

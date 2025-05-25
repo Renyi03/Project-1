@@ -22,6 +22,7 @@ public:
 	int snobeesDefeated;
 	bool nextLevel;
 	bool gameOver;
+	bool isMapUsed;
 	int lives;
 	Sound Snow_Bee_Squashed;
 	Sound Snow_Bee_Stunned;
