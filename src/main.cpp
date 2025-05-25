@@ -39,6 +39,8 @@ using namespace std;
 
 typedef enum GameScreen { INITIAL, TITLE, LEVEL1, LEVEL2, LEVEL3, LEVEL4, LEVEL5, LEVEL6, LEVEL7, LEVEL8, LEVEL9, LEVEL10, LEVEL11, LEVEL12, LEVEL13, LEVEL14, LEVEL15, LEVEL16, GAMEOVER, POINTS } GameScreen;
 
+
+//Function to use a random map among all the 16 posible maps
 Map* GetRandomMap(Map* map2, Map* map3, Map* map4, Map* map5, Map* map6, Map* map7, Map* map8, Map* map9, Map* map10, Map* map11, Map* map12, Map* map13, Map* map14, Map* map15, Map* map16) { 
     Map* map = nullptr;
     int num_map = GetRandomValue(2, 16);
@@ -173,12 +175,14 @@ int main(void)
     InitAudioDevice();
     SetTargetFPS(60);
 
+    //Initial variables
     int levelStartTime = 0;
     int levelEndTime = 0;
     int bonusPoints = 0;
     int level;
     int totalScore = 0;
 
+    //Load map files
     std::string map1file = LoadFileText("resources/Maps/Map_1.txt");
     std::string map2file = LoadFileText("resources/Maps/Map_2.txt");
     std::string map3file = LoadFileText("resources/Maps/Map_3.txt");
@@ -202,12 +206,14 @@ int main(void)
     Rectangle borderLeft = Rectangle{ 78, 90, 10, 720 };
     Rectangle borderRight = Rectangle{ 712, 90, 10, 720 };*/
 
+
+    //Coords of the borders of the game field
     Vector2 borderTopPosition = { 88,80 };
     Vector2 borderBottomPosition = { 88,810 };
     Vector2 borderLeftPosition = { 78, 90 };
     Vector2 borderRightPosition = { 712,90 };
 
-
+    //Load textures
     Rectangle border{88, 90, 624, 720};
     Texture2D imgPengo = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_down_1.png");
     Texture2D ice_block = LoadTexture("resources/Graphics/ice_block.png");
@@ -224,6 +230,7 @@ int main(void)
     Texture2D borderLeftMovingImage = LoadTexture("resources/Graphics/Border_left_moving.png");
     Texture2D borderRightMovingImage = LoadTexture("resources/Graphics/Border_right_moving.png");
 
+    //Load sounds
     Sound Snow_Bee_Squashed = LoadSound("resources/Pengo_Music/Snow-Bee_Squashed.wav");
     Sound Snow_Bee_Stunned = LoadSound("resources/Pengo_Music/Snow-Bee_Stunned.wav");
     Sound Touch_Snow_Bee = LoadSound("resources/Pengo_Music/Touch_Snow-Bee.wav");
@@ -234,7 +241,7 @@ int main(void)
     Sound Time_Bonus = LoadSound("resources/Pengo_Music/Time_Bonus_Extend.wav");
     Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
 
-
+    //Create the maps
     Map* map = new Map{ border, map1file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };;
     Map* map1 = new Map{ border, map1file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
     Map* map2 = new Map{ border, map2file, imgSnobee, imgPengo, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
@@ -270,10 +277,7 @@ int main(void)
     map15->gameOver = false;
     map16->gameOver = false;*/
 
-    /*Pengo pengo{ border, &map };*/
-    /*map.pengo = &pengo;*/
-
-
+    //Coords of the elements of the UI
     Vector2 lifePosition1;
     lifePosition1.x = 88;
     lifePosition1.y = 30;
@@ -319,12 +323,12 @@ int main(void)
     PlayMusicStream(Main_BGM);
 
     //Game Loop
-
     while (WindowShouldClose() == false) {
         totalScore = map1->GetScore() + map2->GetScore() + map3->GetScore() + map4->GetScore() + map5->GetScore() + map6->GetScore() + map7->GetScore() + map8->GetScore() + map9->GetScore() + map10->GetScore() + map11->GetScore() + map12->GetScore() + map13->GetScore() + map14->GetScore() + map15->GetScore() + map16->GetScore();
 
         switch (currentScreen) {
-
+        
+        //Initial screen
         case INITIAL:
         {
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
@@ -332,6 +336,8 @@ int main(void)
                 currentScreen = TITLE;
             }
         }break;
+
+        //Title screen
         case TITLE:
         {
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
@@ -340,12 +346,11 @@ int main(void)
                 currentScreen = LEVEL1;
             }
         }break;
+
+        //Case for every level
         case LEVEL1:
         {
             level = 1;
-
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
             for (int i = 0; i < map1->lives; ++i) {
                 if (map1->lives == 2) {
@@ -375,15 +380,10 @@ int main(void)
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
 
-            
-
         }break;
         case LEVEL2:
         {
             level = 2;
-
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
             for (int i = 0; i < map->lives; ++i) {
                 if (map->lives == 2) {
@@ -423,9 +423,6 @@ int main(void)
         {
             level = 3;
 
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
-
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
             DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
@@ -459,9 +456,6 @@ int main(void)
         case LEVEL4:
         {
             level = 4;
-
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
@@ -498,9 +492,6 @@ int main(void)
         {
             level = 5;
 
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
-
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
             DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
@@ -533,9 +524,6 @@ int main(void)
         case LEVEL6:
         {
             level = 6;
-
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
@@ -571,9 +559,6 @@ int main(void)
         {
             level = 7;
 
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
-
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
             DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
@@ -600,7 +585,6 @@ int main(void)
                 }
             }
 
-
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
@@ -609,9 +593,6 @@ int main(void)
         case LEVEL8:
         {
             level = 8;
-
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
@@ -648,9 +629,6 @@ int main(void)
         case LEVEL9:
         {
             level = 9;
-
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
@@ -689,9 +667,6 @@ int main(void)
         {
             level = 10;
 
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
-
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
             DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
@@ -724,9 +699,6 @@ int main(void)
         case LEVEL11:
         {
             level = 11;
-
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
@@ -761,9 +733,6 @@ int main(void)
         case LEVEL12:
         {
             level = 12;
-
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
@@ -800,9 +769,6 @@ int main(void)
         {
             level = 13;
 
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
-
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
             DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
@@ -838,9 +804,6 @@ int main(void)
         case LEVEL14:
         {
             level = 14;
-
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
@@ -879,9 +842,6 @@ int main(void)
         {
             level = 15;
 
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
-
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
             DrawTextureV(borderLeftImage, borderLeftPosition, WHITE);
@@ -915,9 +875,6 @@ int main(void)
         case LEVEL16:
         {
             level = 16;
-
-            /*bool isColliding = CheckCollisionRecs(pengo.GetRect(), borderTop);
-            bool isAColliding = CheckCollisionRecs(snoBee.GetRect(), borderTop);*/
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
             DrawTextureV(borderBottomImage, borderBottomPosition, WHITE);
