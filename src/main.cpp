@@ -326,11 +326,20 @@ int main(void)
     while (WindowShouldClose() == false) {
         totalScore = map1->GetScore() + map2->GetScore() + map3->GetScore() + map4->GetScore() + map5->GetScore() + map6->GetScore() + map7->GetScore() + map8->GetScore() + map9->GetScore() + map10->GetScore() + map11->GetScore() + map12->GetScore() + map13->GetScore() + map14->GetScore() + map15->GetScore() + map16->GetScore();
 
+        BeginDrawing();
+        ClearBackground(BLACK);
+
         switch (currentScreen) {
         
         //Initial screen
         case INITIAL:
         {
+            DrawText("PENGO PROTOTYPE", 66, 50, 40, LIGHTGRAY);
+            DrawText("Project 1, Video game design and development, CITM", 125, 220, 20, GRAY);
+            DrawText("Team members: Sofia Barja, Clara Sanchez, Yin Ye", 133, 270, 20, GRAY);
+            DrawText("Github accounts: sofia-221b, Valkyn22, Renyi03", 150, 320, 20, GRAY);
+            DrawText("Tutors: Aleix Cots, Alejandro Paris", 205, 370, 20, GRAY);
+
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
                 currentScreen = TITLE;
@@ -340,6 +349,10 @@ int main(void)
         //Title screen
         case TITLE:
         {
+            DrawRectangle(0, 0, 800, 900, BLUE);
+            DrawText("TITLE SCREEN", 20, 20, 40, DARKBLUE);
+            DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKBLUE);
+
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
                 levelStartTime = GetTime();
@@ -380,7 +393,54 @@ int main(void)
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
 
+            map1->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map1->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map1->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map1->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map1->nextLevel = false;
+                map1->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  1"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map1->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL2:
         {
             level = 2;
@@ -413,10 +473,51 @@ int main(void)
 
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
-        }break;
-        case POINTS:
-        {
 
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  2"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
 
         case LEVEL3:
@@ -452,7 +553,53 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
+
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  3"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL4:
         {
             level = 4;
@@ -487,7 +634,53 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
             DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
+
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  4"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL5:
         {
             level = 5;
@@ -520,7 +713,52 @@ int main(void)
 
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  5"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL6:
         {
             level = 6;
@@ -554,7 +792,52 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  6"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL7:
         {
             level = 7;
@@ -589,7 +872,52 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  7"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL8:
         {
             level = 8;
@@ -625,7 +953,52 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  8"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL9:
         {
             level = 9;
@@ -662,7 +1035,52 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  9"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL10:
         {
             level = 10;
@@ -695,7 +1113,53 @@ int main(void)
 
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
+
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  10"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL11:
         {
             level = 11;
@@ -729,7 +1193,53 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
+
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  11"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL12:
         {
             level = 12;
@@ -764,7 +1274,53 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
+
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  12"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL13:
         {
             level = 13;
@@ -800,7 +1356,53 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
+
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  13"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL14:
         {
             level = 14;
@@ -837,7 +1439,53 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
+
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  14"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL15:
         {
             level = 15;
@@ -871,7 +1519,53 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition15, WHITE);
+
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  15"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
         }break;
+
         case LEVEL16:
         {
             level = 16;
@@ -906,11 +1600,62 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
             DrawTextureV(levelCntBigImage, levelCntPosition15, WHITE);
+
+            map->Draw();
+            //UpdateMusicStream(Main_BGM);
+
+            if (map->gameOver == true) {
+                currentScreen = GAMEOVER;
+            }
+
+            if (map->nextLevel == true) {
+                levelEndTime = GetTime();
+                int timeSpent = levelEndTime - levelStartTime;
+                if (timeSpent < 20) {
+                    bonusPoints = 5000;
+                }
+                else if (timeSpent < 30) {
+                    bonusPoints = 2000;
+                }
+                else if (timeSpent < 40) {
+                    bonusPoints = 1000;
+                }
+                else if (timeSpent < 50) {
+                    bonusPoints = 500;
+                }
+                else if (timeSpent < 60) {
+                    bonusPoints = 10;
+                }
+                map->addScore(bonusPoints);
+                totalScore += bonusPoints;
+                map->nextLevel = false;
+                map->isMapUsed = true;
+                //StopMusicStream(Main_BGM);
+                //PlayMusicStream(Main_BGM);
+                PlaySound(Time_Bonus);
+                currentScreen = POINTS;
+            }
+
+            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
+            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
+            DrawText(TextFormat("ACT  16"), 88, 850, 30, WHITE);
+
+            if (IsKeyPressed(KEY_N)) {
+                map->isMapUsed = true;
+                PlaySound(Time_Bonus);
+                currentScreen = GAMEOVER;
+            }
         }break;
 
 
         case GAMEOVER:
         {
+            totalScore = 0;
+
+            DrawRectangle(0, 0, 800, 900, BLUE);
+            DrawText("GAME OVER", 20, 20, 40, DARKBLUE);
+            DrawText("PRESS ENTER or TAP to JUMP to TITLE SCREEN", 120, 220, 20, DARKBLUE);
+
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
                 delete map1;
@@ -962,798 +1707,12 @@ int main(void)
                 map15->gameOver = false;
                 map16->gameOver = false;
 
-
                 currentScreen = TITLE;
             }
-        }
-        }
-
-        BeginDrawing();
-        ClearBackground(BLACK);
-
-        switch (currentScreen)
-        {
-        case INITIAL:
-        {
-            DrawText("PENGO PROTOTYPE", 66, 50, 40, LIGHTGRAY);
-            DrawText("Project 1, Video game design and development, CITM", 125, 220, 20, GRAY);
-            DrawText("Team members: Sofia Barja, Clara Sanchez, Yin Ye", 133, 270, 20, GRAY);
-            DrawText("Github accounts: sofia-221b, Valkyn22, Renyi03", 150, 320, 20, GRAY);
-            DrawText("Tutors: Aleix Cots, Alejandro Paris", 205, 370, 20, GRAY);
-        } break;
-        case TITLE:
-        {
-            DrawRectangle(0, 0, 800, 900, BLUE);
-            DrawText("TITLE SCREEN", 20, 20, 40, DARKBLUE);
-            DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 120, 220, 20, DARKBLUE);
-
-        } break;
-        case LEVEL1:
-        {
-            map1->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map1->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map1->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map1->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map1->nextLevel = false;
-                map1->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-            
-            
-            
-            DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  1"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map1->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-        } break;
-        case LEVEL2:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  2"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-        } break;
-        case LEVEL3:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  3"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-        } break;
-        case LEVEL4:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  4"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-        } break;
-        case LEVEL5:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  5"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-        } break;
-        case LEVEL6:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  6"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-        } break;
-        case LEVEL7:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  7"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-        } break;
-        case LEVEL8:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  8"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-        } break;
-        case LEVEL9:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  9"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-        } break;
-        case LEVEL10:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  10"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-        } break;
-        case LEVEL11:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  11"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-        } break;
-        case LEVEL12:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  12"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-        } break;
-        case LEVEL13:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  13"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-        } break;
-        case LEVEL14:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  14"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-        } break;
-        case LEVEL15:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  15"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-        } break;
-        case LEVEL16:
-        {
-            map->Draw();
-            //UpdateMusicStream(Main_BGM);
-
-            if (map->gameOver == true) {
-                currentScreen = GAMEOVER;
-            }
-
-            if (map->nextLevel == true) {
-                levelEndTime = GetTime();
-                int timeSpent = levelEndTime - levelStartTime;
-                if (timeSpent < 20) {
-                    bonusPoints = 5000;
-                }
-                else if (timeSpent < 30) {
-                    bonusPoints = 2000;
-                }
-                else if (timeSpent < 40) {
-                    bonusPoints = 1000;
-                }
-                else if (timeSpent < 50) {
-                    bonusPoints = 500;
-                }
-                else if (timeSpent < 60) {
-                    bonusPoints = 10;
-                }
-                map->addScore(bonusPoints);
-                totalScore += bonusPoints;
-                map->nextLevel = false;
-                map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
-                currentScreen = POINTS;
-            }
-
-            DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
-            DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
-            DrawText(TextFormat("ACT  16"), 88, 850, 30, WHITE);
-
-            if (IsKeyPressed(KEY_N)) {
-                map->isMapUsed = true;
-                PlaySound(Time_Bonus);
-                currentScreen = GAMEOVER;
-            }
-        } break;
-
+        }break;
 
         case POINTS:
         {
-            
-
             DrawRectangle(0, 0, 800, 900, BLACK);
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
             DrawText(TextFormat("%i", totalScore), 260, 2, 30, WHITE);
@@ -1833,18 +1792,7 @@ int main(void)
                     currentScreen = LEVEL16;
                 }
             }
-
-
         } break;
-
-        case GAMEOVER:
-        {
-            totalScore = 0;
-
-            DrawRectangle(0, 0, 800, 900, BLUE);
-            DrawText("GAME OVER", 20, 20, 40, DARKBLUE);
-            DrawText("PRESS ENTER or TAP to JUMP to TITLE SCREEN", 120, 220, 20, DARKBLUE);
-        }break;
 
         default: break;
         }
