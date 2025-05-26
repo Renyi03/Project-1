@@ -2,7 +2,7 @@
 https://github.com/Renyi03/Project-1
 
 # Link to a 1-minute maximum video (YouTube or Vimeo) showing all implemented features
-
+https://youtu.be/gOFsQyFLcEI
 
 # Team members and GitHub accounts
 * Sofia Barja Navarro (sofia-221b)
