@@ -116,29 +116,6 @@ void Map::Draw() {
             hasCollided = false;
         }
 
-
-        //crear un map::Update()
-
-        /*pengo.DrawHitbox(isColliding);
-        snoBee.DrawHitbox(isAColliding);*/
-
-
-        /* for (int i = 0; i < matrix.size(); ++i) {
-             auto ch = matrix[i];
-             if (ch == 0) {
-                 map_iceblock_position.x += 48;
-             }
-             else if (ch == 1) {
-                 DrawTextureV(iceBlock, map_iceblock_position, WHITE);
-
-                 map_iceblock_position.x += 48;
-             }
-             else if (ch == -1) {
-                 map_iceblock_position.y += 48;
-                 map_iceblock_position.x = 88;
-             }
-         }*/
-
         for (auto& b : blocks) { //Iterates over each element (blocks) of the map
             if (b.isActive) {
                 if (b.direction != Block::MovingDirection::none) {
