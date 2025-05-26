@@ -220,7 +220,8 @@ int main(void)
     Anims anims{};
     anims.loadTextures();
 
-    Texture2D logo = LoadTexture("resources/Graphics/Pengo_Logo.png");
+    Texture2D logoImg = LoadTexture("resources/Graphics/Pengo_Logo.png");
+    Texture2D titleScreenImg = LoadTexture("resources/Graphics/Title_Screen.png");
 
     Texture2D iceBlock = LoadTexture("resources/Graphics/ice_block.png");
     Texture2D levelCntImage = LoadTexture("resources/Graphics/level_cnt.png");
@@ -330,7 +331,7 @@ int main(void)
             DrawText("Github accounts: sofia-221b, Valkyn22, Renyi03", 150, 220, 20, GRAY);
             DrawText("Tutors: Aleix Cots, Alejandro Paris", 205, 270, 20, GRAY);
 
-            DrawTexture(logo, 258, 350, WHITE);
+            DrawTexture(logoImg, 258, 350, WHITE);
 
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
@@ -342,7 +343,7 @@ int main(void)
         case TITLE:
         {
             DrawRectangle(0, 0, 800, 900, BLACK);
-            DrawText("PENGO", 90, 200, 180, GREEN);
+            DrawTexture(titleScreenImg, 167, 100, WHITE);
             DrawText("PRESS ENTER or TAP to JUMP to GAMEPLAY SCREEN", 50, 800, 25, WHITE);
 
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
