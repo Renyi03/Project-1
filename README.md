@@ -16,7 +16,7 @@ In this video game, the player controls Pengo, a penguin trapped in a maze made 
 The player’s main objective is to survive each round by eliminating all the Sno-Bees.
 
 # How to play the game, detailing the controls
-To play the game, the player has to use the arrow keys to move the character (Pengo). If the player presses the arrow key at any direction and on that direction there is an ice block, there can be 2 consequences: pushing the block since the block meets another one or, if there is another block facing the one you are trying to push, the first one is going to break.
+To play the game, the player has to use the arrow keys to move the character (Pengo). If the player presses the arrow key at any direction and on that direction there is an ice block, there can be 2 consequences: pushing the block until the block meets another one or, if there is another block facing the one you are trying to push, the first one is going to break.
 If the player presses a movement key towards a border, it will shake, and stun every Sno-bee touching it.
 The goal of the game is to defeat all the Sno-Bees. If Pengo touches a Sno-Bee, the player loses one life, unless the Sno-bee is stunned. The game ends when all the lives are lost. Depending on how much time it took the player to pass the level, there will be some bonus points.
 
@@ -29,7 +29,7 @@ The goal of the game is to defeat all the Sno-Bees. If Pengo touches a Sno-Bee, 
 	- Life counter: indicates the lives remaining, resetting for each level (at the top)
 	- Points: total points since the game has started, resetting when game over (at the top)
 	- Act number: indicates the number of the actual level, such as "ACT 7" at level 7 (at the bottom)
-	- Level counter: indicates the number of the actual level with little Sno-bees images, one by one (at the bottom) and five by five (at the top). For example, in level 7, there will be two images at the bottom and one at the top.
+	- Level counter: indicates the number of the actual level with little Sno-bee images, one by one (at the bottom) and five by five (at the top). For example, in level 7, there will be two images at the bottom and one at the top.
 * 16 different levels, generated randomly
 * Border that the player can’t trespass, but can be shaked if a movement key is pressed towards it.
 * Maze made out of ice blocks
@@ -46,12 +46,13 @@ The goal of the game is to defeat all the Sno-Bees. If Pengo touches a Sno-Bee, 
 	- Walking over them when stunned
 * Points system:
 	- Breaking a block: 30 pts
-	- Defeating a Sno-bee. 400 pts
+	- Defeating a Sno-bee by squashing them with an ice block: 400 pts
+	- Defeating a Sno-bee by walking over them when stunned: 100 pts
 	- Extra points according to the time spent in each level
 
 * Background music and sound effects
 * Textures for all the elements, and animations for Pengo, the Sno-bees and the walls
 
-*Debugging functionalities:
+* Debugging functionalities:
 	- Function for drawing a hitbox around Pengo or the Snobees, indicating if they are colliding with something
 	- Press N to skip the level and go to the points screen
