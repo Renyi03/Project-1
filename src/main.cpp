@@ -1847,6 +1847,7 @@ int main(void)
     anims.unloadTextures();
     //Unload all the audio resources
     UnloadMusicStream(Main_BGM);
+    UnloadSound(Act_Start);
     UnloadSound(Snow_Bee_Squashed);
     UnloadSound(Snow_Bee_Stunned);
     UnloadSound(Push_Outside_Walls);
@@ -1860,6 +1861,8 @@ int main(void)
     UnloadTexture(iceBlock);
     UnloadTexture(levelCntImage);
     UnloadTexture(lifeImage);
+    UnloadTexture(logoImg);
+    UnloadTexture(titleScreenImg);
 
     CloseAudioDevice();
     CloseWindow();
