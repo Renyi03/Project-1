@@ -20,10 +20,14 @@ public:
 	void resetPosition();
 	Sound Push_Outside_Walls;
 	Anims* animations;
-	int leftFramesCtr, rightFramesCtr, upFramesCtr, downFramesCtr;
-	int currentLeftX, currentRightX, currentUpX, currentDownX;
-	Rectangle leftFrameRec, rightFrameRec, upFrameRec, downFrameRec;
+	int leftFramesCtr, rightFramesCtr, upFramesCtr, downFramesCtr, pushLeftFramesCtr, pushRightFramesCtr, pushUpFramesCtr, pushDownFramesCtr;
+	int currentLeftX, currentRightX, currentUpX, currentDownX, currentPushLeftX, currentPushRightX, currentPushUpX, currentPushDownX;
+	Rectangle leftFrameRec, rightFrameRec, upFrameRec, downFrameRec, pushLeftFrameRec, pushRightFrameRec, pushUpFrameRec, pushDownFrameRec;
 	int pengoDirection; //1 - left, 2 - right, 3 - up, 4 - down
+	bool isPushing;
+	bool isPushAnimationPlaying;
+	float pushAnimationTimer;
+	float pushAnimationDuration;
 protected:
 	Vector2 position, target_position, start_position;
 	Vector2 respawn_position = { 376, 378 };
