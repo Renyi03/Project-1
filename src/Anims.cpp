@@ -11,20 +11,20 @@ void Anims::loadTextures()
 	imgPengoPushUp = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_push_up.png");
 	imgPengoPushDown = LoadTexture("resources/Graphics/Pengo_sprites/Pengo_push_down.png");
 
-	imgSnobeeLeft = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_left");
-	imgSnobeeRight = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_right");
-	imgSnobeeUp = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_up");
-	imgSnobeeDown = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_down");
-	imgSnobeeBreakLeft = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_break_left");
-	imgSnobeeBreakRight = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_break_right");
-	imgSnobeeBreakUp = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_break_up");
-	imgSnobeeBreakDown = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_break_down");
-	imgSnobeeStunned = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_stunned");
+	imgSnobeeLeft = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_left.png");
+	imgSnobeeRight = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_right.png");
+	imgSnobeeUp = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_up.png");
+	imgSnobeeDown = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_down.png");
+	imgSnobeeBreakLeft = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_break_left.png");
+	imgSnobeeBreakRight = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_break_right.png");
+	imgSnobeeBreakUp = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_break_up.png");
+	imgSnobeeBreakDown = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_break_down.png");
+	imgSnobeeStunned = LoadTexture("resources/Graphics/Snobee_sprites/Snobee_stunned.png");
 
-	imgBorderLeft = LoadTexture("resources/Graphics/Border_left_shaking");
-	imgBorderRight = LoadTexture("resources/Graphics/Border_right_shaking");
-	imgBorderTop = LoadTexture("resources/Graphics/Border_top_shaking");
-	imgBorderBottom = LoadTexture("resources/Graphics/Border_bottom_shaking");
+	imgBorderLeft = LoadTexture("resources/Graphics/Border_left_shaking.png");
+	imgBorderRight = LoadTexture("resources/Graphics/Border_right_shaking.png");
+	imgBorderTop = LoadTexture("resources/Graphics/Border_top_shaking.png");
+	imgBorderBottom = LoadTexture("resources/Graphics/Border_bottom_shaking.png");
 }
 
 void Anims::unloadTextures()

@@ -220,7 +220,7 @@ int main(void)
     Anims anims{};
     anims.loadTextures();
 
-    Texture2D ice_block = LoadTexture("resources/Graphics/ice_block.png");
+    Texture2D iceBlock = LoadTexture("resources/Graphics/ice_block.png");
     Texture2D levelCntImage = LoadTexture("resources/Graphics/level_cnt.png");
     Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo_life.png");
     Texture2D levelCntBigImage = LoadTexture("resources/Graphics/level_cnt_big.png");
@@ -236,49 +236,32 @@ int main(void)
     Sound Snow_Bee_Stunned = LoadSound("resources/Pengo_Music/Snow-Bee_Stunned.wav");
     Sound Touch_Snow_Bee = LoadSound("resources/Pengo_Music/Touch_Snow-Bee.wav");
     Sound Push_Outside_Walls = LoadSound("resources/Pengo_Music/Push_Outside_Walls.wav");
-    Sound Ice_Block_Destroyed = LoadSound("resources/Pengo_Music/Ice_Block_Destroyed.wav");
-    Sound Push_Ice_Block = LoadSound("resources/Pengo_Music/Push_Ice_Block.wav");
+    Sound iceBlock_Destroyed = LoadSound("resources/Pengo_Music/Ice_Block_Destroyed.wav");
+    Sound Push_iceBlock = LoadSound("resources/Pengo_Music/Push_Ice_Block.wav");
     Sound Block_Stopped = LoadSound("resources/Pengo_Music/Block_Stopped.wav");
     Sound Time_Bonus = LoadSound("resources/Pengo_Music/Time_Bonus_Extend.wav");
     Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
 
-    Map* map;
-    Map* map1 = new Map{ &anims, border, map1file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map2 = new Map{ &anims, border, map2file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map3 = new Map{ &anims, border, map3file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map4 = new Map{ &anims, border, map4file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map5 = new Map{ &anims, border, map5file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map6 = new Map{ &anims, border, map6file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map7 = new Map{ &anims, border, map7file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map8 = new Map{ &anims, border, map8file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map9 = new Map{ &anims, border, map9file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map10 = new Map{ &anims, border, map10file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map11 = new Map{ &anims, border, map11file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map12 = new Map{ &anims, border, map12file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map13 = new Map{ &anims, border, map13file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map14 = new Map{ &anims, border, map14file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map15 = new Map{ &anims, border, map15file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
-    Map* map16 = new Map{ &anims, border, map16file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
 
     //Create the maps
-   
+    Map* map;
+    Map* map1 = new Map{ &anims, border, map1file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map2 = new Map{ &anims, border, map2file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map3 = new Map{ &anims, border, map3file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map4 = new Map{ &anims, border, map4file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map5 = new Map{ &anims, border, map5file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map6 = new Map{ &anims, border, map6file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map7 = new Map{ &anims, border, map7file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map8 = new Map{ &anims, border, map8file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map9 = new Map{ &anims, border, map9file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map10 = new Map{ &anims, border, map10file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map11 = new Map{ &anims, border, map11file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map12 = new Map{ &anims, border, map12file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map13 = new Map{ &anims, border, map13file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map14 = new Map{ &anims, border, map14file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map15 = new Map{ &anims, border, map15file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
+    Map* map16 = new Map{ &anims, border, map16file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee,Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
 
-    /*map1->gameOver = false;
-    map2->gameOver = false;
-    map3->gameOver = false;
-    map4->gameOver = false;
-    map5->gameOver = false;
-    map6->gameOver = false;
-    map7->gameOver = false;
-    map8->gameOver = false;
-    map9->gameOver = false;
-    map10->gameOver = false;
-    map11->gameOver = false;
-    map12->gameOver = false;
-    map13->gameOver = false;
-    map14->gameOver = false;
-    map15->gameOver = false;
-    map16->gameOver = false;*/
 
     //Coords of the elements of the UI
     //Life counter images
@@ -1655,46 +1638,45 @@ int main(void)
         //Case for the game over screen, when all the lives are lost
         case GAMEOVER:
         {
-            totalScore = 0;
-
-            DrawRectangle(0, 0, 800, 900, BLUE);
-            DrawText("GAME OVER", 20, 20, 40, DARKBLUE);
-            DrawText("PRESS ENTER or TAP to JUMP to TITLE SCREEN", 120, 220, 20, DARKBLUE);
+            DrawRectangle(0, 0, 800, 900, BLACK);
+            DrawText(TextFormat("TOTAL SCORE: %i", totalScore), 240, 100, 30, YELLOW);
+            DrawText("THANKS FOR PLAYING", 185, 330, 35, WHITE);
+            DrawText("TRY ONcE MORE!", 230, 390, 35, WHITE);
 
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
                 delete map1;
-                map1 = new Map{ &anims, border, map1file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map1 = new Map{ &anims, border, map1file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map2;
-                map2 = new Map{ &anims, border, map2file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map2 = new Map{ &anims, border, map2file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map3;
-                map3 = new Map{ &anims, border, map3file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map3 = new Map{ &anims, border, map3file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map4;
-                map4 = new Map{ &anims, border, map4file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map4 = new Map{ &anims, border, map4file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map5;
-                map5 = new Map{ &anims, border, map5file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map5 = new Map{ &anims, border, map5file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map6;
-                map6 = new Map{ &anims, border, map6file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map6 = new Map{ &anims, border, map6file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map7;
-                map7 = new Map{ &anims, border, map7file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map7 = new Map{ &anims, border, map7file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map8;
-                map8 = new Map{ &anims, border, map8file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map8 = new Map{ &anims, border, map8file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map9;
-                map9 = new Map{ &anims, border, map9file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map9 = new Map{ &anims, border, map9file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map10;
-                map10 = new Map{ &anims, border, map10file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map10 = new Map{ &anims, border, map10file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map11;
-                map11 = new Map{ &anims, border, map11file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map11 = new Map{ &anims, border, map11file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map12;
-                map12 = new Map{ &anims, border, map12file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map12 = new Map{ &anims, border, map12file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map13;
-                map13 = new Map{ &anims, border, map13file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map13 = new Map{ &anims, border, map13file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map14;
-                map14 = new Map{ &anims, border, map14file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map14 = new Map{ &anims, border, map14file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map15;
-                map15 = new Map{ &anims, border, map15file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map15 = new Map{ &anims, border, map15file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 delete map16;
-                map16 = new Map{ &anims, border, map16file, ice_block, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, Ice_Block_Destroyed, Push_Ice_Block, Block_Stopped };
+                map16 = new Map{ &anims, border, map16file, iceBlock, Snow_Bee_Squashed, Snow_Bee_Stunned, Touch_Snow_Bee, Push_Outside_Walls, iceBlock_Destroyed, Push_iceBlock, Block_Stopped };
                 map1->gameOver = false;
                 map2->gameOver = false;
                 map3->gameOver = false;
@@ -1805,19 +1787,20 @@ int main(void)
         EndDrawing();
     } 
 
+    anims.unloadTextures();
     //Unload all the audio resources
     UnloadMusicStream(Main_BGM);
     UnloadSound(Snow_Bee_Squashed);
     UnloadSound(Snow_Bee_Stunned);
     UnloadSound(Push_Outside_Walls);
-    UnloadSound(Ice_Block_Destroyed);
-    UnloadSound(Push_Ice_Block);
+    UnloadSound(iceBlock_Destroyed);
+    UnloadSound(Push_iceBlock);
     UnloadSound(Block_Stopped);
     UnloadSound(Time_Bonus);
 
     //Unload all the image resources
 
-    UnloadTexture(ice_block);
+    UnloadTexture(iceBlock);
     UnloadTexture(levelCntImage);
     UnloadTexture(lifeImage);
 

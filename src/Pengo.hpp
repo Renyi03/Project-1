@@ -6,7 +6,7 @@ class Anims;
 
 class Pengo {
 public:
-	Pengo(Anims* anims, Rectangle screenBorder, Map* map, Sound S_Push_Outside_Walls);
+	Pengo(Anims* anims, Rectangle screenBorder, Map* map, Sound S_Push_Outside_Walls); //Constructor
 	~Pengo();
 	void Draw();
 	void Update();
@@ -29,8 +29,8 @@ public:
 	float pushAnimationTimer;
 	float pushAnimationDuration;
 protected:
-	Vector2 position, target_position, start_position;
-	Vector2 respawn_position = { 376, 378 };
+	Vector2 position, targetPosition, startPosition;
+	Vector2 respawnPosition = { 376, 378 };
 	float amount;
 	float speed;
 	Rectangle border, borderRight, borderLeft, borderTop, borderBottom;
