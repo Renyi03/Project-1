@@ -3,6 +3,7 @@
 #include <vector>
 #include<string>
 using namespace std;
+class Anims;
 class Pengo;
 class Block;
 class SnoBee;
@@ -10,7 +11,7 @@ class SnoBee;
 class Map {
 
 public:
-	Map(Rectangle border, string map, Texture2D imgSnobee, Texture2D imgPengo, Texture2D imgIceBlock, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned, Sound S_Touch_Snow_Bee, Sound S_Push_Outside_Walls, Sound S_iceBlock_Destroyed, Sound S_Push_iceBlock, Sound S_Block_Stopped); //Constructor
+	Map(Anims* anims, Rectangle border, string map, Texture2D imgIceBlock, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned, Sound S_Touch_Snow_Bee, Sound S_Push_Outside_Walls, Sound S_Ice_Block_Destroyed, Sound S_Push_Ice_Block, Sound S_Block_Stopped);
 	~Map();
 	void Draw();
 	std::vector<Block>& GetBlocks();
@@ -28,12 +29,13 @@ public:
 	Sound Snow_Bee_Stunned;
 	Sound Touch_Snow_Bee;
 	Sound Push_Outside_Walls;
-	Sound iceBlock_Destroyed;
-	Sound Push_iceBlock;
+	Sound Ice_Block_Destroyed;
+	Sound Push_Ice_Block;
 	Sound Block_Stopped;
+	Anims* animations;
 private:
 	int score = 0;
-	Texture2D iceBlock;
+	Texture2D ice_block;
 	int speed;
 	Rectangle border;
 	string map;

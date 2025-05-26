@@ -6,11 +6,12 @@
 #include <algorithm>
 #include <raymath.h>
 #include <iostream>
+#include "Anims.hpp"
 #include "Map.hpp"
 #include "Block.hpp"
 using namespace std;
 
-SnoBee::SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned)
+SnoBee::SnoBee(Anims* anims, Rectangle screenBorder, Map* map, Vector2 position, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned)
 {
     Snow_Bee_Squashed = S_Snow_Bee_Squashed;
     Snow_Bee_Stunned = S_Snow_Bee_Stunned;
@@ -19,9 +20,8 @@ SnoBee::SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img
 	borderBottom = Rectangle{ 88, 810, 624, 10 };
 	borderLeft = Rectangle{ 78, 90, 10, 720 };
 	borderRight = Rectangle{ 712, 90, 10, 720 };
-    image = img;
-	targetPosition = position;
-    currentPosition = position;
+	target_position = position;
+    current_position = position;
 	speed = 3;
 	border = screenBorder;
 	currentMap = map;
@@ -29,6 +29,7 @@ SnoBee::SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img
     isStunned = false;
     breakingMode = false;
     breakCooldown = 0.0f;
+    animations = anims;
 }
 
 SnoBee::~SnoBee()
@@ -38,10 +39,10 @@ SnoBee::~SnoBee()
 int SnoBee::countSurroundingBlocks() { //Function for letting the snobees know how many blocks they have arround them
     auto& blocks = currentMap->GetBlocks();
     int ctr = 0;
-    Vector2 directions[4] = { {48, 0}, {-48, 0}, {0, -48}, {0, 48} }; //Right, left, up, down directions
+    Vector2 directions[4] = { {48, 0}, {-48, 0}, {0, -48}, {0, 48} }; //right, left, up, down
     for (auto& d : directions) {
         for (auto& b : blocks) {
-            if (b.isActive && b.rect.x == currentPosition.x + d.x && b.rect.y == currentPosition.y + d.y) {
+            if (b.isActive && b.rect.x == current_position.x + d.x && b.rect.y == current_position.y + d.y) {
                 ctr++;
             }
         }
@@ -52,7 +53,7 @@ int SnoBee::countSurroundingBlocks() { //Function for letting the snobees know h
 
 void SnoBee::Draw() {
     if (isActive == true) {
-       DrawTextureV(image, currentPosition, WHITE);
+        auto img = animations;
     }
 }
 
@@ -66,7 +67,7 @@ void SnoBee::Update() {
     }
 
     if (!isStunned) { //The snobee will do all this only if it is not stunned. If it is stunned, it will not do anything
-        if (currentPosition.x == targetPosition.x && currentPosition.y == targetPosition.y) {
+        if (current_position.x == target_position.x && current_position.y == target_position.y) {
             auto i = countSurroundingBlocks();
             if (!breakingMode && i >= 3) { //If the snobee is surrounded by 3 blocks or more, it will enter the breaking mode state
                 breakingMode = true;
@@ -77,7 +78,7 @@ void SnoBee::Update() {
             case Block::MovingDirection::up: { //Actions when moving upwards
 
                 bool isABlock{};
-                Vector2 v3{ currentPosition.x, currentPosition.y - 48 };
+                Vector2 v3{ current_position.x, current_position.y - 48 };
                 auto& blocks = currentMap->GetBlocks();
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& blck = blocks[i];
@@ -94,16 +95,16 @@ void SnoBee::Update() {
                 }
 
                 if (!isABlock) { //Move to the next position if there is not a block
-                    targetPosition.x = v3.x;
-                    targetPosition.y = v3.y;
+                    target_position.x = v3.x;
+                    target_position.y = v3.y;
                 }
 
-                startPosition = currentPosition;
+                start_position = current_position;
                 amount = 0;
-                if (currentPosition.y <= borderTop.y - borderTop.height + 48) {  //Make the snobee unable of trespassing a border
-                    currentPosition.y = borderTop.y + borderTop.height;
-                    targetPosition.y = currentPosition.y;
-                    targetPosition.x = currentPosition.x;
+                if (current_position.y <= borderTop.y - borderTop.height + 48) {  //Make the snobee unable of trespassing a border
+                    current_position.y = borderTop.y + borderTop.height;
+                    target_position.y = current_position.y;
+                    target_position.x = current_position.x;
                 }
                 break;
             }
@@ -111,7 +112,7 @@ void SnoBee::Update() {
             case Block::MovingDirection::down: { //Actions when moving downwards
 
                 bool isABlock{};
-                Vector2 v3{ currentPosition.x, currentPosition.y + 48 };
+                Vector2 v3{ current_position.x, current_position.y + 48 };
                 auto& blocks = currentMap->GetBlocks();
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& blck = blocks[i];
@@ -128,23 +129,24 @@ void SnoBee::Update() {
                 }
 
                 if (!isABlock) { //Move to the next position if there is not a block
-                    targetPosition.x = v3.x;
-                    targetPosition.y = v3.y;
+                    target_position.x = v3.x;
+                    target_position.y = v3.y;
                 }
 
-                startPosition = currentPosition;
+                start_position = current_position;
                 amount = 0;
-                if (currentPosition.y + image.height >= borderBottom.y) { //Make the snobee unable of trespassing a border
-                    currentPosition.y = borderBottom.y - image.height;
-                    targetPosition.y = currentPosition.y;
-                    targetPosition.x = currentPosition.x;
+
+                if (current_position.y + 48 >= borderBottom.y) { //Make the snobee unable of trespassing a border
+                    current_position.y = borderBottom.y - 48;
+                    target_position.y = current_position.y;
+                    target_position.x = current_position.x;
                 }
                 break;
             }
             case Block::MovingDirection::left: { //Actions when moving left
 
                 bool isABlock{};
-                Vector2 v3{ currentPosition.x - 48, currentPosition.y };
+                Vector2 v3{ current_position.x - 48, current_position.y };
                 auto& blocks = currentMap->GetBlocks();
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& blck = blocks[i];
@@ -161,22 +163,22 @@ void SnoBee::Update() {
                 }
 
                 if (!isABlock) { //Move to the next position if there is not a block
-                    targetPosition.x = v3.x;
-                    targetPosition.y = v3.y;
+                    target_position.x = v3.x;
+                    target_position.y = v3.y;
                 }
 
-                startPosition = currentPosition;
+                start_position = current_position;
                 amount = 0;
-                if (currentPosition.x - 48 < borderLeft.x + borderLeft.width) { //Make the snobee unable of trespassing a border
-                    currentPosition.x = borderLeft.x + borderLeft.width;
-                    targetPosition = currentPosition;
+                if (current_position.x - 48 < borderLeft.x + borderLeft.width) { //Make the snobee unable of trespassing a border
+                    current_position.x = borderLeft.x + borderLeft.width;
+                    target_position = current_position;
                 }
                 break;
             }
             case Block::MovingDirection::right: { //Actions when moving right
 
                 bool isABlock{};
-                Vector2 v3{ currentPosition.x + 48, currentPosition.y };
+                Vector2 v3{ current_position.x + 48, current_position.y };
                 auto& blocks = currentMap->GetBlocks();
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& blck = blocks[i];
@@ -193,15 +195,15 @@ void SnoBee::Update() {
                 }
 
                 if (!isABlock) { //Move to the next position if there is not a block
-                    targetPosition.x = v3.x;
-                    targetPosition.y = v3.y;
+                    target_position.x = v3.x;
+                    target_position.y = v3.y;
                 }
 
-                startPosition = currentPosition;
+                start_position = current_position;
                 amount = 0;
-                if (currentPosition.x + image.width > borderRight.x - 48) { //Make the snobee unable of trespassing a border
-                    currentPosition.x = borderRight.x - image.width;
-                    targetPosition = currentPosition;
+                if (current_position.x + 48 > borderRight.x - 48) { //Make the snobee unable of trespassing a border
+                    current_position.x = borderRight.x - 48;
+                    target_position = current_position;
                 }
                 break;
             }
@@ -210,9 +212,9 @@ void SnoBee::Update() {
         else { //Set the movment speed of the snobee
             float s = speed * GetFrameTime();
             amount += s;
-            currentPosition = Vector2Lerp(startPosition, targetPosition, amount);
+            current_position = Vector2Lerp(start_position, target_position, amount);
             if (amount >= 1) {
-                currentPosition = targetPosition;
+                current_position = target_position;
             }
         }
     }
@@ -223,7 +225,7 @@ Rectangle SnoBee::GetRect() //Get the position of a snobee
     if (!isActive) { //When a snobee is defeated, its position and size will set to 0
         return Rectangle{ 0, 0, 0, 0 };
     }
-    return Rectangle{ currentPosition.x, currentPosition.y, float(image.width), float(image.height) };
+    return Rectangle{ current_position.x, current_position.y, float(48), float(48) };
 }
 
 void SnoBee::DrawHitbox(bool isColliding) //Draw the witbox of a snobee, red if colliding, white if not (only for debugging, not activated in the actual game)

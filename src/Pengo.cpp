@@ -6,24 +6,38 @@
 #include "Map.hpp"
 #include "Block.hpp"
 #include "SnoBee.hpp"
+#include "Anims.hpp"
 using namespace std;
 
-Pengo::Pengo(Rectangle screenBorder, Map* map, Texture2D img, Sound S_Push_Outside_Walls)
+Pengo::Pengo(Anims* anims, Rectangle screenBorder, Map* map, Sound S_Push_Outside_Walls)
 {
     borderTop = Rectangle{ 88, 80, 624, 10 };
     borderBottom = Rectangle{ 88, 810, 624, 10 };
     borderLeft = Rectangle{ 78, 90, 10, 720 };
     borderRight = Rectangle{ 712, 90, 10, 720 };
-    image = img;
     Push_Outside_Walls = S_Push_Outside_Walls;
     position.x = 376;
     position.y = 378;
-    targetPosition = position;
+    target_position = position;
     speed = 1;
     border = screenBorder;
     currentMap = map;
     stunTimer = 0;
     stunDuration = 2.5;
+    animations = anims;
+    pengoDirection = 4;
+    leftFramesCtr = 0;
+    rightFramesCtr = 0;
+    upFramesCtr = 0;
+    downFramesCtr = 0;
+    currentLeftX = 0;
+    currentRightX = 0;
+    currentUpX = 0;
+    currentDownX = 0;
+    leftFrameRec = { 0, 0, 48, 48 };
+    rightFrameRec = { 0, 0, 48, 48 };
+    upFrameRec = { 0, 0, 48, 48 };
+    downFrameRec = { 0, 0, 48, 48 };
 }
 
 Pengo::~Pengo()
@@ -31,39 +45,116 @@ Pengo::~Pengo()
 }
 
 void Pengo::Draw() {
-	DrawTextureV(image, position, WHITE);
+    if (IsKeyDown(KEY_LEFT)) {
+        pengoDirection = 1;
+        leftFramesCtr++;
+        if (leftFramesCtr > 10) {
+            leftFramesCtr = 0;
+            if (currentLeftX == 0) {
+                currentLeftX = 1;
+            }
+            else if (currentLeftX == 1) {
+                currentLeftX = 0;
+            }
+        }
+        leftFrameRec.x = currentLeftX * 48;
+        DrawTextureRec(animations->imgPengoLeft, leftFrameRec, { position.x, position.y }, WHITE);
+    }
+    else if (IsKeyDown(KEY_RIGHT)) {
+        pengoDirection = 2;
+        rightFramesCtr++;
+        if (rightFramesCtr > 10) {
+            rightFramesCtr = 0;
+            if (currentRightX == 0) {
+                currentRightX = 1;
+            }
+            else if (currentRightX == 1) {
+                currentRightX = 0;
+            }
+        }
+        rightFrameRec.x = currentRightX * 48;
+        DrawTextureRec(animations->imgPengoRight, rightFrameRec, { position.x, position.y }, WHITE);
+    }
+    else if (IsKeyDown(KEY_UP)) {
+        pengoDirection = 3;
+        upFramesCtr++;
+        if (upFramesCtr > 10) {
+            upFramesCtr = 0;
+            if (currentUpX == 0) {
+                currentUpX = 1;
+            }
+            else if (currentUpX == 1) {
+                currentUpX = 0;
+            }
+        }
+        upFrameRec.x = currentUpX * 48;
+        DrawTextureRec(animations->imgPengoUp, upFrameRec, { position.x, position.y }, WHITE);
+    }
+    else if (IsKeyDown(KEY_DOWN)) {
+        pengoDirection = 4;
+        downFramesCtr++;
+        if (downFramesCtr > 10) {
+            downFramesCtr = 0;
+            if (currentDownX == 0) {
+                currentDownX = 1;
+            }
+            else if (currentDownX == 1) {
+                currentDownX = 0;
+            }
+        }
+        downFrameRec.x = currentDownX * 48;
+        DrawTextureRec(animations->imgPengoDown, downFrameRec, { position.x, position.y }, WHITE);
+    }
+    else {
+        if (pengoDirection == 1) {
+            leftFrameRec.x = 48;
+            DrawTextureRec(animations->imgPengoLeft, leftFrameRec, { position.x, position.y }, WHITE);
+        }
+        else if (pengoDirection == 2) {
+            rightFrameRec.x = 48;
+            DrawTextureRec(animations->imgPengoRight, rightFrameRec, { position.x, position.y }, WHITE);
+        }
+        else if (pengoDirection == 3) {
+            upFrameRec.x = 0;
+            DrawTextureRec(animations->imgPengoUp, upFrameRec, { position.x, position.y }, WHITE);
+        }
+        else if (pengoDirection == 4) {
+            downFrameRec.x = 0;
+            DrawTextureRec(animations->imgPengoDown, downFrameRec, { position.x, position.y }, WHITE);
+        }
+    }
 }
 
 void Pengo::Update() {
-    for (auto& snobees : currentMap->GetSnoBees()) { //This will have checked every snobee of the vector of snobees every time there is a snobe.anything
-        if (position.x == targetPosition.x && position.y == targetPosition.y) {
-            if (IsKeyDown(KEY_RIGHT)) { //Actions when moving right, pressing the RIGHT key
+    for (auto& snobees : currentMap->GetSnoBees()) {
+        if (position.x == target_position.x && position.y == target_position.y) {
+            if (IsKeyDown(KEY_RIGHT)) {
 
                 bool isBlock{};
                 Vector2 v{ position.x + 48, position.y };
                 auto& blocks = currentMap->GetBlocks();
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& b = blocks[i];
-                    if (b.isActive == true && b.rect.x == v.x && b.rect.y == v.y) { //If Pengo collides with a block
+                    if (b.isActive == true && b.rect.x == v.x && b.rect.y == v.y) {
                         isBlock = true;
                         Vector2 v2{ position.x + 96, position.y };
                         bool isBlockAdjacent{};
                         for (int j = 0; j < blocks.size(); ++j) {
                             auto& b2 = blocks[j];
-                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x + image.width > borderRight.x - 48)) { //Checks if the block has another block behind, to decide if it will be moved or destroyed
+                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x + 48 > borderRight.x - 48)) {
                                 isBlockAdjacent = true;
-                                b.isActive = false; //Destroys the block
-                                PlaySound(b.iceBlock_Destroyed);
-                                currentMap->addScore(30); //Adds 30 points to the score for breaking a block
+                                b.isActive = false;
+                                PlaySound(b.Ice_Block_Destroyed);
+                                currentMap->addScore(30);
                                 break;
                             }
                         }
                         if (!isBlockAdjacent) {
                             bool blockCollision = CheckCollisionRecs(b.rect, snobees.GetRect());
-                            b.direction = Block::MovingDirection::right; //Move the block
-                            PlaySound(b.Push_iceBlock);
+                            b.direction = Block::MovingDirection::right;
+                            PlaySound(b.Push_Ice_Block);
                             if (blockCollision == true) {
-                                snobees.isActive = false; //Squashes any snobee in the trajectory of the block
+                                snobees.isActive = false;
                                 PlaySound(snobees.Snow_Bee_Squashed);
                             }
                         }
@@ -71,19 +162,19 @@ void Pengo::Update() {
                     }
                 }
 
-                if (!isBlock) { //Moves to the next position if there is not a block
-                    targetPosition.x = v.x;
-                    targetPosition.y = v.y;
+                if (!isBlock) {
+                    target_position.x = v.x;
+                    target_position.y = v.y;
                 }
 
-                startPosition = position;
+                start_position = position;
                 amount = 0;
-                if (position.x + image.width > borderRight.x - 48) { //When next to a border, if you try to trespass it (pressing the moving key again), Pengo will push the wall, and will not be able to pass through the border
-                    position.x = borderRight.x - image.width;
-                    targetPosition = position;
+                if (position.x + 48 > borderRight.x - 48) {
+                    position.x = borderRight.x - 48;
+                    target_position = position;
                     PlaySound(Push_Outside_Walls);
 
-                    if (snobees.currentPosition.x + image.width == borderRight.x && position.x + image.width > borderRight.x - 48) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
+                    if (snobees.current_position.x + 48 == borderRight.x && position.x + 48 > borderRight.x - 48) {
                         snobees.isStunned = true;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
@@ -92,33 +183,33 @@ void Pengo::Update() {
                 }
             }
 
-            else if (IsKeyDown(KEY_LEFT)) { //Actions when moving left, pressing the LEFT key
+            else if (IsKeyDown(KEY_LEFT)) {
 
                 bool isBlock{};
                 Vector2 v{ position.x - 48, position.y };
                 auto& blocks = currentMap->GetBlocks();
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& b = blocks[i];
-                    if (b.isActive == true && b.rect.x == v.x && b.rect.y == v.y) { //If Pengo collides with a block
+                    if (b.isActive == true && b.rect.x == v.x && b.rect.y == v.y) {
                         isBlock = true;
                         Vector2 v2{ position.x - 96, position.y };
                         bool isBlockAdjacent{};
                         for (int j = 0; j < blocks.size(); ++j) {
                             auto& b2 = blocks[j];
-                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x - 48 < borderLeft.x + borderLeft.width)) { //Checks if the block has another block behind, to decide if it will be moved or destroyed
+                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x - 48 < borderLeft.x + borderLeft.width)) {
                                 isBlockAdjacent = true;
-                                b.isActive = false; //Destroys the block
-                                PlaySound(b.iceBlock_Destroyed);
-                                currentMap->addScore(30); //Adds 30 points to the score for breaking a block
+                                b.isActive = false;
+                                PlaySound(b.Ice_Block_Destroyed);
+                                currentMap->addScore(30);
                                 break;
                             }
                         }
                         if (!isBlockAdjacent) {
                             bool blockCollision = CheckCollisionRecs(b.rect, snobees.GetRect());
-                            b.direction = Block::MovingDirection::left; //Move the block
-                            PlaySound(b.Push_iceBlock);
+                            b.direction = Block::MovingDirection::left;
+                            PlaySound(b.Push_Ice_Block);
                             if (blockCollision == true) {
-                                snobees.isActive = false; //Squashes any snobee in the trajectory of the block
+                                snobees.isActive = false;
                                 PlaySound(snobees.Snow_Bee_Squashed);
                             }
                         }
@@ -126,19 +217,19 @@ void Pengo::Update() {
                     }
                 }
 
-                if (!isBlock) { //Moves to the next position if there is not a block
-                    targetPosition.x = v.x;
-                    targetPosition.y = v.y;
+                if (!isBlock) {
+                    target_position.x = v.x;
+                    target_position.y = v.y;
                 }
 
-                startPosition = position;
+                start_position = position;
                 amount = 0;
-                if (position.x - 48 < borderLeft.x + borderLeft.width) { //When next to a border, if you try to trespass it (pressing the moving key again), Pengo will push the wall, and will not be able to pass through the border
+                if (position.x - 48 < borderLeft.x + borderLeft.width) {
                     position.x = borderLeft.x + borderLeft.width;
-                    targetPosition = position;
+                    target_position = position;
                     PlaySound(Push_Outside_Walls);
 
-                    if (snobees.currentPosition.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
+                    if (snobees.current_position.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) {
                         snobees.isStunned = true;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
@@ -147,33 +238,33 @@ void Pengo::Update() {
                 }
             }
 
-            else if (IsKeyDown(KEY_UP)) { //Actions when moving upwards, pressing the UP key
+            else if (IsKeyDown(KEY_UP)) {
 
                 bool isBlock{};
                 Vector2 v{ position.x, position.y - 48 };
                 auto& blocks = currentMap->GetBlocks();
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& b = blocks[i];
-                    if (b.isActive == true && b.rect.x == v.x && b.rect.y == v.y) { //If Pengo collides with a block
+                    if (b.isActive == true && b.rect.x == v.x && b.rect.y == v.y) {
                         isBlock = true;
                         Vector2 v2{ position.x, position.y - 96 };
                         bool isBlockAdjacent{};
                         for (int j = 0; j < blocks.size(); ++j) {
                             auto& b2 = blocks[j];
-                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y <= borderTop.y - borderTop.height + 48)) { //Checks if the block has another block behind, to decide if it will be moved or destroyed
+                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y <= borderTop.y - borderTop.height + 48)) {
                                 isBlockAdjacent = true;
-                                b.isActive = false; //Destroys the block
-                                currentMap->addScore(30); //Adds 30 points to the score for breaking a block
-                                PlaySound(b.iceBlock_Destroyed);
+                                b.isActive = false;
+                                currentMap->addScore(30);
+                                PlaySound(b.Ice_Block_Destroyed);
                                 break;
                             }
                         }
                         if (!isBlockAdjacent) {
                             bool blockCollision = CheckCollisionRecs(b.rect, snobees.GetRect());
-                            b.direction = Block::MovingDirection::up; //Move the block
-                            PlaySound(b.Push_iceBlock);
+                            b.direction = Block::MovingDirection::up;
+                            PlaySound(b.Push_Ice_Block);
                             if (blockCollision == true) {
-                                snobees.isActive = false; //Squashes any snobee in the trajectory of the block
+                                snobees.isActive = false;
                                 PlaySound(snobees.Snow_Bee_Squashed);
                             }
                         }
@@ -181,20 +272,20 @@ void Pengo::Update() {
                     }
                 }
 
-                if (!isBlock) { //Moves to the next position if there is not a block
-                    targetPosition.x = v.x;
-                    targetPosition.y = v.y;
+                if (!isBlock) {
+                    target_position.x = v.x;
+                    target_position.y = v.y;
                 }
 
-                startPosition = position;
+                start_position = position;
                 amount = 0;
-                if (position.y <= borderTop.y - borderTop.height + 48) { //When next to a border, if you try to trespass it (pressing the moving key again), Pengo will push the wall, and will not be able to pass through the border
+                if (position.y <= borderTop.y - borderTop.height + 48) {
                     position.y = borderTop.y + borderTop.height;
-                    targetPosition.y = position.y;
-                    targetPosition.x = position.x;
+                    target_position.y = position.y;
+                    target_position.x = position.x;
                     PlaySound(Push_Outside_Walls);
 
-                    if (snobees.currentPosition.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
+                    if (snobees.current_position.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) {
                         snobees.isStunned = true;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
@@ -203,33 +294,33 @@ void Pengo::Update() {
                 }               
             }
 
-            else if (IsKeyDown(KEY_DOWN)) { //Actions when moving downwards, pressing the DOWN key
+            else if (IsKeyDown(KEY_DOWN)) {
 
                 bool isBlock{};
                 Vector2 v{ position.x, position.y + 48 };
                 auto& blocks = currentMap->GetBlocks();
                 for (int i = 0; i < blocks.size(); ++i) {
                     auto& b = blocks[i];
-                    if (b.isActive == true && b.rect.x == v.x && b.rect.y == v.y) { //If Pengo collides with a block
+                    if (b.isActive == true && b.rect.x == v.x && b.rect.y == v.y) {
                         isBlock = true;
                         Vector2 v2{ position.x, position.y + 96 };
                         bool isBlockAdjacent{};
                         for (int j = 0; j < blocks.size(); ++j) {
                             auto& b2 = blocks[j];
-                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y + image.height >= borderBottom.y)) { //Checks if the block has another block behind, to decide if it will be moved or destroyed
+                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y + 48 >= borderBottom.y)) {
                                 isBlockAdjacent = true;
-                                b.isActive = false; //Destroys the block
-                                PlaySound(b.iceBlock_Destroyed);
-                                currentMap->addScore(30); //Adds 30 points to the score for breaking a block
+                                b.isActive = false;
+                                PlaySound(b.Ice_Block_Destroyed);
+                                currentMap->addScore(30);
                                 break;
                             }
                         }
-                        if (!isBlockAdjacent) { 
+                        if (!isBlockAdjacent) {
                             bool blockCollision = CheckCollisionRecs(b.rect, snobees.GetRect());
-                            b.direction = Block::MovingDirection::down; //Move the block
-                            PlaySound(b.Push_iceBlock);
+                            b.direction = Block::MovingDirection::down;
+                            PlaySound(b.Push_Ice_Block);
                             if (blockCollision == true) {
-                                snobees.isActive = false; //Squashes any snobee in the trajectory of the block
+                                snobees.isActive = false;
                                 PlaySound(snobees.Snow_Bee_Squashed);
                             }
                         }
@@ -237,20 +328,20 @@ void Pengo::Update() {
                     }
                 }
 
-                if (!isBlock) { //Moves to the next position if there is not a block
-                    targetPosition.x = v.x;
-                    targetPosition.y = v.y;
+                if (!isBlock) {
+                    target_position.x = v.x;
+                    target_position.y = v.y;
                 }
 
-                startPosition = position;
+                start_position = position;
                 amount = 0;
-                if (position.y + image.height >= borderBottom.y) { //When next to a border, if you try to trespass it (pressing the moving key again), Pengo will push the wall, and will not be able to pass through the border
-                    position.y = borderBottom.y - image.height;
-                    targetPosition.y = position.y;
-                    targetPosition.x = position.x;
+                if (position.y + 48 >= borderBottom.y) {
+                    position.y = borderBottom.y - 48;
+                    target_position.y = position.y;
+                    target_position.x = position.x;
                     PlaySound(Push_Outside_Walls);
 
-                    if (snobees.currentPosition.y + image.height == borderBottom.y && position.y + image.height >= borderBottom.y) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
+                    if (snobees.current_position.y + 48 == borderBottom.y && position.y + 48 >= borderBottom.y) {
                         snobees.isStunned = true;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
@@ -259,15 +350,15 @@ void Pengo::Update() {
                 }
             }            
         }
-        else { //Sets the speed of Pengo
+        else {
             float s = speed * GetFrameTime();
             amount += s;
-            position = Vector2Lerp(startPosition, targetPosition, amount);
+            position = Vector2Lerp(start_position, target_position, amount);
             if (amount >= 1) {
-                position = targetPosition;
+                position = target_position;
             }
         }
-        if (snobees.isStunned) { //Time while the snobee will be stunned
+        if (snobees.isStunned) {
             stunTimer -= GetFrameTime();
             cout << " " << stunTimer << endl;
             if (stunTimer <= 0) {
@@ -278,39 +369,39 @@ void Pengo::Update() {
     }
 }
 
-void Pengo::resetPosition() { //Reset the position of Pengo when it dies or the level changes
-    position = respawnPosition;
-    targetPosition = respawnPosition;
-    startPosition = respawnPosition;
+void Pengo::resetPosition() {
+    position = respawn_position;
+    target_position = respawn_position;
+    start_position = respawn_position;
 }
 
-Rectangle Pengo::GetRect() //Get the position of Pengo
+Rectangle Pengo::GetRect()
 {
-    return Rectangle{position.x, position.y, float(image.width), float(image.height)};
+    return Rectangle{position.x, position.y, float(48), float(48)};
 }
 
-void Pengo::DrawHitbox(bool isColliding) //Draw a hitbox around Pengo, red if there is a collision, white if not (only for debugging, not used in the actual game)
+void Pengo::DrawHitbox(bool isColliding)
 {
     Color outlineColor = isColliding ? RED : WHITE;
     DrawRectangleLinesEx(GetRect(), 3, outlineColor);
 }
 
-const Rectangle& Pengo::GetBorderRight() const //Get the right side of Pengo
+const Rectangle& Pengo::GetBorderRight() const
 {
     return borderRight;
 }
 
-const Rectangle& Pengo::GetBorderLeft() const //Get the left side of Pengo
+const Rectangle& Pengo::GetBorderLeft() const
 {
     return borderLeft;
 }
 
-const Rectangle& Pengo::GetBorderTop() const //Get the top side of Pengo
+const Rectangle& Pengo::GetBorderTop() const
 {
     return borderTop;
 }
 
-const Rectangle& Pengo::GetBorderBottom() const //Get the bottom side of Pengo
+const Rectangle& Pengo::GetBorderBottom() const
 {
     return borderBottom;
 }

@@ -1,11 +1,13 @@
 #pragma once
-#include <raylib.h>
+//#include <raylib.h>
 #include <vector>
 class Map;
+//class Anims;
+#include "Anims.hpp"
 
 class SnoBee {
 public:
-	SnoBee(Rectangle screenBorder, Map* map, Vector2 position, Texture2D img, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned); //Constructor
+	SnoBee(Anims* anims, Rectangle screenBorder, Map* map, Vector2 position, Sound S_Snow_Bee_Squashed, Sound S_Snow_Bee_Stunned);
 	~SnoBee();
 	void Draw();
 	void Update();
@@ -21,11 +23,11 @@ public:
 	bool isStunned;
 	bool breakingMode;
 	float breakCooldown;
-	Vector2 currentPosition, position, targetPosition, startPosition;
+	Vector2 current_position, position, target_position, start_position;
 	Sound Snow_Bee_Squashed;
 	Sound Snow_Bee_Stunned;
+	Anims* animations;
 protected:
-	Texture2D image;
 	float amount;
 	int speed;
 	Rectangle border, borderRight, borderLeft, borderTop, borderBottom;
