@@ -244,6 +244,7 @@ int main(void)
     Sound Block_Stopped = LoadSound("resources/Pengo_Music/Block_Stopped.wav");
     Sound Act_Clear = LoadSound("resources/Pengo_Music/Act_Clear.wav");
     Sound Act_Start = LoadSound("resources/Pengo_Music/Act_Start.wav");
+    Sound Miss = LoadSound("resources/Pengo_Music/Miss.wav");
     Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
 
 
@@ -395,6 +396,7 @@ int main(void)
             map1->Draw();
 
             if (map1->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -479,6 +481,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -562,6 +565,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -646,6 +650,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -727,6 +732,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -809,6 +815,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -892,6 +899,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -976,6 +984,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -1061,6 +1070,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -1143,6 +1153,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -1226,6 +1237,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -1310,6 +1322,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -1395,6 +1408,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -1481,6 +1495,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -1564,6 +1579,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -1648,6 +1664,7 @@ int main(void)
             map->Draw();
 
             if (map->gameOver == true) {
+                PlaySound(Miss);
                 currentScreen = GAMEOVER;
             }
 
@@ -1857,6 +1874,7 @@ int main(void)
     UnloadSound(Push_iceBlock);
     UnloadSound(Block_Stopped);
     UnloadSound(Act_Clear);
+    UnloadSound(Miss);
 
     //Unload all the image resources
 
