@@ -1638,11 +1638,10 @@ int main(void)
         //Case for the game over screen, when all the lives are lost
         case GAMEOVER:
         {
-            totalScore = 0;
-
-            DrawRectangle(0, 0, 800, 900, BLUE);
-            DrawText("GAME OVER", 20, 20, 40, DARKBLUE);
-            DrawText("PRESS ENTER or TAP to JUMP to TITLE SCREEN", 120, 220, 20, DARKBLUE);
+            DrawRectangle(0, 0, 800, 900, BLACK);
+            DrawText(TextFormat("TOTAL SCORE: %i", totalScore), 240, 100, 30, YELLOW);
+            DrawText("THANKS FOR PLAYING", 185, 330, 35, WHITE);
+            DrawText("TRY ONcE MORE!", 230, 390, 35, WHITE);
 
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
