@@ -214,11 +214,13 @@ int main(void)
     Vector2 borderLeftPosition = { 78, 90 };
     Vector2 borderRightPosition = { 712,90 };
 
-    //Load textures
     Rectangle border{88, 90, 624, 720};
 
+    //Load textures
     Anims anims{};
     anims.loadTextures();
+
+    Texture2D logo = LoadTexture("resources/Graphics/Pengo_Logo.png");
 
     Texture2D iceBlock = LoadTexture("resources/Graphics/ice_block.png");
     Texture2D levelCntImage = LoadTexture("resources/Graphics/level_cnt.png");
@@ -322,11 +324,13 @@ int main(void)
         //Initial screen
         case INITIAL:
         {
-            DrawText("PENGO PROTOTYPE", 66, 50, 40, LIGHTGRAY);
-            DrawText("Project 1, Video game design and development, CITM", 125, 220, 20, GRAY);
-            DrawText("Team members: Sofia Barja, Clara Sanchez, Yin Ye", 133, 270, 20, GRAY);
-            DrawText("Github accounts: sofia-221b, Valkyn22, Renyi03", 150, 320, 20, GRAY);
-            DrawText("Tutors: Aleix Cots, Alejandro Paris", 205, 370, 20, GRAY);
+            DrawText("PENGO ALPHA", 66, 50, 40, LIGHTGRAY);
+            DrawText("Project 1, Video game design and development, CITM", 125, 120, 20, GRAY);
+            DrawText("Team members: Sofia Barja, Clara Sanchez, Yin Ye", 133, 170, 20, GRAY);
+            DrawText("Github accounts: sofia-221b, Valkyn22, Renyi03", 150, 220, 20, GRAY);
+            DrawText("Tutors: Aleix Cots, Alejandro Paris", 205, 270, 20, GRAY);
+
+            DrawTexture(logo, 258, 350, WHITE);
 
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
