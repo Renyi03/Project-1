@@ -16,6 +16,18 @@ Pengo::Pengo(Anims* anims, Rectangle screenBorder, Map* map, Sound S_Push_Outsid
     borderLeft = Rectangle{ 78, 90, 10, 720 };
     borderRight = Rectangle{ 712, 90, 10, 720 };
     Push_Outside_Walls = S_Push_Outside_Walls;
+    wallLeftFrameCtr = 0;
+    wallRightFrameCtr = 0;
+    wallUpFrameCtr = 0;
+    wallDownFrameCtr = 0;
+    wallCurrentLeftX = 0;
+    wallCurrentRightX = 0;
+    wallCurrentUpX = 0;
+    wallCurrentDownX = 0;
+    wallLeftFrameRec = { 0, 0, 20, 720 };
+    wallRightFrameRec = { 0, 0, 20, 720 };
+    wallUpFrameRec = { 0, 0, 1248, 10 };
+    wallDownFrameRec = { 0, 0, 1248, 10 };
     position.x = 376;
     position.y = 378;
     targetPosition = position;
@@ -352,6 +364,22 @@ void Pengo::Update() {
                     targetPosition = position;
                     PlaySound(Push_Outside_Walls);
 
+                    if (isPushing) {
+                        wallRightFrameCtr++;
+                        if (wallRightFrameCtr > 12) {
+                            wallRightFrameCtr = 0;
+                            if (wallCurrentRightX == 0) {
+                                wallCurrentRightX = 1;
+                            }
+                            else if (wallCurrentRightX == 1) {
+                                wallCurrentRightX = 0;
+                            }
+                        }
+                        wallRightFrameRec.x = wallCurrentRightX * 10;
+                        DrawTextureRec(animations->imgBorderRight, wallRightFrameRec, { 712, 90 }, WHITE);
+                        isPushing = false;
+                    }
+                    
                     if (snobees.currentPosition.x + 48 == borderRight.x && position.x + 48 > borderRight.x - 48) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
                         snobees.isStunned = true;
                         snobees.direction = 0;
@@ -410,6 +438,22 @@ void Pengo::Update() {
                     position.x = borderLeft.x + borderLeft.width;
                     targetPosition = position;
                     PlaySound(Push_Outside_Walls);
+
+                    if (isPushing) {
+                        wallLeftFrameCtr++;
+                        if (wallLeftFrameCtr > 12) {
+                            wallLeftFrameCtr = 0;
+                            if (wallCurrentLeftX == 0) {
+                                wallCurrentLeftX = 1;
+                            }
+                            else if (wallCurrentLeftX == 1) {
+                                wallCurrentLeftX = 0;
+                            }
+                        }
+                        wallLeftFrameRec.x = wallCurrentLeftX * 10;
+                        DrawTextureRec(animations->imgBorderLeft, wallLeftFrameRec, { 78, 90 }, WHITE);
+                        isPushing = false;
+                    }
 
                     if (snobees.currentPosition.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) {
                         snobees.isStunned = true;
@@ -471,6 +515,22 @@ void Pengo::Update() {
                     targetPosition.x = position.x;
                     PlaySound(Push_Outside_Walls);
 
+                    if (isPushing) {
+                        wallUpFrameCtr++;
+                        if (wallUpFrameCtr > 12) {
+                            wallUpFrameCtr = 0;
+                            if (wallCurrentUpX == 0) {
+                                wallCurrentUpX = 1;
+                            }
+                            else if (wallCurrentUpX == 1) {
+                                wallCurrentUpX = 0;
+                            }
+                        }
+                        wallUpFrameRec.x = wallCurrentUpX * 624;
+                        DrawTextureRec(animations->imgBorderTop, wallUpFrameRec, { 88, 80 }, WHITE);
+                        isPushing = false;
+                    }
+
                     if (snobees.currentPosition.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) {
                         snobees.isStunned = true;
                         snobees.direction = 0;
@@ -530,6 +590,22 @@ void Pengo::Update() {
                     targetPosition.y = position.y;
                     targetPosition.x = position.x;
                     PlaySound(Push_Outside_Walls);
+
+                    if (isPushing) {
+                        wallDownFrameCtr++;
+                        if (wallDownFrameCtr > 12) {
+                            wallDownFrameCtr = 0;
+                            if (wallCurrentDownX == 0) {
+                                wallCurrentDownX = 1;
+                            }
+                            else if (wallCurrentDownX == 1) {
+                                wallCurrentDownX = 0;
+                            }
+                        }
+                        wallDownFrameRec.x = wallCurrentDownX * 624;
+                        DrawTextureRec(animations->imgBorderBottom, wallDownFrameRec, { 88, 810 }, WHITE);
+                        isPushing = false;
+                    }
 
                     if (snobees.currentPosition.y + 48 == borderBottom.y && position.y + 48 >= borderBottom.y) {
                         snobees.isStunned = true;

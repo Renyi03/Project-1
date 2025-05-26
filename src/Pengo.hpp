@@ -28,6 +28,9 @@ public:
 	bool isPushAnimationPlaying;
 	float pushAnimationTimer;
 	float pushAnimationDuration;
+	int wallLeftFrameCtr, wallRightFrameCtr, wallUpFrameCtr, wallDownFrameCtr;
+	int wallCurrentLeftX, wallCurrentRightX, wallCurrentUpX, wallCurrentDownX;
+	Rectangle wallLeftFrameRec, wallRightFrameRec, wallUpFrameRec, wallDownFrameRec;
 protected:
 	Vector2 position, targetPosition, startPosition;
 	Vector2 respawnPosition = { 376, 378 };
