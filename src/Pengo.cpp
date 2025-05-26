@@ -176,6 +176,7 @@ void Pengo::Update() {
 
                     if (snobees.currentPosition.x + 48 == borderRight.x && position.x + 48 > borderRight.x - 48) { //If there is a snobee touching the border at the time of pushing the wall, the snobee will be stunned for a few seconds
                         snobees.isStunned = true;
+                        snobees.direction = 0;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
                         stunTimer = stunDuration;
@@ -231,6 +232,7 @@ void Pengo::Update() {
 
                     if (snobees.currentPosition.x == borderLeft.x + borderLeft.width && position.x - 48 < borderLeft.x + borderLeft.width) {
                         snobees.isStunned = true;
+                        snobees.direction = 0;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
                         stunTimer = stunDuration;
@@ -287,6 +289,7 @@ void Pengo::Update() {
 
                     if (snobees.currentPosition.y == borderTop.y + borderTop.height && position.y <= borderTop.y - borderTop.height + 48) {
                         snobees.isStunned = true;
+                        snobees.direction = 0;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
                         stunTimer = stunDuration;
@@ -343,6 +346,7 @@ void Pengo::Update() {
 
                     if (snobees.currentPosition.y + 48 == borderBottom.y && position.y + 48 >= borderBottom.y) {
                         snobees.isStunned = true;
+                        snobees.direction = 0;
                         PlaySound(snobees.Snow_Bee_Stunned);
 
                         stunTimer = stunDuration;
@@ -364,6 +368,8 @@ void Pengo::Update() {
             if (stunTimer <= 0) {
                 stunTimer = 0;
                 snobees.isStunned = false;
+                snobees.direction = rand() % 4 + 1; //Reactivate random movement of the snobees after being stunned
+
             }
         }
     }

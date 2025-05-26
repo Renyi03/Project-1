@@ -30,6 +30,36 @@ SnoBee::SnoBee(Anims* anims, Rectangle screenBorder, Map* map, Vector2 position,
     breakingMode = false;
     breakCooldown = 0.0f;
     animations = anims;
+
+    leftFramesCtr = 0;
+    rightFramesCtr = 0;
+    upFramesCtr = 0;
+    downFramesCtr = 0;
+    stunFramesCtr = 0;
+    breakLeftFramesCtr = 0;
+    breakRightFramesCtr = 0;
+    breakUpFramesCtr = 0;
+    breakDownFramesCtr = 0;
+
+    currentLeftX = 0;
+    currentRightX = 0;
+    currentUpX = 0;
+    currentDownX = 0;
+    currentStunX = 0;
+    currentBreakLeftX = 0;
+    currentBreakRightX = 0;
+    currentBreakUpX = 0;
+    currentBreakDownX = 0;
+
+    leftFrameRec = { 0, 0, 48, 48 };
+    rightFrameRec = { 0, 0, 48, 48 };
+    upFrameRec = { 0, 0, 48, 48 };
+    downFrameRec = { 0, 0, 48, 48 };
+    stunFrameRec = { 0, 0, 48, 48 };
+    breakLeftFrameRec = { 0, 0, 48, 48 };
+    breakRightFrameRec = { 0, 0, 48, 48 };
+    breakUpFrameRec = { 0, 0, 48, 48 };
+    breakDownFrameRec = { 0, 0, 48, 48 };
 }
 
 SnoBee::~SnoBee()
@@ -39,7 +69,7 @@ SnoBee::~SnoBee()
 int SnoBee::countSurroundingBlocks() { //Function for letting the snobees know how many blocks they have arround them
     auto& blocks = currentMap->GetBlocks();
     int ctr = 0;
-    Vector2 directions[4] = { {48, 0}, {-48, 0}, {0, -48}, {0, 48} }; //right, left, up, down
+    Vector2 directions[4] = { {48, 0}, {-48, 0}, {0, -48}, {0, 48} }; //Right, left, up, down
     for (auto& d : directions) {
         for (auto& b : blocks) {
             if (b.isActive && b.rect.x == currentPosition.x + d.x && b.rect.y == currentPosition.y + d.y) {
@@ -47,13 +77,158 @@ int SnoBee::countSurroundingBlocks() { //Function for letting the snobees know h
             }
         }
     }
+    cout << "surroundingBlocks: " << ctr << ", breakingMode: " << breakingMode << endl;
     return ctr;
 }
 
 
 void SnoBee::Draw() {
-    if (isActive == true) {
-        auto img = animations;
+    if (breakingMode == true) { //Breaking mode
+        if (direction == 3) { //Breaking mode left
+            breakLeftFramesCtr++;
+            if (breakLeftFramesCtr > 10) {
+                breakLeftFramesCtr = 0;
+                if (currentBreakLeftX == 0) {
+                    currentBreakLeftX = 1;
+                }
+                else if (currentBreakLeftX == 1) {
+                    currentBreakLeftX = 0;
+                }
+            }
+            breakLeftFrameRec.x = currentBreakLeftX * 48;
+            DrawTextureRec(animations->imgSnobeeBreakLeft, breakLeftFrameRec, { currentPosition.x, currentPosition.y }, WHITE);
+
+        }
+        else if (direction == 4) { //Breaking mode right
+            breakRightFramesCtr++;
+            if (breakRightFramesCtr > 10) {
+                breakRightFramesCtr = 0;
+                if (currentBreakRightX == 0) {
+                    currentBreakRightX = 1;
+                }
+                else if (currentBreakRightX == 1) {
+                    currentBreakRightX = 0;
+                }
+            }
+            breakRightFrameRec.x = currentBreakRightX * 48;
+            DrawTextureRec(animations->imgSnobeeBreakRight, breakRightFrameRec, { currentPosition.x, currentPosition.y }, WHITE);
+        }
+        else if (direction == 1) { //Breaking mode up
+            breakUpFramesCtr++;
+            if (breakUpFramesCtr > 10) {
+                breakUpFramesCtr = 0;
+                if (currentBreakUpX == 0) {
+                    currentBreakUpX = 1;
+                }
+                else if (currentBreakUpX == 1) {
+                    currentBreakUpX = 0;
+                }
+            }
+            breakUpFrameRec.x = currentBreakUpX * 48;
+            DrawTextureRec(animations->imgSnobeeBreakUp, breakUpFrameRec, { currentPosition.x, currentPosition.y }, WHITE);
+        }
+        else if (direction == 2) { //Breaking mode down
+            breakDownFramesCtr++;
+            if (breakDownFramesCtr > 5) {
+                breakDownFramesCtr = 0;
+                if (currentBreakDownX == 0) {
+                    currentBreakDownX = 1;
+                }
+                else if (currentBreakDownX == 1) {
+                    currentBreakDownX = 0;
+                }
+            }
+            breakDownFrameRec.x = currentBreakDownX * 48;
+            DrawTextureRec(animations->imgSnobeeBreakDown, breakDownFrameRec, { currentPosition.x, currentPosition.y }, WHITE);
+        }
+        else if (direction == 0) { //Stunned while breaking
+            stunFramesCtr++;
+            if (stunFramesCtr > 10) {
+                stunFramesCtr = 0;
+                if (currentStunX == 0) {
+                    currentStunX = 1;
+                }
+                else if (currentStunX == 1) {
+                    currentStunX = 0;
+                }
+            }
+            stunFrameRec.x = currentStunX * 48;
+            DrawTextureRec(animations->imgSnobeeStunned, stunFrameRec, { currentPosition.x, currentPosition.y }, WHITE);
+        }
+    }
+
+    else { //Not breaking mode
+        if (direction == 3) { //Moving left
+            leftFramesCtr++;
+            if (leftFramesCtr > 10) {
+                leftFramesCtr = 0;
+                if (currentLeftX == 0) {
+                    currentLeftX = 1;
+                }
+                else if (currentLeftX == 1) {
+                    currentLeftX = 0;
+                }
+            }
+            leftFrameRec.x = currentLeftX * 48;
+            DrawTextureRec(animations->imgSnobeeLeft, leftFrameRec, { currentPosition.x, currentPosition.y }, WHITE);
+
+        }
+        else if (direction == 4) { //Moving right
+            rightFramesCtr++;
+            if (rightFramesCtr > 10) {
+                rightFramesCtr = 0;
+                if (currentRightX == 0) {
+                    currentRightX = 1;
+                }
+                else if (currentRightX == 1) {
+                    currentRightX = 0;
+                }
+            }
+            rightFrameRec.x = currentRightX * 48;
+            DrawTextureRec(animations->imgSnobeeRight, rightFrameRec, { currentPosition.x, currentPosition.y }, WHITE);
+        }
+        else if (direction == 1) { //Moving up
+            upFramesCtr++;
+            if (upFramesCtr > 10) {
+                upFramesCtr = 0;
+                if (currentUpX == 0) {
+                    currentUpX = 1;
+                }
+                else if (currentUpX == 1) {
+                    currentUpX = 0;
+                }
+            }
+            upFrameRec.x = currentUpX * 48;
+            DrawTextureRec(animations->imgSnobeeUp, upFrameRec, { currentPosition.x, currentPosition.y }, WHITE);
+        }
+        else if (direction == 2) { //Moving down
+            downFramesCtr++;
+            if (downFramesCtr > 5) {
+                downFramesCtr = 0;
+                if (currentDownX == 0) {
+                    currentDownX = 1;
+                }
+                else if (currentDownX == 1) {
+                    currentDownX = 0;
+                }
+            }
+            downFrameRec.x = currentDownX * 48;
+            DrawTextureRec(animations->imgSnobeeDown, downFrameRec, { currentPosition.x, currentPosition.y }, WHITE);
+        }
+        else if (direction == 0) { //Stunned
+            stunFramesCtr++;
+            if (stunFramesCtr > 10) {
+                stunFramesCtr = 0;
+                if (currentStunX == 0) {
+                    currentStunX = 1;
+                }
+                else if (currentStunX == 1) {
+                    currentStunX = 0;
+                }
+            }
+            stunFrameRec.x = currentStunX * 48;
+            DrawTextureRec(animations->imgSnobeeStunned, stunFrameRec, { currentPosition.x, currentPosition.y }, WHITE);
+        }
     }
 }
 
@@ -68,11 +243,11 @@ void SnoBee::Update() {
 
     if (!isStunned) { //The snobee will do all this only if it is not stunned. If it is stunned, it will not do anything
         if (currentPosition.x == targetPosition.x && currentPosition.y == targetPosition.y) {
-            auto i = countSurroundingBlocks();
-            if (!breakingMode && i >= 3) { //If the snobee is surrounded by 3 blocks or more, it will enter the breaking mode state
+            auto surroundingBlocks = countSurroundingBlocks();
+            if (!breakingMode && surroundingBlocks >= 3) { //If the snobee is surrounded by 3 blocks or more, it will enter the breaking mode state
                 breakingMode = true;
             }
-            int direction = rand() % 4 + 1;
+            direction = rand() % 4 + 1; //Random movement of the snobees
 
             switch (direction) {
             case Block::MovingDirection::up: { //Actions when moving upwards

@@ -27,6 +27,10 @@ public:
 	Sound Snow_Bee_Squashed;
 	Sound Snow_Bee_Stunned;
 	Anims* animations;
+	int leftFramesCtr, rightFramesCtr, upFramesCtr, downFramesCtr, stunFramesCtr, breakLeftFramesCtr, breakRightFramesCtr, breakUpFramesCtr, breakDownFramesCtr;
+	int currentLeftX, currentRightX, currentUpX, currentDownX, currentStunX, currentBreakLeftX, currentBreakRightX, currentBreakUpX, currentBreakDownX;
+	Rectangle leftFrameRec, rightFrameRec, upFrameRec, downFrameRec, stunFrameRec, breakLeftFrameRec, breakRightFrameRec, breakUpFrameRec, breakDownFrameRec;
+	int direction;
 protected:
 	float amount;
 	int speed;

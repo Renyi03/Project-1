@@ -220,7 +220,7 @@ int main(void)
     Anims anims{};
     anims.loadTextures();
 
-    Texture2D iceBlock = LoadTexture("resources/Graphics/iceBlock.png");
+    Texture2D iceBlock = LoadTexture("resources/Graphics/ice_block.png");
     Texture2D levelCntImage = LoadTexture("resources/Graphics/level_cnt.png");
     Texture2D lifeImage = LoadTexture("resources/Graphics/Pengo_life.png");
     Texture2D levelCntBigImage = LoadTexture("resources/Graphics/level_cnt_big.png");
@@ -236,8 +236,8 @@ int main(void)
     Sound Snow_Bee_Stunned = LoadSound("resources/Pengo_Music/Snow-Bee_Stunned.wav");
     Sound Touch_Snow_Bee = LoadSound("resources/Pengo_Music/Touch_Snow-Bee.wav");
     Sound Push_Outside_Walls = LoadSound("resources/Pengo_Music/Push_Outside_Walls.wav");
-    Sound iceBlock_Destroyed = LoadSound("resources/Pengo_Music/iceBlock_Destroyed.wav");
-    Sound Push_iceBlock = LoadSound("resources/Pengo_Music/Push_iceBlock.wav");
+    Sound iceBlock_Destroyed = LoadSound("resources/Pengo_Music/Ice_Block_Destroyed.wav");
+    Sound Push_iceBlock = LoadSound("resources/Pengo_Music/Push_Ice_Block.wav");
     Sound Block_Stopped = LoadSound("resources/Pengo_Music/Block_Stopped.wav");
     Sound Time_Bonus = LoadSound("resources/Pengo_Music/Time_Bonus_Extend.wav");
     Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
@@ -1788,6 +1788,7 @@ int main(void)
         EndDrawing();
     } 
 
+    anims.unloadTextures();
     //Unload all the audio resources
     UnloadMusicStream(Main_BGM);
     UnloadSound(Snow_Bee_Squashed);
