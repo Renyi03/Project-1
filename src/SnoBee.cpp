@@ -77,7 +77,6 @@ int SnoBee::countSurroundingBlocks() { //Function for letting the snobees know h
             }
         }
     }
-    cout << "surroundingBlocks: " << ctr << ", breakingMode: " << breakingMode << endl;
     return ctr;
 }
 
