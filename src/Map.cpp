@@ -31,14 +31,14 @@ Map::Map(Anims* anims, Rectangle border, string map, Texture2D imgIceBlock, Soun
     vector<Vector2>SpawnPositions = { //Creates the vector that contains the position of all snobees
         {232, 282}, {328, 282}, {184, 474}, {184, 666}
     };
-    
-    for (auto &v : SpawnPositions) { //Creates a vector to contain all the snobees, using the positions of previous vector, "SpawnPositions"
+
+    for (auto& v : SpawnPositions) { //Creates a vector to contain all the snobees, using the positions of previous vector, "SpawnPositions"
         auto& s = SnoBee{ anims, border, this, v, S_Snow_Bee_Squashed, S_Snow_Bee_Stunned };
         SnoBees.push_back(s);
     }
 
     pengo = new Pengo{ anims, border, this, S_Push_Outside_Walls }; //Creates a Pengo
-    
+
     lives = 5; //Initial number of lives, resetted at the beginning of each level
 
     float row{};
@@ -56,7 +56,7 @@ Map::Map(Anims* anims, Rectangle border, string map, Texture2D imgIceBlock, Soun
             ++row;
             break;
         case '1':
-            matrix.push_back(1);           
+            matrix.push_back(1);
             blocks.push_back(Block{ Rectangle{88 + col * 24, 90 + row * 48, 48, 48}, S_iceBlock_Destroyed, S_Push_iceBlock, S_Block_Stopped });
             break;
         }
@@ -74,7 +74,7 @@ Map::~Map() //Destructor to reset pengo
 void Map::Draw() {
     pengo->Update();
     pengo->Draw();
-    
+
 
     for (auto& snobee : GetSnoBees()) { //Draws every snobee contained in the vector of snobees
         Vector2 map_iceblock_position;
@@ -91,7 +91,7 @@ void Map::Draw() {
         if (snobee.isActive && CheckCollisionRecs(pengo->GetRect(), snobee.GetRect())) {
             if (!hasCollided && !snobee.isStunned) {
                 --lives;
-                hasCollided = true;               
+                hasCollided = true;
                 if (lives > 0) {
                     pengo->resetPosition();
                 }
@@ -104,7 +104,7 @@ void Map::Draw() {
             }
             if (snobee.isStunned) {
                 snobee.isActive = false;
-                snobee.currentPosition = { 0, 0 };
+                snobee.currentPosition = { 0,0 };
                 snobee.isStunned = false;
                 addScore(100);
                 snobeesDefeated++;
@@ -185,10 +185,10 @@ void Map::Draw() {
                     if (!isBlock) {
                         b.rect.x = displacement.x;
                         b.rect.y = displacement.y;
-                        
+
                         if (snobee.isActive && CheckCollisionRecs(b.rect, snobee.GetRect())) { //Defeat a snobee by squashing it with a block
                             snobee.isActive = false;
-                            snobee.currentPosition = { 0, 0 };
+                            snobee.currentPosition = { 0,0 };
                             snobeesDefeated++;
                             PlaySound(snobee.Snow_Bee_Squashed);
                             if (snobeesDefeated >= 4) {
@@ -202,7 +202,7 @@ void Map::Draw() {
                     }
                     else {
                         b.direction = Block::MovingDirection::none;
-                    }                   
+                    }
                 }
                 DrawTextureV(iceBlock, { b.rect.x, b.rect.y }, WHITE);
             }
@@ -234,4 +234,6 @@ std::vector<SnoBee>& Map::GetSnoBees() //Get the vector of snobees
 //    return Rectangle{ (50 + row * 80), (98 + col * 80), float(iceBlock.width), float(iceBlock.height) };
 //    return Rectangle();
 //}
+
+
 
