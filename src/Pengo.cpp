@@ -602,7 +602,7 @@ Rectangle Pengo::GetRect() //Get the position of Pengo
 
 void Pengo::DrawHitbox() //Draw a hitbox around Pengo, red if there is a collision, white if not (only for debugging, not used in the actual game)
 {
-    DrawRectangleLinesEx(GetRect(), 3, RED);
+    DrawRectangleLines(position.x, position.y, 48, 48, LIME);
 }
 
 const Rectangle& Pengo::GetBorderRight() const //Get the right side of Pengo
