@@ -242,7 +242,7 @@ int main(void)
     Sound iceBlock_Destroyed = LoadSound("resources/Pengo_Music/Ice_Block_Destroyed.wav");
     Sound Push_iceBlock = LoadSound("resources/Pengo_Music/Push_Ice_Block.wav");
     Sound Block_Stopped = LoadSound("resources/Pengo_Music/Block_Stopped.wav");
-    Sound Time_Bonus = LoadSound("resources/Pengo_Music/Time_Bonus_Extend.wav");
+    Sound Act_Clear = LoadSound("resources/Pengo_Music/Act_Clear.wav");
     Sound Act_Start = LoadSound("resources/Pengo_Music/Act_Start.wav");
     Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
 
@@ -422,7 +422,7 @@ int main(void)
                 map1->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -434,7 +434,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map1->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -506,7 +506,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -516,7 +516,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -589,7 +589,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -599,7 +599,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -673,7 +673,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -683,7 +683,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -754,7 +754,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -764,7 +764,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -836,7 +836,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -846,7 +846,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -919,7 +919,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -929,7 +929,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -1003,7 +1003,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -1013,7 +1013,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -1088,7 +1088,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -1098,7 +1098,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -1170,7 +1170,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -1180,7 +1180,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -1253,7 +1253,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -1263,7 +1263,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -1337,7 +1337,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -1347,7 +1347,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -1422,7 +1422,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -1432,7 +1432,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -1508,7 +1508,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -1518,7 +1518,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -1591,7 +1591,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -1601,7 +1601,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
         }break;
@@ -1675,7 +1675,7 @@ int main(void)
                 map->isMapUsed = true;
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = POINTS;
             }
 
@@ -1685,7 +1685,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_N)) {
                 map->isMapUsed = true;
-                PlaySound(Time_Bonus);
+                PlaySound(Act_Clear);
                 currentScreen = GAMEOVER;
             }
         }break;
@@ -1772,6 +1772,8 @@ int main(void)
             DrawTextureV(lifeImage, lifePosition4, WHITE);
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
+                StopSound(Act_Clear);
+
                 map = GetRandomMap(map2, map3, map4, map5, map6, map7, map8, map9, map10, map11, map12, map13, map14, map15, map16);
 
                 if (level == 1) {
@@ -1854,7 +1856,7 @@ int main(void)
     UnloadSound(iceBlock_Destroyed);
     UnloadSound(Push_iceBlock);
     UnloadSound(Block_Stopped);
-    UnloadSound(Time_Bonus);
+    UnloadSound(Act_Clear);
 
     //Unload all the image resources
 
