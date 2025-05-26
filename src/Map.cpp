@@ -103,6 +103,8 @@ void Map::Draw() {
             }
             if (snobee.isStunned) {
                 snobee.isActive = false;
+                snobee.currentPosition = { 0, 0 };
+                snobee.isStunned = false;
                 addScore(100);
                 snobeesDefeated++;
                 PlaySound(Touch_Snow_Bee);
@@ -185,6 +187,7 @@ void Map::Draw() {
                         
                         if (snobee.isActive && CheckCollisionRecs(b.rect, snobee.GetRect())) { //Defeat a snobee by squashing it with a block
                             snobee.isActive = false;
+                            snobee.currentPosition = { 0, 0 };
                             snobeesDefeated++;
                             PlaySound(snobee.Snow_Bee_Squashed);
                             if (snobeesDefeated >= 4) {

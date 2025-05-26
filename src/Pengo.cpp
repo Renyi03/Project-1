@@ -26,34 +26,18 @@ Pengo::Pengo(Anims* anims, Rectangle screenBorder, Map* map, Sound S_Push_Outsid
     stunDuration = 2.5;
     animations = anims;
     pengoDirection = 4;
-    isPushing = false;
     leftFramesCtr = 0;
     rightFramesCtr = 0;
     upFramesCtr = 0;
     downFramesCtr = 0;
-    pushLeftFramesCtr = 0;
-    pushRightFramesCtr = 0;
-    pushUpFramesCtr = 0;
-    pushDownFramesCtr = 0;
     currentLeftX = 0;
     currentRightX = 0;
     currentUpX = 0;
     currentDownX = 0;
-    currentPushLeftX = 0;
-    currentPushRightX = 0;
-    currentPushUpX = 0;
-    currentPushDownX = 0;
     leftFrameRec = { 0, 0, 48, 48 };
     rightFrameRec = { 0, 0, 48, 48 };
     upFrameRec = { 0, 0, 48, 48 };
     downFrameRec = { 0, 0, 48, 48 };
-    pushLeftFrameRec = { 0, 0, 48, 48 };
-    pushRightFrameRec = { 0, 0, 48, 48 };
-    pushUpFrameRec = { 0, 0, 48, 48 };
-    pushDownFrameRec = { 0, 0, 48, 48 };
-    isPushAnimationPlaying = false;
-    pushAnimationTimer = 0.0f;
-    pushAnimationDuration = 0.2f;
 }
 
 Pengo::~Pengo()
@@ -62,225 +46,65 @@ Pengo::~Pengo()
 
 void Pengo::Draw() {
     if (IsKeyDown(KEY_LEFT)) {
-        pengoDirection = 1; //Left direction
-        if (!isPushing) { //Pengo is walking
-            leftFramesCtr++; //Increases frames counter
-            if (leftFramesCtr > 12) { //Frames duration of the animation
-                leftFramesCtr = 0;
-                if (currentLeftX == 0) {
-                    currentLeftX = 1; //Position of the second sprite on the spritesheet
-                }
-                else if (currentLeftX == 1) {
-                    currentLeftX = 0; //Position of the first sprite on the spritesheet
-                }
+        pengoDirection = 1;
+        leftFramesCtr++;
+        if (leftFramesCtr > 10) {
+            leftFramesCtr = 0;
+            if (currentLeftX == 0) {
+                currentLeftX = 1;
             }
-            leftFrameRec.x = currentLeftX * 48; //Calculation of the position of the sprite that needs to be drawn
-            DrawTextureRec(animations->imgPengoLeft, leftFrameRec, { position.x, position.y }, WHITE); //Drawing the sprite
+            else if (currentLeftX == 1) {
+                currentLeftX = 0;
+            }
         }
-        else if (isPushAnimationPlaying) {
-            pushAnimationTimer -= GetFrameTime(); //Lowering the timer
-            if (pushAnimationTimer <= 0.0f) { //Once the timer is over
-                isPushAnimationPlaying = false; //Push animation stops
-            }
-            pushLeftFramesCtr++;
-            if (pushLeftFramesCtr > 12) {
-                pushLeftFramesCtr = 0;
-                if (currentPushLeftX == 0) {
-                    currentPushLeftX = 1;
-                }
-                else if (currentPushLeftX == 1) {
-                    currentPushLeftX = 0;
-                }
-          
-            }
-            pushLeftFrameRec.x = currentPushLeftX * 48;
-            DrawTextureRec(animations->imgPengoPushLeft, pushLeftFrameRec, { position.x, position.y }, WHITE);
-            return;
-        }
-        else if (isPushing) {
-            isPushAnimationPlaying = true; //Starts the push animation
-            pushAnimationTimer = pushAnimationDuration; //Resets the timer
-            pushLeftFramesCtr++;
-            if (pushLeftFramesCtr > 12) {
-                pushLeftFramesCtr = 0;
-                if (currentPushLeftX == 0) {
-                    currentPushLeftX = 1;
-                }
-                else if (currentPushLeftX == 1) {
-                    currentPushLeftX = 0;
-                }
-            }
-            pushLeftFrameRec.x = currentPushLeftX * 48;
-            DrawTextureRec(animations->imgPengoPushLeft, pushLeftFrameRec, { position.x, position.y }, WHITE);
-            isPushing = false;
-            return;
-        }           
+        leftFrameRec.x = currentLeftX * 48;
+        DrawTextureRec(animations->imgPengoLeft, leftFrameRec, { position.x, position.y }, WHITE);
     }
     else if (IsKeyDown(KEY_RIGHT)) {
         pengoDirection = 2;
-        if (!isPushing) {
-            rightFramesCtr++;
-            if (rightFramesCtr > 10) {
-                rightFramesCtr = 0;
-                if (currentRightX == 0) {
-                    currentRightX = 1;
-                }
-                else if (currentRightX == 1) {
-                    currentRightX = 0;
-                }
+        rightFramesCtr++;
+        if (rightFramesCtr > 10) {
+            rightFramesCtr = 0;
+            if (currentRightX == 0) {
+                currentRightX = 1;
             }
-            rightFrameRec.x = currentRightX * 48;
-            DrawTextureRec(animations->imgPengoRight, rightFrameRec, { position.x, position.y }, WHITE);
+            else if (currentRightX == 1) {
+                currentRightX = 0;
+            }
         }
-        else if (isPushAnimationPlaying) {
-            pushAnimationTimer -= GetFrameTime();
-            if (pushAnimationTimer <= 0.0f) {
-                isPushAnimationPlaying = false;
-            }
-            pushRightFramesCtr++;
-            if (pushRightFramesCtr > 12) {
-                pushRightFramesCtr = 0;
-                if (currentPushRightX == 0) {
-                    currentPushRightX = 1;
-                }
-                else if (currentPushRightX == 1) {
-                    currentPushRightX = 0;
-                }
-            }
-            pushRightFrameRec.x = currentPushRightX * 48;
-            DrawTextureRec(animations->imgPengoPushRight, pushRightFrameRec, { position.x, position.y }, WHITE);
-            return;
-        }
-        else if (isPushing) {
-            isPushAnimationPlaying = true;
-            pushAnimationTimer = pushAnimationDuration;
-
-            pushRightFramesCtr++;
-            if (pushRightFramesCtr > 12) {
-                pushRightFramesCtr = 0;
-                if (currentPushRightX == 0) {
-                    currentPushRightX = 1;
-                }
-                else if (currentPushRightX == 1) {
-                    currentPushRightX = 0;
-                }
-            }
-            pushRightFrameRec.x = currentPushRightX * 48;
-            DrawTextureRec(animations->imgPengoPushRight, pushRightFrameRec, { position.x, position.y }, WHITE);
-            isPushing = false;
-            return;
-        }
-
+        rightFrameRec.x = currentRightX * 48;
+        DrawTextureRec(animations->imgPengoRight, rightFrameRec, { position.x, position.y }, WHITE);
     }
     else if (IsKeyDown(KEY_UP)) {
         pengoDirection = 3;
-        if (!isPushing) {
-            upFramesCtr++;
-            if (upFramesCtr > 10) {
-                upFramesCtr = 0;
-                if (currentUpX == 0) {
-                    currentUpX = 1;
-                }
-                else if (currentUpX == 1) {
-                    currentUpX = 0;
-                }
+        upFramesCtr++;
+        if (upFramesCtr > 10) {
+            upFramesCtr = 0;
+            if (currentUpX == 0) {
+                currentUpX = 1;
             }
-            upFrameRec.x = currentUpX * 48;
-            DrawTextureRec(animations->imgPengoUp, upFrameRec, { position.x, position.y }, WHITE);
+            else if (currentUpX == 1) {
+                currentUpX = 0;
+            }
         }
-        else if (isPushAnimationPlaying) {
-            pushAnimationTimer -= GetFrameTime();
-            if (pushAnimationTimer <= 0.0f) {
-                isPushAnimationPlaying = false;
-            }
-            pushUpFramesCtr++;
-            if (pushUpFramesCtr > 12) {
-                pushUpFramesCtr = 0;
-                if (currentPushUpX == 0) {
-                    currentPushUpX = 1;
-                }
-                else if (currentPushUpX == 1) {
-                    currentPushUpX = 0;
-                }
-            }
-            pushUpFrameRec.x = currentPushUpX * 48;
-            DrawTextureRec(animations->imgPengoPushUp, pushUpFrameRec, { position.x, position.y }, WHITE);
-            return;
-        }
-        else if (isPushing) {
-            isPushAnimationPlaying = true;
-            pushAnimationTimer = pushAnimationDuration;
-            pushUpFramesCtr++;
-            if (pushUpFramesCtr > 12) {
-                pushUpFramesCtr = 0;
-                if (currentPushUpX == 0) {
-                    currentPushUpX = 1;
-                }
-                else if (currentPushUpX == 1) {
-                    currentPushUpX = 0;
-                }
-            }
-            pushUpFrameRec.x = currentPushUpX * 48;
-            DrawTextureRec(animations->imgPengoPushUp, pushUpFrameRec, { position.x, position.y }, WHITE);
-            isPushing = false;
-            return;
-        }
+        upFrameRec.x = currentUpX * 48;
+        DrawTextureRec(animations->imgPengoUp, upFrameRec, { position.x, position.y }, WHITE);
     }
     else if (IsKeyDown(KEY_DOWN)) {
         pengoDirection = 4;
-        if (!isPushing) {
-            downFramesCtr++;
-            if (downFramesCtr > 10) {
-                downFramesCtr = 0;
-                if (currentDownX == 0) {
-                    currentDownX = 1;
-                }
-                else if (currentDownX == 1) {
-                    currentDownX = 0;
-                }
+        downFramesCtr++;
+        if (downFramesCtr > 10) {
+            downFramesCtr = 0;
+            if (currentDownX == 0) {
+                currentDownX = 1;
             }
-            downFrameRec.x = currentDownX * 48;
-            DrawTextureRec(animations->imgPengoDown, downFrameRec, { position.x, position.y }, WHITE);
-
+            else if (currentDownX == 1) {
+                currentDownX = 0;
+            }
         }
-        else if (isPushAnimationPlaying) {
-            pushAnimationTimer -= GetFrameTime();
-            if (pushAnimationTimer <= 0.0f) {
-                isPushAnimationPlaying = false;
-            }
-            pushDownFramesCtr++;
-            if (pushDownFramesCtr > 12) {
-                pushDownFramesCtr = 0;
-                if (currentPushDownX == 0) {
-                    currentPushDownX = 1;
-                }
-                else if (currentPushDownX == 1) {
-                    currentPushDownX = 0;
-                }
-            }
-            pushDownFrameRec.x = currentPushDownX * 48;
-            DrawTextureRec(animations->imgPengoPushDown, pushDownFrameRec, { position.x, position.y }, WHITE);
-            return;
-        }
-        else if (isPushing) {
-            isPushAnimationPlaying = true;
-            pushAnimationTimer = pushAnimationDuration;
-            pushDownFramesCtr++;
-            if (pushDownFramesCtr > 12) {
-                pushDownFramesCtr = 0;
-                if (currentPushDownX == 0) {
-                    currentPushDownX = 1;
-                }
-                else if (currentPushDownX == 1) {
-                    currentPushDownX = 0;
-                }
-            }
-            pushDownFrameRec.x = currentPushDownX * 48;
-            DrawTextureRec(animations->imgPengoPushDown, pushDownFrameRec, { position.x, position.y }, WHITE);
-            isPushing = false;
-            return;
-        }
-    }    
+        downFrameRec.x = currentDownX * 48;
+        DrawTextureRec(animations->imgPengoDown, downFrameRec, { position.x, position.y }, WHITE);
+    }
     else {
         if (pengoDirection == 1) {
             leftFrameRec.x = 48;
@@ -317,9 +141,7 @@ void Pengo::Update() {
                         bool isBlockAdjacent{};
                         for (int j = 0; j < blocks.size(); ++j) {
                             auto& b2 = blocks[j];
-
-                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x + 48 > borderRight.x - 48)) { //Checks if the block has another block
-                                isPushing = true;
+                            if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x + 48 > borderRight.x - 48)) {  //Checks if the block has another block
                                 isBlockAdjacent = true;
                                 b.isActive = false; //Destroys the block
                                 PlaySound(b.iceBlock_Destroyed);
@@ -328,7 +150,6 @@ void Pengo::Update() {
                             }
                         }
                         if (!isBlockAdjacent) {
-                            isPushing = true;
                             bool blockCollision = CheckCollisionRecs(b.rect, snobees.GetRect());
                             b.direction = Block::MovingDirection::right; //Move the block
                             PlaySound(b.Push_iceBlock);
@@ -348,9 +169,7 @@ void Pengo::Update() {
 
                 startPosition = position;
                 amount = 0;
-
                 if (position.x + 48 > borderRight.x - 48) { //When next to a border, if you try to trespass it (pressing the moving key again), Pengo will push the wall, and will not be able to pass through the border
-                    isPushing = true;
                     position.x = borderRight.x - 48;
                     targetPosition = position;
                     PlaySound(Push_Outside_Walls);
@@ -379,7 +198,6 @@ void Pengo::Update() {
                         for (int j = 0; j < blocks.size(); ++j) {
                             auto& b2 = blocks[j];
                             if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.x - 48 < borderLeft.x + borderLeft.width)) {
-                                isPushing = true;
                                 isBlockAdjacent = true;
                                 b.isActive = false;
                                 PlaySound(b.iceBlock_Destroyed);
@@ -389,7 +207,6 @@ void Pengo::Update() {
                         }
                         if (!isBlockAdjacent) {
                             bool blockCollision = CheckCollisionRecs(b.rect, snobees.GetRect());
-                            isPushing = true;
                             b.direction = Block::MovingDirection::left;
                             PlaySound(b.Push_iceBlock);
                             if (blockCollision == true) {
@@ -409,7 +226,6 @@ void Pengo::Update() {
                 startPosition = position;
                 amount = 0;
                 if (position.x - 48 < borderLeft.x + borderLeft.width) {
-                    isPushing = true;
                     position.x = borderLeft.x + borderLeft.width;
                     targetPosition = position;
                     PlaySound(Push_Outside_Walls);
@@ -438,7 +254,6 @@ void Pengo::Update() {
                         for (int j = 0; j < blocks.size(); ++j) {
                             auto& b2 = blocks[j];
                             if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y <= borderTop.y - borderTop.height + 48)) {
-                                isPushing = true;
                                 isBlockAdjacent = true;
                                 b.isActive = false;
                                 currentMap->addScore(30);
@@ -447,7 +262,6 @@ void Pengo::Update() {
                             }
                         }
                         if (!isBlockAdjacent) {
-                            isPushing = true;
                             bool blockCollision = CheckCollisionRecs(b.rect, snobees.GetRect());
                             b.direction = Block::MovingDirection::up;
                             PlaySound(b.Push_iceBlock);
@@ -468,7 +282,6 @@ void Pengo::Update() {
                 startPosition = position;
                 amount = 0;
                 if (position.y <= borderTop.y - borderTop.height + 48) {
-                    isPushing = true;
                     position.y = borderTop.y + borderTop.height;
                     targetPosition.y = position.y;
                     targetPosition.x = position.x;
@@ -498,7 +311,6 @@ void Pengo::Update() {
                         for (int j = 0; j < blocks.size(); ++j) {
                             auto& b2 = blocks[j];
                             if ((b2.isActive == true && b2.rect.x == v2.x && b2.rect.y == v2.y) || (b.rect.y + 48 >= borderBottom.y)) {
-                                isPushing = true;
                                 isBlockAdjacent = true;
                                 b.isActive = false;
                                 PlaySound(b.iceBlock_Destroyed);
@@ -507,7 +319,6 @@ void Pengo::Update() {
                             }
                         }
                         if (!isBlockAdjacent) {
-                            isPushing = true;
                             bool blockCollision = CheckCollisionRecs(b.rect, snobees.GetRect());
                             b.direction = Block::MovingDirection::down;
                             PlaySound(b.Push_iceBlock);
@@ -528,7 +339,6 @@ void Pengo::Update() {
                 startPosition = position;
                 amount = 0;
                 if (position.y + 48 >= borderBottom.y) {
-                    isPushing = true;
                     position.y = borderBottom.y - 48;
                     targetPosition.y = position.y;
                     targetPosition.x = position.x;
