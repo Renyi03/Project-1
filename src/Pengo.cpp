@@ -54,6 +54,8 @@ Pengo::Pengo(Anims* anims, Rectangle screenBorder, Map* map, Sound S_Push_Outsid
     isPushAnimationPlaying = false;
     pushAnimationTimer = 0.0f;
     pushAnimationDuration = 0.2f;
+    isInvincible = false;
+    invincibilityTimer = 2.0f;
 }
 
 Pengo::~Pengo()
@@ -563,23 +565,44 @@ void Pengo::Update() {
             }
         }
     }
+    if (isInvincible) {
+        invincibilityState();
+    }
+    cout << "Invincibility: " << isInvincible << endl;
 }
 
 void Pengo::resetPosition() { //Reset the position of Pengo when it dies or the level changes
     position = respawnPosition;
     targetPosition = respawnPosition;
     startPosition = respawnPosition;
+    isInvincible = true;
+    invincibilityTimer = 2.0f;
+}
+
+void Pengo::invincibilityState()
+{
+    if(isInvincible && invincibilityTimer > 0.0f) {
+        invincibilityTimer -= GetFrameTime();
+        DrawHitbox();
+        cout << invincibilityTimer << ": " << isInvincible << endl;
+    }
+    else if (isInvincible && invincibilityTimer <= 0.0f) {
+        isInvincible = false;
+        return;
+    }
 }
 
 Rectangle Pengo::GetRect() //Get the position of Pengo
 {
+    if (isInvincible) {
+        return Rectangle{ position.x, position.y, 0, 0 };
+    }
     return Rectangle{position.x, position.y, float(48), float(48)};
 }
 
-void Pengo::DrawHitbox(bool isColliding) //Draw a hitbox around Pengo, red if there is a collision, white if not (only for debugging, not used in the actual game)
+void Pengo::DrawHitbox() //Draw a hitbox around Pengo, red if there is a collision, white if not (only for debugging, not used in the actual game)
 {
-    Color outlineColor = isColliding ? RED : WHITE;
-    DrawRectangleLinesEx(GetRect(), 3, outlineColor);
+    DrawRectangleLinesEx(GetRect(), 3, RED);
 }
 
 const Rectangle& Pengo::GetBorderRight() const //Get the right side of Pengo

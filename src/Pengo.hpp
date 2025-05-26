@@ -11,13 +11,14 @@ public:
 	void Draw();
 	void Update();
 	Rectangle GetRect();
-	void DrawHitbox(bool isColliding);
+	void DrawHitbox();
 	Map* currentMap;
 	const Rectangle& GetBorderRight() const;
 	const Rectangle& GetBorderLeft() const;
 	const Rectangle& GetBorderTop() const;
 	const Rectangle& GetBorderBottom() const;
 	void resetPosition();
+	void invincibilityState();
 	Sound Push_Outside_Walls;
 	Anims* animations;
 	int leftFramesCtr, rightFramesCtr, upFramesCtr, downFramesCtr, pushLeftFramesCtr, pushRightFramesCtr, pushUpFramesCtr, pushDownFramesCtr; //Frames counter for the animations
@@ -28,6 +29,8 @@ public:
 	bool isPushAnimationPlaying;
 	float pushAnimationTimer;
 	float pushAnimationDuration;
+	bool isInvincible;
+	float invincibilityTimer;
 protected:
 	Vector2 position, targetPosition, startPosition;
 	Vector2 respawnPosition = { 376, 378 };
