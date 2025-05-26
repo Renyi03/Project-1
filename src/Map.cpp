@@ -89,16 +89,17 @@ void Map::Draw() {
 
         //Losing lives
         if (snobee.isActive && CheckCollisionRecs(pengo->GetRect(), snobee.GetRect())) {
-            if (!hasCollided && snobee.isStunned == false) {
+            if (!hasCollided && !snobee.isStunned) {
                 --lives;
-                hasCollided = true;
-                cout << lives << " ";
-
+                hasCollided = true;               
                 if (lives > 0) {
                     pengo->resetPosition();
                 }
                 else {
                     gameOver = true;
+                }
+                if (pengo->isInvincible) {
+                    pengo->GetRect();
                 }
             }
             if (snobee.isStunned) {
