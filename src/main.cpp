@@ -243,6 +243,7 @@ int main(void)
     Sound Push_iceBlock = LoadSound("resources/Pengo_Music/Push_Ice_Block.wav");
     Sound Block_Stopped = LoadSound("resources/Pengo_Music/Block_Stopped.wav");
     Sound Time_Bonus = LoadSound("resources/Pengo_Music/Time_Bonus_Extend.wav");
+    Sound Act_Start = LoadSound("resources/Pengo_Music/Act_Start.wav");
     Music Main_BGM = LoadMusicStream("resources/Pengo_Music/Main_BGM_(Popcorn).wav");
 
 
@@ -348,6 +349,7 @@ int main(void)
 
             if (IsKeyPressed(KEY_ENTER) || IsGestureDetected(GESTURE_TAP))
             {
+                PlaySound(Act_Start);
                 levelStartTime = GetTime();
                 currentScreen = LEVEL1;
             }
@@ -356,6 +358,10 @@ int main(void)
         //Case for each level
         case LEVEL1:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 1;
 
             for (int i = 0; i < map1->lives; ++i) {
@@ -387,7 +393,6 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition1, WHITE);
 
             map1->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map1->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -415,8 +420,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map1->nextLevel = false;
                 map1->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -436,6 +441,10 @@ int main(void)
 
         case LEVEL2:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 2;
 
             for (int i = 0; i < map->lives; ++i) {
@@ -468,7 +477,6 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition2, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -496,8 +504,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -515,6 +523,10 @@ int main(void)
 
         case LEVEL3:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 3;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -548,7 +560,6 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition3, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -576,8 +587,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -595,6 +606,10 @@ int main(void)
 
         case LEVEL4:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 4;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -629,7 +644,6 @@ int main(void)
             DrawTextureV(levelCntImage, levelCntPosition4, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -657,8 +671,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -676,6 +690,10 @@ int main(void)
 
         case LEVEL5:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 5;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -707,7 +725,6 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -735,8 +752,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -754,6 +771,10 @@ int main(void)
 
         case LEVEL6:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 6;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -786,7 +807,6 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -814,8 +834,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -833,6 +853,10 @@ int main(void)
 
         case LEVEL7:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 7;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -866,7 +890,6 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -894,8 +917,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -913,6 +936,10 @@ int main(void)
 
         case LEVEL8:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 8;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -947,7 +974,6 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -975,8 +1001,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -994,6 +1020,10 @@ int main(void)
 
         case LEVEL9:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 9;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -1029,7 +1059,6 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition5, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1057,8 +1086,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1076,6 +1105,10 @@ int main(void)
 
         case LEVEL10:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 10;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -1108,7 +1141,6 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1136,8 +1168,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1155,6 +1187,10 @@ int main(void)
 
         case LEVEL11:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 11;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -1188,7 +1224,6 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1216,8 +1251,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1235,6 +1270,10 @@ int main(void)
 
         case LEVEL12:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 12;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -1269,7 +1308,6 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1297,8 +1335,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1316,6 +1354,10 @@ int main(void)
 
         case LEVEL13:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 13;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -1351,7 +1393,6 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1379,8 +1420,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1398,6 +1439,10 @@ int main(void)
 
         case LEVEL14:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 14;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -1434,7 +1479,6 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition10, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1462,8 +1506,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1481,6 +1525,10 @@ int main(void)
 
         case LEVEL15:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 15;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -1514,7 +1562,6 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition15, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1542,8 +1589,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1561,6 +1608,10 @@ int main(void)
 
         case LEVEL16:
         {
+            if (!IsSoundPlaying(Act_Start)) {
+                UpdateMusicStream(Main_BGM);
+            }
+
             level = 16;
 
             DrawTextureV(borderTopImage, borderTopPosition, WHITE);
@@ -1595,7 +1646,6 @@ int main(void)
             DrawTextureV(levelCntBigImage, levelCntPosition15, WHITE);
 
             map->Draw();
-            //UpdateMusicStream(Main_BGM);
 
             if (map->gameOver == true) {
                 currentScreen = GAMEOVER;
@@ -1623,8 +1673,8 @@ int main(void)
                 totalScore += bonusPoints;
                 map->nextLevel = false;
                 map->isMapUsed = true;
-                //StopMusicStream(Main_BGM);
-                //PlayMusicStream(Main_BGM);
+                StopMusicStream(Main_BGM);
+                PlayMusicStream(Main_BGM);
                 PlaySound(Time_Bonus);
                 currentScreen = POINTS;
             }
@@ -1784,6 +1834,8 @@ int main(void)
                     levelStartTime = GetTime();
                     currentScreen = LEVEL16;
                 }
+
+                PlaySound(Act_Start);
             }
         } break;
 

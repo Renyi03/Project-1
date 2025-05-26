@@ -56,3 +56,9 @@ The goal of the game is to defeat all the Sno-Bees. If Pengo touches a Sno-Bee, 
 * Debugging functionalities:
 	- Function for drawing a hitbox around Pengo or the Snobees, indicating if they are colliding with something
 	- Press N to skip the level and go to the points screen
+
+#PREMIUM FEATURES
+We have developed non-official merchandising, including:
+	- An indescribable poster
+	- Super adorable Pengo plushie
+	- Super punchable Sno-bee plushie
