@@ -52,7 +52,7 @@ Pengo::Pengo(Anims* anims, Rectangle screenBorder, Map* map, Sound S_Push_Outsid
     pushUpFrameRec = { 0, 0, 48, 48 };
     pushDownFrameRec = { 0, 0, 48, 48 };
     isPushAnimationPlaying = false;
-    pushAnimationTimer = 0.2f;
+    pushAnimationTimer = 0.0f;
     pushAnimationDuration = 0.2f;
 }
 
@@ -62,26 +62,25 @@ Pengo::~Pengo()
 
 void Pengo::Draw() {
     if (IsKeyDown(KEY_LEFT)) {
-        pengoDirection = 1;
-        if (!isPushing) {
-            leftFramesCtr++;
-            if (leftFramesCtr > 12) {
+        pengoDirection = 1; //Left direction
+        if (!isPushing) { //Pengo is walking
+            leftFramesCtr++; //Increases frames counter
+            if (leftFramesCtr > 12) { //Frames duration of the animation
                 leftFramesCtr = 0;
                 if (currentLeftX == 0) {
-                    currentLeftX = 1;
+                    currentLeftX = 1; //Position of the second sprite on the spritesheet
                 }
                 else if (currentLeftX == 1) {
-                    currentLeftX = 0;
+                    currentLeftX = 0; //Position of the first sprite on the spritesheet
                 }
             }
-            leftFrameRec.x = currentLeftX * 48;
-            DrawTextureRec(animations->imgPengoLeft, leftFrameRec, { position.x, position.y }, WHITE);
+            leftFrameRec.x = currentLeftX * 48; //Calculation of the position of the sprite that needs to be drawn
+            DrawTextureRec(animations->imgPengoLeft, leftFrameRec, { position.x, position.y }, WHITE); //Drawing the sprite
         }
         else if (isPushAnimationPlaying) {
-            pushAnimationTimer -= GetFrameTime();
-            if (pushAnimationTimer <= 0.0f) {
-                isPushAnimationPlaying = false;
-                pushAnimationTimer = pushAnimationDuration;
+            pushAnimationTimer -= GetFrameTime(); //Lowering the timer
+            if (pushAnimationTimer <= 0.0f) { //Once the timer is over
+                isPushAnimationPlaying = false; //Push animation stops
             }
             pushLeftFramesCtr++;
             if (pushLeftFramesCtr > 12) {
@@ -99,8 +98,8 @@ void Pengo::Draw() {
             return;
         }
         else if (isPushing) {
-            isPushAnimationPlaying = true;
-            pushAnimationTimer = pushAnimationDuration;
+            isPushAnimationPlaying = true; //Starts the push animation
+            pushAnimationTimer = pushAnimationDuration; //Resets the timer
             pushLeftFramesCtr++;
             if (pushLeftFramesCtr > 12) {
                 pushLeftFramesCtr = 0;
@@ -137,7 +136,6 @@ void Pengo::Draw() {
             pushAnimationTimer -= GetFrameTime();
             if (pushAnimationTimer <= 0.0f) {
                 isPushAnimationPlaying = false;
-                pushAnimationTimer = pushAnimationDuration;
             }
             pushRightFramesCtr++;
             if (pushRightFramesCtr > 12) {
@@ -194,7 +192,6 @@ void Pengo::Draw() {
             pushAnimationTimer -= GetFrameTime();
             if (pushAnimationTimer <= 0.0f) {
                 isPushAnimationPlaying = false;
-                pushAnimationTimer = pushAnimationDuration;
             }
             pushUpFramesCtr++;
             if (pushUpFramesCtr > 12) {
@@ -247,6 +244,10 @@ void Pengo::Draw() {
 
         }
         else if (isPushAnimationPlaying) {
+            pushAnimationTimer -= GetFrameTime();
+            if (pushAnimationTimer <= 0.0f) {
+                isPushAnimationPlaying = false;
+            }
             pushDownFramesCtr++;
             if (pushDownFramesCtr > 12) {
                 pushDownFramesCtr = 0;
@@ -262,6 +263,8 @@ void Pengo::Draw() {
             return;
         }
         else if (isPushing) {
+            isPushAnimationPlaying = true;
+            pushAnimationTimer = pushAnimationDuration;
             pushDownFramesCtr++;
             if (pushDownFramesCtr > 12) {
                 pushDownFramesCtr = 0;

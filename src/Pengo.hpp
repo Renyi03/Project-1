@@ -20,9 +20,9 @@ public:
 	void resetPosition();
 	Sound Push_Outside_Walls;
 	Anims* animations;
-	int leftFramesCtr, rightFramesCtr, upFramesCtr, downFramesCtr, pushLeftFramesCtr, pushRightFramesCtr, pushUpFramesCtr, pushDownFramesCtr;
-	int currentLeftX, currentRightX, currentUpX, currentDownX, currentPushLeftX, currentPushRightX, currentPushUpX, currentPushDownX;
-	Rectangle leftFrameRec, rightFrameRec, upFrameRec, downFrameRec, pushLeftFrameRec, pushRightFrameRec, pushUpFrameRec, pushDownFrameRec;
+	int leftFramesCtr, rightFramesCtr, upFramesCtr, downFramesCtr, pushLeftFramesCtr, pushRightFramesCtr, pushUpFramesCtr, pushDownFramesCtr; //Frames counter for the animations
+	int currentLeftX, currentRightX, currentUpX, currentDownX, currentPushLeftX, currentPushRightX, currentPushUpX, currentPushDownX; //The current X position of the spritesheet
+	Rectangle leftFrameRec, rightFrameRec, upFrameRec, downFrameRec, pushLeftFrameRec, pushRightFrameRec, pushUpFrameRec, pushDownFrameRec; //Rectamgle of the size of the spritesheet
 	int pengoDirection; //1 - left, 2 - right, 3 - up, 4 - down
 	bool isPushing;
 	bool isPushAnimationPlaying;
