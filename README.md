@@ -49,6 +49,7 @@ The goal of the game is to defeat all the Sno-Bees. If Pengo touches a Sno-Bee, 
 	- Defeating a Sno-bee by squashing them with an ice block: 400 pts
 	- Defeating a Sno-bee by walking over them when stunned: 100 pts
 	- Extra points according to the time spent in each level
+* Invincibility time of 1 second after losing a life, where Pengo can not lose lives. A green square will appear arround Pengo during this time to indicate it.
 
 * Background music and sound effects
 * Textures for all the elements, and animations for Pengo, the Sno-bees and the walls

@@ -1693,7 +1693,7 @@ int main(void)
                 StopMusicStream(Main_BGM);
                 PlayMusicStream(Main_BGM);
                 PlaySound(Act_Clear);
-                currentScreen = POINTS;
+                currentScreen = GAMEOVER;
             }
 
             DrawText(TextFormat("1P"), 120, 2, 30, BLUE);
