@@ -65,7 +65,7 @@ void Pengo::Draw() {
         pengoDirection = 1;
         if (!isPushing) {
             leftFramesCtr++;
-            if (leftFramesCtr > 10) {
+            if (leftFramesCtr > 12) {
                 leftFramesCtr = 0;
                 if (currentLeftX == 0) {
                     currentLeftX = 1;
@@ -83,52 +83,200 @@ void Pengo::Draw() {
                 isPushAnimationPlaying = false;
                 pushAnimationTimer = pushAnimationDuration;
             }
-            if (isPushing) {
-                pushLeftFramesCtr++;
-                if (pushLeftFramesCtr > 12) {
-                    pushLeftFramesCtr = 0;
-                    if (currentPushLeftX == 0) {
-                        currentPushLeftX = 1;
-                    }
-                    else if (currentPushLeftX == 1) {
-                        currentPushLeftX = 0;
-                    }
+            pushLeftFramesCtr++;
+            if (pushLeftFramesCtr > 12) {
+                pushLeftFramesCtr = 0;
+                if (currentPushLeftX == 0) {
+                    currentPushLeftX = 1;
                 }
-                pushLeftFrameRec.x = currentPushLeftX * 48;
-                DrawTextureRec(animations->imgPengoPushLeft, pushLeftFrameRec, { position.x, position.y }, WHITE);
+                else if (currentPushLeftX == 1) {
+                    currentPushLeftX = 0;
+                }
+          
             }
+            pushLeftFrameRec.x = currentPushLeftX * 48;
+            DrawTextureRec(animations->imgPengoPushLeft, pushLeftFrameRec, { position.x, position.y }, WHITE);
+            return;
+        }
+        else if (isPushing) {
+            isPushAnimationPlaying = true;
+            pushAnimationTimer = pushAnimationDuration;
+            pushLeftFramesCtr++;
+            if (pushLeftFramesCtr > 12) {
+                pushLeftFramesCtr = 0;
+                if (currentPushLeftX == 0) {
+                    currentPushLeftX = 1;
+                }
+                else if (currentPushLeftX == 1) {
+                    currentPushLeftX = 0;
+                }
+            }
+            pushLeftFrameRec.x = currentPushLeftX * 48;
+            DrawTextureRec(animations->imgPengoPushLeft, pushLeftFrameRec, { position.x, position.y }, WHITE);
+            isPushing = false;
+            return;
+        }           
+    }
+    else if (IsKeyDown(KEY_RIGHT)) {
+        pengoDirection = 2;
+        if (!isPushing) {
+            rightFramesCtr++;
+            if (rightFramesCtr > 10) {
+                rightFramesCtr = 0;
+                if (currentRightX == 0) {
+                    currentRightX = 1;
+                }
+                else if (currentRightX == 1) {
+                    currentRightX = 0;
+                }
+            }
+            rightFrameRec.x = currentRightX * 48;
+            DrawTextureRec(animations->imgPengoRight, rightFrameRec, { position.x, position.y }, WHITE);
+        }
+        else if (isPushAnimationPlaying) {
+            pushAnimationTimer -= GetFrameTime();
+            if (pushAnimationTimer <= 0.0f) {
+                isPushAnimationPlaying = false;
+                pushAnimationTimer = pushAnimationDuration;
+            }
+            pushRightFramesCtr++;
+            if (pushRightFramesCtr > 12) {
+                pushRightFramesCtr = 0;
+                if (currentPushRightX == 0) {
+                    currentPushRightX = 1;
+                }
+                else if (currentPushRightX == 1) {
+                    currentPushRightX = 0;
+                }
+            }
+            pushRightFrameRec.x = currentPushRightX * 48;
+            DrawTextureRec(animations->imgPengoPushRight, pushRightFrameRec, { position.x, position.y }, WHITE);
             return;
         }
         else if (isPushing) {
             isPushAnimationPlaying = true;
             pushAnimationTimer = pushAnimationDuration;
 
-            if (pengoDirection == 1 && isPushing) {
-                pushLeftFramesCtr++;
-                if (pushLeftFramesCtr > 12) {
-                    pushLeftFramesCtr = 0;
-                    if (currentPushLeftX == 0) {
-                        currentPushLeftX = 1;
-                    }
-                    else if (currentPushLeftX == 1) {
-                        currentPushLeftX = 0;
-                    }
+            pushRightFramesCtr++;
+            if (pushRightFramesCtr > 12) {
+                pushRightFramesCtr = 0;
+                if (currentPushRightX == 0) {
+                    currentPushRightX = 1;
                 }
-                pushLeftFrameRec.x = currentPushLeftX * 48;
-                DrawTextureRec(animations->imgPengoPushLeft, pushLeftFrameRec, { position.x, position.y }, WHITE);
+                else if (currentPushRightX == 1) {
+                    currentPushRightX = 0;
+                }
             }
+            pushRightFrameRec.x = currentPushRightX * 48;
+            DrawTextureRec(animations->imgPengoPushRight, pushRightFrameRec, { position.x, position.y }, WHITE);
             isPushing = false;
             return;
-        }           
-    }
-    else if (IsKeyDown(KEY_LEFT)) {
+        }
 
     }
-    else if (IsKeyDown(KEY_LEFT)) {
-
+    else if (IsKeyDown(KEY_UP)) {
+        pengoDirection = 3;
+        if (!isPushing) {
+            upFramesCtr++;
+            if (upFramesCtr > 10) {
+                upFramesCtr = 0;
+                if (currentUpX == 0) {
+                    currentUpX = 1;
+                }
+                else if (currentUpX == 1) {
+                    currentUpX = 0;
+                }
+            }
+            upFrameRec.x = currentUpX * 48;
+            DrawTextureRec(animations->imgPengoUp, upFrameRec, { position.x, position.y }, WHITE);
+        }
+        else if (isPushAnimationPlaying) {
+            pushAnimationTimer -= GetFrameTime();
+            if (pushAnimationTimer <= 0.0f) {
+                isPushAnimationPlaying = false;
+                pushAnimationTimer = pushAnimationDuration;
+            }
+            pushUpFramesCtr++;
+            if (pushUpFramesCtr > 12) {
+                pushUpFramesCtr = 0;
+                if (currentPushUpX == 0) {
+                    currentPushUpX = 1;
+                }
+                else if (currentPushUpX == 1) {
+                    currentPushUpX = 0;
+                }
+            }
+            pushUpFrameRec.x = currentPushUpX * 48;
+            DrawTextureRec(animations->imgPengoPushUp, pushUpFrameRec, { position.x, position.y }, WHITE);
+            return;
+        }
+        else if (isPushing) {
+            isPushAnimationPlaying = true;
+            pushAnimationTimer = pushAnimationDuration;
+            pushUpFramesCtr++;
+            if (pushUpFramesCtr > 12) {
+                pushUpFramesCtr = 0;
+                if (currentPushUpX == 0) {
+                    currentPushUpX = 1;
+                }
+                else if (currentPushUpX == 1) {
+                    currentPushUpX = 0;
+                }
+            }
+            pushUpFrameRec.x = currentPushUpX * 48;
+            DrawTextureRec(animations->imgPengoPushUp, pushUpFrameRec, { position.x, position.y }, WHITE);
+            isPushing = false;
+            return;
+        }
     }
-    else if (IsKeyDown(KEY_LEFT)) {
+    else if (IsKeyDown(KEY_DOWN)) {
+        pengoDirection = 4;
+        if (!isPushing) {
+            downFramesCtr++;
+            if (downFramesCtr > 10) {
+                downFramesCtr = 0;
+                if (currentDownX == 0) {
+                    currentDownX = 1;
+                }
+                else if (currentDownX == 1) {
+                    currentDownX = 0;
+                }
+            }
+            downFrameRec.x = currentDownX * 48;
+            DrawTextureRec(animations->imgPengoDown, downFrameRec, { position.x, position.y }, WHITE);
 
+        }
+        else if (isPushAnimationPlaying) {
+            pushDownFramesCtr++;
+            if (pushDownFramesCtr > 12) {
+                pushDownFramesCtr = 0;
+                if (currentPushDownX == 0) {
+                    currentPushDownX = 1;
+                }
+                else if (currentPushDownX == 1) {
+                    currentPushDownX = 0;
+                }
+            }
+            pushDownFrameRec.x = currentPushDownX * 48;
+            DrawTextureRec(animations->imgPengoPushDown, pushDownFrameRec, { position.x, position.y }, WHITE);
+            return;
+        }
+        else if (isPushing) {
+            pushDownFramesCtr++;
+            if (pushDownFramesCtr > 12) {
+                pushDownFramesCtr = 0;
+                if (currentPushDownX == 0) {
+                    currentPushDownX = 1;
+                }
+                else if (currentPushDownX == 1) {
+                    currentPushDownX = 0;
+                }
+            }
+            pushDownFrameRec.x = currentPushDownX * 48;
+            DrawTextureRec(animations->imgPengoPushDown, pushDownFrameRec, { position.x, position.y }, WHITE);
+            isPushing = false;
+            return;
+        }
     }    
     else {
         if (pengoDirection == 1) {
